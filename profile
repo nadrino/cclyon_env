@@ -1,0 +1,379 @@
+#!/bin/bash
+# If not running interactively, don't do anything
+###############################################################################
+#                                                                             #
+#                        CENTRE DE CALCUL DE L'IN2P3                          #
+#                 Copyright (c) 2000 - All rights reserved.                   #
+#                                                                             #
+#                             ---------------                                 #
+#                                                                             #
+#     Please report problems, comments and remarks to the CCIN2P3 user        #
+#            support team at http://cctools.in2p3.fr/usersupport              #
+#                                                                             #
+#                          .profile template file                             #
+###############################################################################
+
+#=============================================================================#
+# This file is called at the begining of your Korn shell session. Please      #
+# modify only the USER SESSION to customize your shell environment.           #
+#=============================================================================#
+
+#=============================================================================#
+#                              SYSTEM SECTION                                 #
+#=============================================================================#
+# This section contains system profile calls. They are mandatory to set the   #
+# environment needed for CCIN2P3 tools such as the Batch Queueing System      #
+# (BQS) and data access services. DO NOT DISABLE OR MODIFY THIS SECTION.      #
+#=============================================================================#
+
+ if [ -r /afs/in2p3.fr/common/uss/system_profile ];then
+    . /afs/in2p3.fr/common/uss/system_profile
+ fi
+
+ if [ -n "$THRONG_DIR" ];then
+    if [ -r $THRONG_DIR/group_profile ];then
+       . $THRONG_DIR/group_profile
+    fi
+ fi
+
+#=============================================================================#
+#                               USER SECTION                                  #
+#=============================================================================#
+# Modify this section to customize your shell environment. If you have        #
+# ENVIRONMENT specific settings (batch/interactive), put your definitions in  #
+# the proper section as described below.                                      #
+#=============================================================================#
+
+#=============================================================================#
+#                              GLOBAL SETTINGS                                #
+#=============================================================================#
+
+# Set up the search path variable.
+ PATH=$PATH:.
+ PATH=/usr/local/bin/:$PATH # for cmake newer version
+ export PATH
+
+# Set up the environment file (edit this file to add aliases and more...).
+ ENV=$HOME/.kshrc
+ export ENV
+
+#FULLNAME='my name'
+#export FULLNAME
+#ORGANIZATION='my lab'
+#export ORGANIZATION
+
+#=============================================================================#
+#                        ENVIRONMENT DEPENDENT SETTINGS                       #
+#=============================================================================#
+
+case $ENVIRONMENT in
+   BATCH)		# Settings only defined in a batch session.
+
+	# Put here your commands to be run only in a batch session.
+
+	;;
+
+   INTERACTIVE|ACCESS)		# Interactive/Login settings only.
+
+	# Put here your commands to be run only in a login session.
+
+	# Set up the prompt pattern.
+	PS1='${PWD}(${?})>'
+	export PS1
+
+	# LPD_SERVER and PRINTER are to be used with the "slpr" command to
+	# send print jobs on a remote print server. Uncomment the 4 next
+	# lines and set proper values.
+	#LPD_SERVER=myprinterhost
+	#export LPD_SERVER
+	#PRINTER=myprinter
+	#export PRINTER
+
+	# If you want to modify system default settings for your interactive
+	# sessions, this is a good place to do it.
+	#PAGER=more
+	#MAIL=somewhere
+	#EDITOR=vi
+	#VISUAL=vi
+
+	;;
+esac
+
+###############################################################################
+# EOF
+
+#!/bin/bash
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# Prompt Colors
+NORMAL='\[\033[00m\]'
+
+LIGHTBLUE='\[\033[1;34m\]'
+LIGHTRED='\[\033[1;31m\]'
+LIGHTGREEN='\[\033[1;32m\]'
+
+LIGHTGOLD='\[\033[1;33m\]'
+
+BGREEN='\[\033[1;32m\]'
+GREEN='\[\033[0;32m\]'
+RED='\[\033[0;31m\]'
+BLUE='\[\033[0;34m\]'
+
+RED_COLOR="$(tput bold)$(tput setaf 1)"
+GOLD_COLOR="$(tput bold)$(tput setaf 3)"
+GREEN_COLOR="$(tput bold)$(tput setaf 2)"
+RESET_COLOR="$(tput sgr 0)$(tput dim)"
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+################################## PROMPT DISPLAY #################################
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="${LIGHTBLUE}\A ${LIGHTGREEN}\h ${LIGHTGOLD}[\w]\$ ${NORMAL}\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]"
+    ;;
+*)
+    ;;
+esac
+
+##PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#${LIGHTBLUE}\t ${LIGHTGREEN}${LIGHTGOLD}${NORMAL}
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+alias ll='ls -ahlF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+function cd
+{
+    builtin cd "$@" && ls -rt
+}
+
+################################## Extract function ##################################
+
+# Functions
+extract () {
+	if [ -f $1 ] ; then
+		case $1 in
+			*.tar.bz2)	tar xjf $1		;;
+			*.tar.gz)	tar xvf $1		;;
+			*.bz2)		bunzip2 $1		;;
+			*.rar)		rar x $1		;;
+			*.gz)		gunzip $1		;;
+			*.tar)		tar xf $1		;;
+			*.tbz2)		tar xjf $1		;;
+			*.tgz)		tar xzf $1		;;
+			*.zip)		unzip $1		;;
+			*.Z)		uncompress $1	;;
+			*)		echo "Please give a valid archive file, for example : extract anything.tar" ;;
+		esac
+	else
+		echo "'$1' is not a valid file"
+	fi
+}
+
+source /sps/hep/stereo/Adrien/Simulations/Setup/scripts/stereo_setup.sh
+setup_root
+setup_geant
+setup_stereo
+
+function pull(){
+
+    current_path=${PWD}
+    trap "cd ${current_path}" INT
+    echo "${GOLD_COLOR} -> Updating Stereo git repository...${RESET_COLOR}"
+    builtin cd ${STEREO_PATH}/../
+
+    pull_done='0'
+    while [ ${pull_done} == '0' ]; do
+      if ! (git fetch --all) then
+          echo "${RED_COLOR} -> Pull resquest failed : Retype you password.${RESET_COLOR}"
+      else
+          echo "${GREEN_COLOR} -> Pull succeded.${RESET_COLOR}"
+          pull_done='1'
+      fi
+    done
+    git reset --hard origin/master
+    build
+
+    echo "${GOLD_COLOR} -> Stereo git repository updated.${RESET_COLOR}"
+
+    return;
+}
+export -f pull
+
+function build(){
+  builtin cd ${STEREO_BUILD_DIR}
+  make install -j8
+  builtin cd $current_path
+}
+export -f build
+
+function pypull(){
+
+    current_path=${PWD}
+    trap "builtin cd ${current_path}" INT
+    echo "${GOLD_COLOR} -> Updating python git repository...${RESET_COLOR}"
+    builtin cd ${PYEXE}
+    pull_done='0'
+    while [ ${pull_done} == '0' ]; do
+      if ! (git fetch --all) then
+          echo "${RED_COLOR} -> Pull resquest failed : Retype you password.${RESET_COLOR}"
+      else
+          echo "${GREEN_COLOR} -> Pull succeded.${RESET_COLOR}"
+          pull_done='1'
+      fi
+    done
+    git reset --hard origin/master
+    builtin cd $current_path
+    echo "${GOLD_COLOR} -> Python git repository updated.${RESET_COLOR}"
+
+    return;
+}
+export -f pypull
+
+function rackdel(){
+
+    qdel `seq -f "%.0f" $1 $2`
+    return;
+}
+export -f rackdel
+
+# Enable colors in 'ls' command
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000000
+HISTFILESIZE=2000000
+
+# Aliases
+alias ..='cd ../'
+alias root='root -l'
+alias quota='fs lq ${HOME}'
+alias sizeof='du -h --max-depth=1 | sort -hr'
+alias cpu='mpstat -P ALL'
+alias profile_reload='source ${HOME}/.profile'
+alias setup='cd ${HOME}/sps/Setup'
+alias sps='cd ${HOME}/sps/'
+alias logs='cd ${HOME}/sps/Logs'
+alias mc='cd /sps/hep/stereo/MC_reservoir/'
+alias david='cd /sps/hep/stereo/David/Stereo/'
+alias fw='cd $STEREO_BUILD_DIR'
+alias stereo='cd ${STEREO_PATH}/../'
+alias job='jobs.py'
+alias jobs='jobs.py'
+alias monitoring='watch -c -n 0.5 jobs.py'
+alias py='cd ${PYEXE}'
+alias cleanlogs='find $HOME/sps/Logs -mtime +30 -exec rm {} \;'
+alias cleanup_old_files='find ./ -mtime +30 -exec rm {} \;'
+alias submit_job='qsub -o /Users/ablanche/Desktop/LocalWork/STEREO/Simulations/Logs/log_.log -e /Users/ablanche/Desktop/LocalWork/STEREO/Simulations/Logs/log_.err -P P_stereo -l xrootd=1,sps=1,ct=23:59:59,vmem=3G,fsize=20G -j y'
+alias res='cd ${HOME}/sps/Results/'
+alias mac='cd $STEREO_MACROS'
+alias fig='cd $STEREO_FIGURES'
+alias less='less -r -f'
+alias l='ls -rt'
+alias lll='ls -lrth'
+
+ccenv cmake
+sps
