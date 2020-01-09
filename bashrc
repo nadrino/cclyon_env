@@ -9,4 +9,16 @@ case $- in
       *) return;;
 esac
 
+COMMON_PROFILE="/sps/t2k/ablanche/env/common_profile.sh"
+if [ -f $MAC_PROFILE ];
+then
+  source $COMMON_PROFILE
+else
+  echo "Can't find common_profile.sh : $COMMON_PROFILE";
+fi
 
+function update_bashrc(){
+  # Copying this file to the place where the default .bashrc is red
+  cp /sps/t2k/ablanche/env/bashrc $HOME/.bashrc
+  echo ".bashrc has been updated."
+}
