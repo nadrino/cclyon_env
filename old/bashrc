@@ -1,0 +1,615 @@
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# Prompt Colors
+NORMAL='\[\033[00m\]'
+
+LIGHTBLUE='\[\033[1;34m\]'
+LIGHTRED='\[\033[1;31m\]'
+LIGHTGREEN='\[\033[1;32m\]'
+
+LIGHTGOLD='\[\033[1;33m\]'
+
+BGREEN='\[\033[1;32m\]'
+GREEN='\[\033[0;32m\]'
+RED='\[\033[0;31m\]'
+BLUE='\[\033[0;34m\]'
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+if [ "$color_prompt" = yes ]; then
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+unset color_prompt force_color_prompt
+
+################################## PROMPT DISPLAY #################################
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    #PS1="${LIGHTBLUE}\A ${LIGHTGREEN}\u@\h ${LIGHTGOLD}[\w]\$ ${NORMAL}\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]"
+    PS1="${LIGHTBLUE}\A ${LIGHTGREEN}\h ${LIGHTGOLD}[\W]\$ ${NORMAL}\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]"
+    ;;
+*)
+    ;;
+esac
+
+##PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#${LIGHTBLUE}\t ${LIGHTGREEN}${LIGHTGOLD}${NORMAL}
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+# some more ls aliases
+alias ll='ls -ahlF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Add an "alert" alias for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Alias definitions.
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+export PATH="/usr/local/bin:$PATH"
+
+################################## Extract function ##################################
+
+# Functions
+extract () {
+	if [ -f $1 ] ; then
+		case $1 in
+			*.tar.bz2)	tar xjf $1		;;
+			*.tar.gz)	tar xvf $1		;;
+			*.bz2)		bunzip2 $1		;;
+			*.rar)		rar x $1		;;
+			*.gz)		gunzip $1		;;
+			*.tar)		tar xf $1		;;
+			*.tbz2)		tar xjf $1		;;
+			*.tgz)		tar xzf $1		;;
+			*.zip)		unzip $1		;;
+			*.Z)		uncompress $1	;;
+			*)		echo "Please give a valid archive file, for example : extract anything.tar" ;;
+		esac
+	else
+		echo "'$1' is not a valid file"
+	fi
+}
+
+################################## Proxy ##################################
+
+function proxy_on() {
+    export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
+
+    if (( $# > 0 )); then
+        valid=$(echo $@ | sed -n 's/\([0-9]\{1,3\}.\)\{4\}:\([0-9]\+\)/&/p')
+        if [[ $valid != $@ ]]; then
+            >&2 echo "Invalid address"
+            return 1
+        fi
+
+        export http_proxy="http://$1/"
+        export https_proxy=$http_proxy
+        export ftp_proxy=$http_proxy
+        export rsync_proxy=$http_proxy
+        echo "Proxy environment variable set."
+        return 0
+    fi
+
+    echo -n "username: "; read username
+    if [[ $username != "" ]]; then
+        echo -n "password: "
+        read -es password
+        local pre="$username:$password@"
+    fi
+
+    echo -n "server: "; read server
+    echo -n "port: "; read port
+    export http_proxy="http://$pre$server:$port/"
+    export https_proxy=$http_proxy
+    export ftp_proxy=$http_proxy
+    export rsync_proxy=$http_proxy
+    export HTTP_PROXY=$http_proxy
+    export HTTPS_PROXY=$http_proxy
+    export FTP_PROXY=$http_proxy
+    export RSYNC_PROXY=$http_proxy
+}
+
+function proxy_off(){
+    unset http_proxy
+    unset https_proxy
+    unset ftp_proxy
+    unset rsync_proxy
+    echo -e "Proxy environment variable removed."
+}
+
+function stillcraft()
+{
+	   echo -e "$(tput bold)$(tput setaf 1)Connecting to the StillCraft server in shh...$(tput sgr 0)$(tput dim)"
+     sshpass -p GcTLiuZZvdmr ssh -Y root@stillcraft.servegame.com
+     echo -e "$(tput bold)$(tput setaf 1)Back to local.$(tput sgr 0)$(tput dim)"
+}
+export -f stillcraft
+
+function cc()
+{
+	   echo -e "$(tput bold)$(tput setaf 1)Connecting to the Lyon calcul center in shh...$(tput sgr 0)$(tput dim)"
+     sshpass -p Ek2waonu@stereo5 ssh -Y ablanche@cca.in2p3.fr
+     echo -e "$(tput bold)$(tput setaf 1)Back to local.$(tput sgr 0)$(tput dim)"
+}
+export -f cc
+
+function pi()
+{
+	   echo -e "$(tput bold)$(tput setaf 1)Connecting to RaspberryPi in shh...$(tput sgr 0)$(tput dim)"
+     sshpass -p Ek2waonu@rbp ssh -X ablanche@adrien-blanchet.duia.eu
+     echo -e "$(tput bold)$(tput setaf 1)Back to local.$(tput sgr 0)$(tput dim)"
+}
+export -f pi
+
+function mount_cclyon()
+{
+     umount_cclyon
+	   echo -e "$(tput bold)$(tput setaf 1)Mounting the CCLyon Volume...$(tput sgr 0)$(tput dim)"
+     mkdir -p $HOME/Volumes/CCLyon
+    #  sshfs -o local,auto_cache,reconnect,defer_permissions,noappledouble,no_readahead,follow_symlinks,volname=CCLyon,ssh_command=/Users/ablanche/Dropbox/Special/mac/sshpass/cclyon_ssh.sh ablanche@cca.in2p3.fr:/afs/in2p3.fr/home/a/ablanche /Volumes/CCLyon
+     # sshfs -o Ciphers=arcfour,auto_cache,reconnect,defer_permissions,noappledouble,no_readahead,follow_symlinks,volname=CCLyon,ssh_command=$HOME/Dropbox/Special/mac/sshpass/cclyon_ssh.sh ablanche@cca.in2p3.fr:/afs/in2p3.fr/home/a/ablanche $HOME/Volumes/CCLyon
+     sshfs -o workaround=truncate:rename,allow_other,reconnect,auto_cache,no_readahead,follow_symlinks,volname=CCLyon,ssh_command=$HOME/Dropbox/Special/mac/sshpass/cclyon_ssh.sh ablanche@cca.in2p3.fr:/afs/in2p3.fr/home/a/ablanche $HOME/Volumes/CCLyon
+    #  sshfs -o follow_symlinks,volname=CCLyon,ssh_command=$HOME/Dropbox/Special/mac/sshpass/cclyon_ssh.sh ablanche@cca.in2p3.fr:/afs/in2p3.fr/home/a/ablanche /Volumes/CCLyon
+    #  mount -t fuse sshfs#ablanche@cca.in2p3.fr:/afs/in2p3.fr/home/a/ablanche /Volumes/CCLyon -o ssh_command=/Users/ablanche/Dropbox/Special/mac/sshpass/cclyon_ssh.sh
+     echo -e "$(tput bold)$(tput setaf 1)Use this to unmount : umount_cclyon$(tput sgr 0)$(tput dim)"
+}
+export -f mount_cclyon
+
+function mount_pihome()
+{
+     umount_pihome
+	   echo -e "$(tput bold)$(tput setaf 1)Mounting the RaspberryPi Home Volume...$(tput sgr 0)$(tput dim)"
+     mkdir -p /Volumes/PiHome
+     mount -t smbfs //ablanche@192.168.1.99/PiHome /Volumes/PiHome
+     echo -e "$(tput bold)$(tput setaf 1)Use this to unmount : umount_pihome$(tput sgr 0)$(tput dim)"
+}
+export -f mount_pihome
+
+function umount_cclyon()
+{
+	   echo -e "$(tput bold)$(tput setaf 1)Unmounting the CCLyon Volume...$(tput sgr 0)$(tput dim)"
+     umount -f $HOME/Volumes/CCLyon
+}
+export -f umount_cclyon
+
+function umount_pihome()
+{
+	   echo -e "$(tput bold)$(tput setaf 1)Unmounting the RaspberryPi Home Volume...$(tput sgr 0)$(tput dim)"
+     umount -f /Volumes/PiHome
+}
+export -f umount_cclyon
+
+function umount_pi()
+{
+	   echo -e "$(tput bold)$(tput setaf 1)Unmounting the RaspberryPi Volume...$(tput sgr 0)$(tput dim)"
+     umount -f /Volumes/RaspberryPi
+}
+export -f umount_pi
+
+function mount_stillcraft()
+{
+	   echo -e "$(tput bold)$(tput setaf 1)Mounting the StillCraft Volume...$(tput sgr 0)$(tput dim)"
+     mkdir -p /Volumes/StillCraft
+    #  sshfs -o local,auto_cache,reconnect,defer_permissions,noappledouble,no_readahead,follow_symlinks,volname=StillCraft,ssh_command=/Users/ablanche/Dropbox/Special/mac/sshpass/stillcraft_ssh.sh root@stillcraft.servegame.com:/home /Volumes/StillCraft
+     sshfs -o local,auto_cache,reconnect,defer_permissions,noappledouble,no_readahead,follow_symlinks,volname=StillCraft,ssh_command=/Users/ablanche/Dropbox/Special/mac/sshpass/stillcraft_ssh.sh root@stillcraft.servegame.com:/home /Volumes/StillCraft
+     echo -e "$(tput bold)$(tput setaf 1)Use this to unmount : umount_stillcraft$(tput sgr 0)$(tput dim)"
+}
+export -f mount_stillcraft
+
+function umount_stillcraft()
+{
+	   echo -e "$(tput bold)$(tput setaf 1)Unmounting the CCLyon Volume...$(tput sgr 0)$(tput dim)"
+     umount -f /Volumes/StillCraft
+}
+export -f umount_cclyon
+
+function cd
+{
+    builtin cd "$@" && ls -rt
+}
+
+################################## SOLID ##################################
+
+export SOLID=/home/aazlm/Documents/Solid/
+
+export ROOT_FILES=${SOLID}/out_files/
+export ROOT_CONFIG_FILES=${SOLID}/config_files/
+export ANRA_ROOT=${SOLID}/AnrASim/
+export FUEL_PARAM=/home/aazlm/Documents/Solid/fuel_param/
+
+################################## CADFAEL ##################################
+
+export SW_WORK_DIR=/home/aazlm/Programs/
+
+export CADFAEL_WORK_DIR="${HOME}/Programs/Cadfael_old"
+function do_cadfael_trunk_setup()
+{
+    if [ -n "${CADFAEL_INSTALL_DIR}" ]; then
+	echo "$(tput bold)$(tput setaf 1)ERROR: Cadfael/trunk is already setup !$(tput sgr 0)$(tput dim)" >&2
+	return 1
+    fi
+    export CADFAEL_INSTALL_DIR=${CADFAEL_WORK_DIR}/Binary/Cadfael-trunk/Install-Linux-x86_64
+    export PATH=${CADFAEL_INSTALL_DIR}/bin:${PATH}
+    echo "$(tput bold)$(tput setaf 3)NOTICE: Cadfael/trunk is now setup !$(tput sgr 0)$(tput dim)" >&2
+    return;
+}
+export -f do_cadfael_trunk_setup
+alias do_cadfael_dev_setup="do_cadfael_trunk_setup"
+alias cadfael="do_cadfael_trunk_setup"
+
+# Launching Cadfael/trunk
+# cadfael
+
+
+################################## CADFAELBREW ##################################
+
+function do_cadfaelbrew_setup()
+{
+	   if [ -n "${CADFAELBREW_INSTALL_DIR}" ]; then
+           echo "ERROR: Cadfaelbrew is already setup !" >&2
+           return 1
+       fi
+       export CADFAELBREW_INSTALL_DIR="${HOME}/Programs/Cadfael/cadfael-installer.git/Cadfael.git"
+       export PATH="${CADFAELBREW_INSTALL_DIR}/bin:${PATH}"
+       export MANPATH="${CADFAELBREW_INSTALL_DIR}/share/man:${MANPATH}"
+       export INFOPATH="${CADFAELBREW_INSTALL_DIR}/share/info:${INFOPATH}"
+       echo "NOTICE: Cadfaelbrew is now setup !" >&2
+       return
+}
+export -f do_cadfaelbrew_setup
+alias cadfaelbrew="do_cadfaelbrew_setup"
+
+
+################################## HOMEBREW ##################################
+function setup_root()
+{
+    echo "Seting up ROOT..." >&2
+
+    # Using ROOT
+    echo "├─ Using ROOT handled by Homebrew..." >&2
+    . /usr/local/bin/thisroot.sh
+    echo "   ├─ ROOT Prefix : $(root-config --prefix)"
+    echo "   ├─ ROOT Version : $(root-config --version)"
+    export PATH=$ROOTSYS/bin:$PATH
+    export LD_LIBRARY_PATH=$ROOTSYS/lib:$LD_LIBRARY_PATH
+
+    echo "$(tput bold)$(tput setaf 3)NOTICE: ROOT is now setup.$(tput sgr 0)$(tput dim)" >&2
+    return;
+}
+export -f setup_root
+
+function setup_root60608()
+{
+    echo "Seting up ROOT..." >&2
+
+    # Using ROOT
+    echo "├─ Using ROOT handled by Homebrew..." >&2
+    . /usr/local/opt/root60608/libexec/thisroot.sh
+    echo "   ├─ ROOT Prefix : $(root-config --prefix)"
+    echo "   ├─ ROOT Version : $(root-config --version)"
+    export PATH=$ROOTSYS/bin:$PATH
+    export LD_LIBRARY_PATH=$ROOTSYS/lib:$LD_LIBRARY_PATH
+
+    echo "$(tput bold)$(tput setaf 3)NOTICE: ROOT is now setup.$(tput sgr 0)$(tput dim)" >&2
+    return;
+}
+export -f setup_root60608
+
+function setup_geant4()
+{
+    echo "Seting up Geant4..." >&2
+
+    # Using Geant4
+    echo "├─ Using Geant4 handled by Homebrew..." >&2
+    source $(brew --prefix geant)/bin/geant4.sh
+    # source $(brew --prefix geant)/share/Geant4-$(geant4-config --version)/geant4make/geant4make.sh
+    echo "   ├─ Geant4 Prefix : $(geant4-config --prefix)"
+    echo "   ├─ Geant4 Version : $(geant4-config --version)"
+
+    #export G4LEVELGAMMADATA="/usr/local/share/Geant4-10.2.0"
+    #export G4ENSDFSTATEDATA="/usr/local/Cellar/geant/4.10.02/share/Geant4-10.2.0/data/G4ENSDFSTATE1.2"
+    #export G4NEUTRONXSDATA="/usr/local/share/Geant4-10.2.0/data"
+    #export G4NEUTRONHPDATA="/usr/local/share/Geant4-10.2.0/data/G4NDL4.5"
+    #export G4LEDATA="/usr/local/share/Geant4-10.2.0/data/G4EMLOW6.48"
+    #export G4SAIDXSDATA="/usr/local/share/Geant4-10.2.0/data"
+
+    echo "$(tput bold)$(tput setaf 3)NOTICE: Geant4 is now setup.$(tput sgr 0)$(tput dim)" >&2
+    return;
+}
+export -f setup_geant4
+
+function setup_Geant41022()
+{
+    echo "Seting up Geant4..." >&2
+
+    # Using Geant4
+    echo "├─ Using Geant4 handled by Homebrew..." >&2
+    source $(brew --prefix Geant41022)/bin/geant4.sh
+    source $(brew --prefix Geant41022)/share/Geant4-$(geant4-config --version)/geant4make/geant4make.sh
+    echo "   ├─ Geant4 Prefix : $(geant4-config --prefix)"
+    echo "   ├─ Geant4 Version : $(geant4-config --version)"
+
+    #export G4LEVELGAMMADATA="/usr/local/share/Geant4-10.2.0"
+    #export G4ENSDFSTATEDATA="/usr/local/Cellar/geant/4.10.02/share/Geant4-10.2.0/data/G4ENSDFSTATE1.2"
+    #export G4NEUTRONXSDATA="/usr/local/share/Geant4-10.2.0/data"
+    #export G4NEUTRONHPDATA="/usr/local/share/Geant4-10.2.0/data/G4NDL4.5"
+    #export G4LEDATA="/usr/local/share/Geant4-10.2.0/data/G4EMLOW6.48"
+    #export G4SAIDXSDATA="/usr/local/share/Geant4-10.2.0/data"
+
+    echo "$(tput bold)$(tput setaf 3)NOTICE: Geant4 is now setup.$(tput sgr 0)$(tput dim)" >&2
+    return;
+}
+export -f setup_Geant41022
+
+function setup_brew()
+{
+    echo "Seting up Brew..." >&2
+
+    # Bash completion
+    # echo "├─ Setting up bash completion for Homebrew..." >&2
+    # source $(brew --repository)/Library/Contributions/brew_bash_completion.sh
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
+    fi
+
+    export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
+    # BrewFile
+    # echo "├─ Setting up BrewFile..." >&2
+    # export HOMEBREW_BREWFILE="$HOME/Dropbox/Special/Mac/Brewfile"
+    #if [ -f $(brew --prefix)/etc/brew-wrap ];then
+    #  source $(brew --prefix)/etc/brew-wrap
+    #fi
+
+    echo "$(tput bold)$(tput setaf 3)NOTICE: Brew is now setup.$(tput sgr 0)$(tput dim)" >&2
+    return;
+}
+export -f setup_brew
+
+function setup_stereo()
+{
+
+    echo "Seting up STEREO environement..." >&2
+
+    # setup_root
+
+    # GEANT4 support (10.2.2)
+    # setup_Geant41022
+    setup_geant4
+    export g4non_display=1
+    export G4VERSIONCODE=41022
+    export G4VERSION_NUMBER=1022
+    unset  G4WORKDIR
+    unset  G4ANALYSIS_USE
+    export G4VIS_NONE=0
+    export NeutronHPCrossSections=${G4NEUTRONHPDATA}
+
+    # Stereo support
+    echo "├─ Setting up environement variable for STEREO..." >&2
+    export LOCAL_WORKDIR=${HOME}/Desktop/LocalWork
+    export STWORKDIR=${LOCAL_WORKDIR}/STEREO/Programs/FrameWork/Install/
+    export STEREO_SVN=${HOME}/Dropbox/Work/Programs/cpp_programs/stereo
+    export STEREO_PATH=${STEREO_SVN}/trunk
+    export G4DICHROICDATA=${STEREO_PATH}/simulation/data
+
+    set EXE=${STWORKDIR}/bin/Stereo_sim
+
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$STWORKDIR/lib
+    export PATH=${PATH}:$STWORKDIR/bin:${HOME}/Dropbox/Work/Programs/py_programs/multi-variate-analysis
+    export STEREO_DATA=$STWORKDIR/data
+
+    #export STEREO_PATH=${HOME}/Documents/Stereo/SVN/trunk
+    #source ${STEREO_PATH}/configStereoSim_g4102_root6.sh
+
+    export STEREODBUSER="stereo_ro"
+    export STEREOBPASSWD="fUW2AMbYKa8c"
+
+    # export STEREODBUSER="stereo"
+    # export STEREOBPASSWD="anNbt4d9EGaZ"
+
+
+    #####################################################
+    #       Personal variables
+    #####################################################
+    export STEREO_DEV=${HOME}/Dropbox/Work/Programs
+    export STEREO_FIGURES=${HOME}/Dropbox/Work/Figures
+    export STEREO_OUTPUT=${LOCAL_WORKDIR}/STEREO/Simulations
+    export STEREOPPDATA=${STEREO_OUTPUT}/Preprocessed
+    export MVA=${STEREO_OUTPUT}/MVA
+    export PYEXE=${HOME}/Dropbox/Work/Programs/py_programs/
+
+    export PYTHONPATH="${PYTHONPATH}:${PYEXE}/personal_library"
+
+    echo "$(tput bold)$(tput setaf 3)NOTICE: STEREO environement is now setup.$(tput sgr 0)$(tput dim)" >&2
+    return;
+}
+export -f setup_stereo
+
+function setup_lisa() {
+
+  export LISATOOLS="${LOCAL_WORKDIR}/Lisa"
+  export SVNDIR="${LISATOOLS}/source/lisatools/"
+  export PYTHONPATH="${PYTHONPATH}:${LISATOOLS}/lib/python2.7/site-packages"
+  export PYTHONPATH="${PYTHONPATH}:${LISATOOLS}/lib/python2.7/site-packages/synthlisa"
+  export PYTHONPATH="${PYTHONPATH}:${LISATOOLS}/source/lisatools/lisaXML/python-examples/"
+  export PATH="${LISATOOLS}/bin:${PATH}"
+
+}
+export -f setup_lisa
+
+function show_hidden_files()
+{
+    defaults write com.apple.finder AppleShowAllFiles -bool YES
+    echo "Finder is restarting..." >&2
+    killall Finder
+    echo "$(tput bold)$(tput setaf 3)NOTICE: Hidden files are shown.$(tput sgr 0)$(tput dim)" >&2
+    return;
+}
+export -f show_hidden_files
+
+function hide_hidden_files()
+{
+    defaults write com.apple.finder AppleShowAllFiles -bool NO
+    echo "Finder is restarting..." >&2
+    killall Finder
+    echo "$(tput bold)$(tput setaf 3)NOTICE: Hidden files are not shown again.$(tput sgr 0)$(tput dim)" >&2
+    return;
+}
+export -f show_hidden_files
+
+function push()
+{
+    current_path=${PWD}
+    builtin cd ${STEREO_PATH}/../
+    git add .
+    git commit -a -m "Fast commit."
+    git push
+    builtin cd $current_path
+    return;
+}
+export -f push
+
+function pypush()
+{
+    current_path=${PWD}
+    builtin cd ${PYEXE}
+    git add .
+    git commit -a -m "Fast commit."
+    git push
+    builtin cd $current_path
+    return;
+}
+export -f pypush
+
+function uninstall()
+{
+    echo "Removing files listed in install_manifest.txt ..." >&2
+    sudo xargs rm < install_manifest.txt
+    echo "$(tput bold)$(tput setaf 3)NOTICE: make uninstall done.$(tput sgr 0)$(tput dim)" >&2
+    return;
+}
+export -f uninstall
+
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+# export DISPLAY="/Applications/Utilities/XQuartz.app/Contents/MacOS/X11"
+
+setup_brew
+setup_stereo
+setup_lisa
+setup_root
+setup_brew
+
+# Enable colors in 'ls' command
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+# Aliases
+alias profile_reload='source ${HOME}/.bash_profile'
+alias profile_edit='edit ${HOME}/Dropbox/Special/bash_config/common_profile.sh'
+alias cclyon_edit='edit ${HOME}/Volumes/CCLyon/.profile'
+alias pi_edit='edit ${HOME}/Volumes/PiHome/.bashrc'
+alias cclyon_stereo_edit="edit ${HOME}/Volumes/CCLyon/sps/Setup/scripts/stereo_setup.sh"
+
+alias root='root -l'
+alias cpu='mpstat -P ALL'
+alias ..='cd ../'
+alias l='ls -rt'
+alias lll='ls -lrth'
+alias myip='curl ipinfo.io/ip'
+
+alias dev='cd ${HOME}/Dropbox/Work/Programs/'
+alias gen='cd ${HOME}/Dropbox/Work/Programs/cpp_programs/event-generator/'
+alias fw='cd ${HOME}/Desktop/LocalWork/STEREO/Programs/FrameWork/Build/'
+alias stereo='cd ${HOME}/Dropbox/Work/Programs/cpp_programs/stereo/'
+alias py='cd ${HOME}/Dropbox/Work/Programs/py_programs/'
+alias macros='cd ${HOME}/Dropbox/Work/Programs/macros_root/'
+alias localsps='cd ${HOME}/Desktop/LocalWork/STEREO/Simulations'
+alias sps='cd $HOME/Volumes/CCLyon/sps/'
+alias res='cd $HOME/Volumes/CCLyon/sps/Results/'
+alias lisa='cd ${HOME}/Desktop/LocalWork/Lisa'
