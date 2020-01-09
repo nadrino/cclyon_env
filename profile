@@ -48,14 +48,30 @@
 #                              GLOBAL SETTINGS                                #
 #=============================================================================#
 
+COMMON_PROFILE="/sps/t2k/ablanche/env/common_profile.sh"
+if [ -f $MAC_PROFILE ];
+then
+  source $COMMON_PROFILE
+else
+  echo "Can't find common_profile.sh : $COMMON_PROFILE";
+fi
+
+function update_profile(){
+  # Copying this file to the place where the default .bashrc is red
+  cp /sps/t2k/ablanche/env/bashrc $HOME/.profile
+  echo ".profile has been updated."
+}
+
+
+
 # Set up the search path variable.
- PATH=$PATH:.
- PATH=/usr/local/bin/:$PATH # for cmake newer version
- export PATH
+PATH=$PATH:.
+PATH=/usr/local/bin/:$PATH # for cmake newer version
+export PATH
 
 # Set up the environment file (edit this file to add aliases and more...).
- ENV=$HOME/.kshrc
- export ENV
+ENV=$HOME/.kshrc
+export ENV
 
 #FULLNAME='my name'
 #export FULLNAME
