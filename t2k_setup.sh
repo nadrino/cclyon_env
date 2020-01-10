@@ -29,5 +29,6 @@ function set_t2k_env(){
   alias logs="cd $LOGS_DIR"
   alias fig="cd $FIGURES_DIR"
 
+  echo "$(tput bold)$(tput setaf 3)NOTICE: T2K env has been setup.$(tput sgr 0)$(tput dim)" >&2
   return;
 }; export -f set_t2k_env
