@@ -74,4 +74,4 @@ function update_profile(){
 }; export -f update_profile
 
 # By default the T2K env is setup
-setup_t2k
+set_t2k_env
