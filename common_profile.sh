@@ -240,6 +240,53 @@ function rackdel(){
 }
 export -f rackdel
 
+function upgrade_profiles(){
+  builtin cd $T2K_PROFILE
+  git pull
+  builtin cd $current_path
+} export -f upgrade_profiles
+
+# Setting up programs
+function setup_cmake(){
+  echo "├─ Setting up CMake..." >&2
+  ccenv cmake
+  echo "   ├─ CMake Version : $(cmake --prefix)"
+} export -f setup_cmake
+
+function setup_root()
+{
+  echo "├─ Setting up ROOT..." >&2
+  # https://doc.cc.in2p3.fr/soft_liste_des_logiciels_disponibles_au_centre_de_calcul
+  # ccenv --list root -> pour récupérer les versions valides
+  ccenv root
+  # Next line can be mandatory... Check python
+  # export PYTHONPATH="$ROOTSYS/lib:$ROOTSYS/lib/python"
+  echo "   ├─ ROOT Prefix : $(root-config --prefix)"
+  echo "   ├─ ROOT Version : $(root-config --version)"
+
+  echo "NOTICE: ROOT has been setup." >&2
+  return;
+} export -f setup_root
+
+function setup_geant4()
+{
+  echo "├─ Setting up Geant4..." >&2
+  # https://doc.cc.in2p3.fr/soft_liste_des_logiciels_disponibles_au_centre_de_calcul
+  # ccenv --list geant4 -> pour récupérer les versions valides
+  ccenv geant4
+  echo "   ├─ Geant4 Prefix : $(geant4-config --prefix)"
+  echo "   ├─ Geant4 Version : $(geant4-config --version)"
+
+  echo "NOTICE: Geant4 has been setup." >&2
+  return;
+}
+export -f setup_geant4
+
+# Default software setup
+setup_cmake
+setup_root
+setup_geant4
+
 # Enable colors in 'ls' command
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
