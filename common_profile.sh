@@ -286,12 +286,15 @@ setup_programs
 setup_root
 setup_geant4
 
+export CC_REPO_DIR="$HOME/work/repo/"
+
 # Seting up python paths for CCLyon
-export PATH="$HOME/work/repo/cclyon_py_tools/scripts/:$PATH"
-export PYTHONPATH="$HOME/work/repo/cclyon_py_tools/library/:$PYTHONPATH"
+export PATH="$CC_REPO_DIR/cclyon_py_tools/scripts/:$PATH"
+export PYTHONPATH="$CC_REPO_DIR/cclyon_py_tools/library/:$PYTHONPATH"
 
 # Aliases
 alias root='root -l'
 alias quota='fs lq ${HOME}'
 alias sizeof='du -h --max-depth=1 | sort -hr'
 alias cpu='mpstat -P ALL'
+alias repo_cc="cd $CC_REPO_DIR"
