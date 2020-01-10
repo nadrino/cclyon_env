@@ -164,6 +164,9 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    # Enable colors
+    export CLICOLOR=1
+    export LSCOLORS=ExFxCxDxBxegedabagacad
     alias ls='ls --color=auto'
     alias less='less -r -f'
     #alias dir='dir --color=auto'
@@ -281,9 +284,9 @@ setup_programs
 setup_root
 setup_geant4
 
-# Enable colors in 'ls' command
-export CLICOLOR=1
-export LSCOLORS=ExFxCxDxBxegedabagacad
+# Seting up python paths for CCLyon
+export PATH="$HOME/work/repo/cclyon_py_tools/scripts/:$PATH"
+export PYTHONPATH="$HOME/work/repo/cclyon_py_tools/library/:$PYTHONPATH"
 
 # Aliases
 alias root='root -l'

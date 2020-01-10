@@ -70,14 +70,14 @@ fi
 function upgrade_profiles(){
   current_path=${PWD}
   builtin cd $ENV_SETUP_DIR
-  echo "Pulling updates on git repository..."
-  git pull
-  echo "Copying .profile to HOME"
+  echo "-> Pulling updates on git repository..."
+  git pull > /dev/null
+  echo "-> Copying .profile to HOME."
   cp $ENV_SETUP_DIR/profile $HOME/.profile
-  echo "Resourcing .profile"
+  echo "-> Resourcing .profile."
   source $HOME/.profile
   builtin cd $current_path
-  echo "Profiles upgraded."
+  echo "-> Profiles upgraded."
 }; export -f upgrade_profiles
 
 # By default the T2K env is setup
