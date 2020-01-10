@@ -249,6 +249,8 @@ function setup_programs(){
   echo "   ├─ CMake Version : $(cmake --version | head -n 1)"
   ccenv git
   echo "   ├─ Git Version : $(git --version)"
+  ccenv python 3.6.7
+  echo "   ├─ Python Version : $(python --version)"
 }; export -f setup_programs
 
 function setup_root()
