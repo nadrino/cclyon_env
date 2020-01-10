@@ -82,4 +82,4 @@ function upgrade_profiles(){
 
 # By default the T2K env is setup
 set_t2k_env
-t2k # go to sps directory
+sps # go to t2k sps directory
