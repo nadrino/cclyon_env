@@ -239,12 +239,6 @@ function rackdel(){
     return;
 }; export -f rackdel
 
-function upgrade_profiles(){
-  builtin cd $ENV_SETUP_DIR
-  git pull
-  builtin cd $current_path
-}; export -f upgrade_profiles
-
 # Setting up programs
 function setup_programs(){
   echo "├─ Setting up Programs..." >&2

@@ -67,11 +67,15 @@ else
   echo "Can't find T2K_PROFILE : $T2K_PROFILE";
 fi
 
-function update_profile(){
-  # Copying this file to the place where the default .bashrc is red
+function upgrade_profiles(){
+  current_path=${PWD}
+  builtin cd $ENV_SETUP_DIR
+  git pull
   cp $ENV_SETUP_DIR/profile $HOME/.profile
-  echo ".profile has been updated."
-}; export -f update_profile
+  source $HOME/.profile
+  builtin cd $current_path
+  echo "Profiles upgraded."
+}; export -f upgrade_profiles
 
 # By default the T2K env is setup
 set_t2k_env
