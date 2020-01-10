@@ -24,6 +24,7 @@ function set_t2k_env(){
 
   # Aliases
   alias t2k="builtin cd $T2K_SPS_DIR"
+  alias tk="builtin cd $T2K_SPS_DIR"
   alias repo="builtin cd $REPO_DIR"
   alias res="builtin cd $RESULTS_DIR"
   alias logs="builtin cd $LOGS_DIR"
