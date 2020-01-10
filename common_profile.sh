@@ -245,7 +245,7 @@ function setup_programs(){
   ccenv cmake
   echo "   ├─ CMake Version : $(cmake --version | head -n 1)"
   ccenv git
-  echo "   ├─ CMake Version : $(git --version)"
+  echo "   ├─ Git Version : $(git --version)"
 }; export -f setup_programs
 
 function setup_root()
