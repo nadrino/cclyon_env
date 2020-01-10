@@ -246,11 +246,13 @@ function upgrade_profiles(){
 }; export -f upgrade_profiles
 
 # Setting up programs
-function setup_cmake(){
-  echo "├─ Setting up CMake..." >&2
+function setup_programs(){
+  echo "├─ Setting up Programs..." >&2
   ccenv cmake
   echo "   ├─ CMake Version : $(cmake --version | head -n 1)"
-}; export -f setup_cmake
+  ccenv git
+  echo "   ├─ CMake Version : $(git --version)"
+}; export -f setup_programs
 
 function setup_root()
 {
@@ -281,7 +283,7 @@ function setup_geant4()
 }; export -f setup_geant4
 
 # Default software setup
-setup_cmake
+setup_programs
 setup_root
 setup_geant4
 
