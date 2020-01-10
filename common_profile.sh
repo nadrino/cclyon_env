@@ -249,7 +249,7 @@ function upgrade_profiles(){
 function setup_cmake(){
   echo "├─ Setting up CMake..." >&2
   ccenv cmake
-  echo "   ├─ CMake Version : $(cmake --version)"
+  echo "   ├─ CMake Version : $(cmake --version | head -n 1)"
 }; export -f setup_cmake
 
 function setup_root()

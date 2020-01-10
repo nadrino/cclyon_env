@@ -71,7 +71,7 @@ function update_profile(){
   # Copying this file to the place where the default .bashrc is red
   cp $ENV_SETUP_DIR/profile $HOME/.profile
   echo ".profile has been updated."
-}  export -f update_profile
+}; export -f update_profile
 
 # By default the T2K env is setup
 setup_t2k
