@@ -69,7 +69,7 @@ fi
 
 function update_profile(){
   # Copying this file to the place where the default .bashrc is red
-  cp /sps/t2k/ablanche/env/bashrc $HOME/.profile
+  cp $ENV_SETUP_DIR/profile $HOME/.profile
   echo ".profile has been updated."
 }  export -f update_profile
 
