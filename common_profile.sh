@@ -244,14 +244,15 @@ function upgrade_profiles(){
   builtin cd $T2K_PROFILE
   git pull
   builtin cd $current_path
-} export -f upgrade_profiles
+}
+export -f upgrade_profiles
 
 # Setting up programs
 function setup_cmake(){
   echo "├─ Setting up CMake..." >&2
   ccenv cmake
   echo "   ├─ CMake Version : $(cmake --prefix)"
-} export -f setup_cmake
+}; export -f setup_cmake
 
 function setup_root()
 {
@@ -266,7 +267,7 @@ function setup_root()
 
   echo "NOTICE: ROOT has been setup." >&2
   return;
-} export -f setup_root
+}; export -f setup_root
 
 function setup_geant4()
 {
@@ -279,8 +280,7 @@ function setup_geant4()
 
   echo "NOTICE: Geant4 has been setup." >&2
   return;
-}
-export -f setup_geant4
+}; export -f setup_geant4
 
 # Default software setup
 setup_cmake
