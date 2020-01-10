@@ -240,7 +240,7 @@ function rackdel(){
 }; export -f rackdel
 
 function upgrade_profiles(){
-  builtin cd $T2K_PROFILE
+  builtin cd $ENV_SETUP_DIR
   git pull
   builtin cd $current_path
 }; export -f upgrade_profiles
