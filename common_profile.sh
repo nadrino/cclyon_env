@@ -208,7 +208,7 @@ fi
 function cd
 {
     builtin cd "$@" && ls -rt
-}
+}; export -f cd
 
 ################################## Extract function ##################################
 
@@ -231,27 +231,25 @@ extract () {
 	else
 		echo "'$1' is not a valid file"
 	fi
-}
+}; export -f extract
 
 function rackdel(){
 
     qdel `seq -f "%.0f" $1 $2`
     return;
-}
-export -f rackdel
+}; export -f rackdel
 
 function upgrade_profiles(){
   builtin cd $T2K_PROFILE
   git pull
   builtin cd $current_path
-}
-export -f upgrade_profiles
+}; export -f upgrade_profiles
 
 # Setting up programs
 function setup_cmake(){
   echo "├─ Setting up CMake..." >&2
   ccenv cmake
-  echo "   ├─ CMake Version : $(cmake --prefix)"
+  echo "   ├─ CMake Version : $(cmake --version)"
 }; export -f setup_cmake
 
 function setup_root()

@@ -30,4 +30,4 @@ function set_t2k_env(){
   alias fig="cd $FIGURES_DIR"
 
   return;
-} export -f set_t2k_env
+}; export -f set_t2k_env
