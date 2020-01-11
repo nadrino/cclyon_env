@@ -67,9 +67,9 @@ function setup_p_theta_t2k()
   fi
 
   export PATH="$INSTALL_DIR/P-theta-dev/bin/:$PATH"
-
+  export LD_LIBRARY_PATH="$INSTALL_DIR/P-theta-dev/lib/:$LD_LIBRARY_PATH"
+  
   echo "   ├─ P-theta-dev Prefix : $INSTALL_DIR/P-theta-dev/"
-
   echo "NOTICE: P-theta-dev has been setup." >&2
   return;
 }; export -f setup_p_theta_t2k
