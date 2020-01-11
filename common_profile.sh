@@ -211,7 +211,8 @@ fi
 function cd
 {
     builtin cd "$@" && ls -rt
-}; export -f cd
+}
+# export -f cd
 
 ################################## Extract function ##################################
 
