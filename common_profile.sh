@@ -255,6 +255,9 @@ function setup_programs(){
   ccenv python 3.6.7
   echo "   ├─ Python Version : $(python --version)"
   ccenv gcc 7.3.0
+  # ccenv gcc 5.5.0
+  export CC="$(which gcc)"
+  export CXX="$(which g++)"
   echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
 }; export -f setup_programs
 
