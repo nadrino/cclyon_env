@@ -29,6 +29,29 @@ function set_t2k_env(){
   alias logs="builtin cd $LOGS_DIR"
   alias fig="builtin cd $FIGURES_DIR"
 
+  export T2K_ENV_IS_SETUP="1"
+
   echo "$(tput bold)$(tput setaf 3)NOTICE: T2K env has been setup.$(tput sgr 0)$(tput dim)" >&2
   return;
 }; export -f set_t2k_env
+
+
+function setup_root_t2k()
+{
+  echo "├─ Setting up ROOT (Recompiled for T2K projects)..." >&2
+
+  if [ -z ${T2K_ENV_IS_SETUP+x} ];
+  then
+    echo "$T2K_ENV_IS_SETUP is not set. Please run set_t2k_env first.";
+    return;
+  fi
+
+  export PATH="$INSTALL_DIR/root/bin/:$PATH"
+  source $INSTALL_DIR/root/bin/thisroot.sh
+
+  echo "   ├─ ROOT Prefix : $(root-config --prefix)"
+  echo "   ├─ ROOT Version : $(root-config --version)"
+
+  echo "NOTICE: ROOT (T2K) has been setup." >&2
+  return;
+}; export -f setup_root_t2k
