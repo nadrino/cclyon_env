@@ -55,3 +55,21 @@ function setup_root_t2k()
   echo "NOTICE: ROOT (T2K) has been setup." >&2
   return;
 }; export -f setup_root_t2k
+
+function setup_p_theta_t2k()
+{
+  echo "├─ Setting up P-theta..." >&2
+
+  if [ -z ${T2K_ENV_IS_SETUP+x} ];
+  then
+    echo "$T2K_ENV_IS_SETUP is not set. Please run set_t2k_env first.";
+    return;
+  fi
+
+  export PATH="$INSTALL_DIR/P-theta-dev/bin/:$PATH"
+
+  echo "   ├─ P-theta-dev Prefix : $INSTALL_DIR/P-theta-dev/"
+
+  echo "NOTICE: P-theta-dev has been setup." >&2
+  return;
+}; export -f setup_p_theta_t2k
