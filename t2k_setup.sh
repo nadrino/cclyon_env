@@ -61,6 +61,7 @@ function setup_root_t2k()
 
 function link_t2k_soft()
 {
+  current_path=${PWD}
 
   if [ -z ${T2K_ENV_IS_SETUP+x} ];
   then
@@ -69,13 +70,22 @@ function link_t2k_soft()
   fi
 
   echo "Linking libs in $INSTALL_DIR"
-  current_path=${PWD}
-  builtin cd $INSTALL_DIR
-  while IFS= read -r line; do
-    export PATH="$INSTALL_DIR/$line/bin:$PATH"
-    export LD_LIBRARY_PATH="$INSTALL_DIR/$line/lib:$LD_LIBRARY_PATH"
-    echo "   ├─ Adding : $line"
-  done < <( ls -d */ )
+  # builtin cd $INSTALL_DIR
+  # while IFS= read -r line; do
+  #   export PATH="$INSTALL_DIR/$line/bin:$PATH"
+  #   export LD_LIBRARY_PATH="$INSTALL_DIR/$line/lib:$LD_LIBRARY_PATH"
+  #   echo "   ├─ Adding : $line"
+  # done < <( ls -d */ )
+
+  for dir in $INSTALL_DIR/*/     # list directories in the form "/tmp/dirname/"
+  do
+      dir=${dir%*/}      # remove the trailing "/"
+      sub_folder=${dir##*/} # print everything after the final "/"
+      export PATH="$INSTALL_DIR/$sub_folder/bin:$PATH"
+      export LD_LIBRARY_PATH="$INSTALL_DIR/$sub_folder/lib:$LD_LIBRARY_PATH"
+      echo "   ├─ Adding : $sub_folder"
+      # echo ${dir##*/}    # print everything after the final "/"
+  done
 
   # custom setup files
   source $INSTALL_DIR/xsLLhFitter/setup.sh
