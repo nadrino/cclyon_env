@@ -262,6 +262,13 @@ function setup_programs(){
   echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
 }; export -f setup_programs
 
+function setup_old_gcc(){
+  ccenv gcc 5.2.0
+  export CC="$(which gcc)"
+  export CXX="$(which g++)"
+  echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
+}; export -f setup_old_gcc
+
 function setup_root()
 {
   echo "├─ Setting up ROOT..." >&2
@@ -289,6 +296,16 @@ function setup_geant4()
   echo "NOTICE: Geant4 has been setup." >&2
   return;
 }; export -f setup_geant4
+
+function cleanup_path()
+{
+    echo "Cleaning PATH..." >&2
+    export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+    echo "Cleaning LD_LIBRARY_PATH..." >&2
+    export LD_LIBRARY_PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{LD_LIBRARY_PATH}))')"
+    return;
+}
+export -f cleanup_path
 
 # Default software setup
 setup_programs

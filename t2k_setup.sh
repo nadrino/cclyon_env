@@ -19,6 +19,7 @@ function set_t2k_env(){
   export REPO_DIR="$T2K_SPS_DIR/repo/"
 
   export RESULTS_DIR="$WORK_DIR/results/"
+  export DATA_DIR="$WORK_DIR/data/"
   export LOGS_DIR="$WORK_DIR/logs/"
   export FIGURES_DIR="$WORK_DIR/figures/"
 
@@ -30,6 +31,8 @@ function set_t2k_env(){
   alias fig="builtin cd $FIGURES_DIR"
 
   export T2K_ENV_IS_SETUP="1"
+
+  link_t2k_soft
 
   echo "$(tput bold)$(tput setaf 3)NOTICE: T2K env has been setup.$(tput sgr 0)$(tput dim)" >&2
   return;
@@ -56,9 +59,8 @@ function setup_root_t2k()
   return;
 }; export -f setup_root_t2k
 
-function setup_p_theta_t2k()
+function link_t2k_soft()
 {
-  echo "├─ Setting up P-theta..." >&2
 
   if [ -z ${T2K_ENV_IS_SETUP+x} ];
   then
@@ -66,10 +68,24 @@ function setup_p_theta_t2k()
     return;
   fi
 
-  export PATH="$INSTALL_DIR/P-theta-dev/bin/:$PATH"
-  export LD_LIBRARY_PATH="$INSTALL_DIR/P-theta-dev/lib/:$LD_LIBRARY_PATH"
-  
-  echo "   ├─ P-theta-dev Prefix : $INSTALL_DIR/P-theta-dev/"
-  echo "NOTICE: P-theta-dev has been setup." >&2
-  return;
-}; export -f setup_p_theta_t2k
+  echo "Linking libs in $INSTALL_DIR"
+  current_path=${PWD}
+  builtin cd $INSTALL_DIR
+  while IFS= read -r line; do
+    export PATH="$INSTALL_DIR/$line/bin:$PATH"
+    export LD_LIBRARY_PATH="$INSTALL_DIR/$line/lib:$LD_LIBRARY_PATH"
+    echo "   ├─ Adding : $line"
+  done < <( ls -d */ )
+
+  # custom setup files
+  source $INSTALL_DIR/xsLLhFitter/setup.sh
+  alias readlink="/usr/local/bin/greadlink" # fix readlink on mac
+  source $REPO_DIR/xsLLhFitter/setup.sh
+
+  echo "$(tput bold)$(tput setaf 3)NOTICE: T2K libs have been setup.$(tput sgr 0)$(tput dim)" >&2
+
+  builtin cd $current_path
+
+  cleanup_path
+
+}; export -f link_t2k_soft
