@@ -68,7 +68,7 @@ else
 fi
 
 function upgrade_profiles(){
-  current_path=${PWD}
+  savedpath=${PWD}
   builtin cd $ENV_SETUP_DIR
   echo "-> Pulling updates on git repository..."
   git pull > /dev/null
@@ -76,7 +76,7 @@ function upgrade_profiles(){
   cp $ENV_SETUP_DIR/profile $HOME/.profile
   echo "-> Resourcing .profile."
   source $HOME/.profile
-  builtin cd $current_path
+  cd $savedpath
   echo "-> Profiles upgraded."
 }; export -f upgrade_profiles
 
