@@ -32,6 +32,10 @@ function set_t2k_env(){
   alias logs="builtin cd $LOGS_DIR"
   alias fig="builtin cd $FIGURES_DIR"
 
+  # Python
+  export PYTHONPATH="$REPO_DIR/cclyon_py_tools/library/:$PYTHONPATH"
+  export PATH="$REPO_DIR/cclyon_py_tools/scripts/:$PATH"
+
   export T2K_ENV_IS_SETUP="1"
 
   link_t2k_soft
