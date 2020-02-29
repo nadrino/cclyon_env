@@ -264,6 +264,7 @@ function setup_programs(){
 
 function setup_old_gcc(){
   ccenv gcc 5.2.0
+  # source /opt/rh/devtoolset-6/enable
   export CC="$(which gcc)"
   export CXX="$(which g++)"
   echo "   ├─ GCC Version : $(gcc --version | head -n 1)"

@@ -20,8 +20,10 @@ function set_t2k_env(){
 
   export RESULTS_DIR="$WORK_DIR/results/"
   export DATA_DIR="$WORK_DIR/data/"
-  export LOGS_DIR="$WORK_DIR/logs/"
   export FIGURES_DIR="$WORK_DIR/figures/"
+  export JOBS_DIR="$WORK_DIR/jobs/"
+
+  export LOGS_DIR="$JOBS_DIR/logs/"
 
   # Aliases
   alias sps="builtin cd $T2K_SPS_DIR"
