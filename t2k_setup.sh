@@ -38,6 +38,9 @@ function set_t2k_env(){
   export PATH="$REPO_DIR/cclyon_py_tools/scripts/:$PATH"
   alias job="jobs.py"
 
+  # Bash
+  export PATH="$REPO_DIR/cclyon_bash_tools/bin/:$PATH"
+
   export T2K_ENV_IS_SETUP="1"
 
   link_t2k_soft
@@ -47,8 +50,7 @@ function set_t2k_env(){
 }; export -f set_t2k_env
 
 
-function setup_root_t2k()
-{
+function setup_root_t2k(){
   echo "├─ Setting up ROOT (Recompiled for T2K projects)..." >&2
 
   if [ -z ${T2K_ENV_IS_SETUP+x} ];
@@ -78,13 +80,6 @@ function link_t2k_soft()
   fi
 
   echo "Linking libs in $INSTALL_DIR"
-  # builtin cd $INSTALL_DIR
-  # while IFS= read -r line; do
-  #   export PATH="$INSTALL_DIR/$line/bin:$PATH"
-  #   export LD_LIBRARY_PATH="$INSTALL_DIR/$line/lib:$LD_LIBRARY_PATH"
-  #   echo "   ├─ Adding : $line"
-  # done < <( ls -d */ )
-
   for dir in $INSTALL_DIR/*/     # list directories in the form "/tmp/dirname/"
   do
       dir=${dir%*/}      # remove the trailing "/"
@@ -92,7 +87,6 @@ function link_t2k_soft()
       export PATH="$INSTALL_DIR/$sub_folder/bin:$PATH"
       export LD_LIBRARY_PATH="$INSTALL_DIR/$sub_folder/lib:$LD_LIBRARY_PATH"
       echo "   ├─ Adding : $sub_folder"
-      # echo ${dir##*/}    # print everything after the final "/"
   done
 
   # custom setup files
