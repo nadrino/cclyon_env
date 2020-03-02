@@ -113,8 +113,8 @@ WHITE='\033[01;37m'
 
 function test_colors(){
 
-  echo -e "${RED}Hello ${GREEN}Hello ${YELLOW}Hello ${BLUE}Hello ${PURPLE}Hello ${CYAN}Hello ${LIGHTGRAY}Hello ${RESTORE}Hello"
-  echo -e "${LRED}Hello ${LGREEN}Hello ${LYELLOW}Hello ${LBLUE}Hello ${LPURPLE}Hello ${LCYAN}Hello ${WHITE}Hello ${RESTORE}Hello"
+  echo -e "${RED}RED ${GREEN}GREEN ${YELLOW}YELLOW ${BLUE}BLUE ${PURPLE}PURPLE ${CYAN}CYAN ${LIGHTGRAY}LIGHTGRAY ${RESTORE}RESTORE"
+  echo -e "${LRED}LRED ${LGREEN}LGREEN ${LYELLOW}LYELLOW ${LBLUE}LBLUE ${LPURPLE}LPURPLE ${LCYAN}LCYAN ${WHITE}WHITE ${RESTORE}RESTORE"
 
 }; export -f test_colors
 
@@ -330,8 +330,13 @@ function cleanup_path()
     echo "Cleaning LD_LIBRARY_PATH..." >&2
     export LD_LIBRARY_PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{LD_LIBRARY_PATH}))')"
     return;
-}
-export -f cleanup_path
+}; export -f cleanup_path
+
+function pull_py_tools()
+{
+  savedpath=${PWD}
+
+}; export -f pull_py_tools
 
 # Default software setup
 setup_programs

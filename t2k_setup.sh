@@ -107,3 +107,23 @@ function link_t2k_soft()
   cleanup_path
 
 }; export -f link_t2k_soft
+
+function set_t2k_irods(){
+  cur_dir="$PWD"
+  builtin cd $REPO_DIR/irods-legacy/iRODS
+  source ./add-clients.sh
+  builtin cd $cur_dir
+  echo "${LYELLOW}T2K iRODS has been setup.${RESTORE}"
+  return;
+}; export -f set_t2k_irods
+
+function set_t2k_highland2(){
+  cur_dir="$PWD"
+  export CVSROOT=":ext:anoncvs@repo.nd280.org:/home/trt2kmgr/ND280Repository"
+  source $REPO_DIR/nd280-cvs/CMT/v*/mgr/setup.sh
+  export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
+  source $CMTPATH/nd280Highland2/v*/cmt/setup.sh
+  builtin cd $cur_dir
+  echo "${LYELLOW}T2K Highland2 has been setup.${RESTORE}"
+  return;
+}; export -f set_t2k_highland2
