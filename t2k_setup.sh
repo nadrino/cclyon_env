@@ -26,11 +26,12 @@ function set_t2k_env(){
   export LOGS_DIR="$JOBS_DIR/logs/"
 
   # Aliases
-  alias sps="builtin cd $T2K_SPS_DIR"
-  alias repo="builtin cd $REPO_DIR"
-  alias res="builtin cd $RESULTS_DIR"
-  alias logs="builtin cd $LOGS_DIR"
-  alias fig="builtin cd $FIGURES_DIR"
+  alias sps="cd $T2K_SPS_DIR"
+  alias work="cd $WORK_DIR"
+  alias repo="cd $REPO_DIR"
+  alias res="cd $RESULTS_DIR"
+  alias logs="cd $LOGS_DIR"
+  alias fig="cd $FIGURES_DIR"
 
   # Python
   export PYTHONPATH="$REPO_DIR/cclyon_py_tools/library/:$PYTHONPATH"
