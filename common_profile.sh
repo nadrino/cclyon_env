@@ -93,23 +93,23 @@ GOLD_COLOR="$(tput bold)$(tput setaf 3)"
 GREEN_COLOR="$(tput bold)$(tput setaf 2)"
 RESET_COLOR="$(tput sgr 0)$(tput dim)"
 
-RESTORE='\033[0m'
+export RESTORE='\033[0m'
 
-RED='\033[00;31m'
-GREEN='\033[00;32m'
-YELLOW='\033[00;33m'
-BLUE='\033[00;34m'
-PURPLE='\033[00;35m'
-CYAN='\033[00;36m'
-LIGHTGRAY='\033[00;37m'
+export RED='\033[00;31m'
+export GREEN='\033[00;32m'
+export YELLOW='\033[00;33m'
+export BLUE='\033[00;34m'
+export PURPLE='\033[00;35m'
+export CYAN='\033[00;36m'
+export LIGHTGRAY='\033[00;37m'
 
-LRED='\033[01;31m'
-LGREEN='\033[01;32m'
-LYELLOW='\033[01;33m'
-LBLUE='\033[01;34m'
-LPURPLE='\033[01;35m'
-LCYAN='\033[01;36m'
-WHITE='\033[01;37m'
+export LRED='\033[01;31m'
+export LGREEN='\033[01;32m'
+export LYELLOW='\033[01;33m'
+export LBLUE='\033[01;34m'
+export LPURPLE='\033[01;35m'
+export LCYAN='\033[01;36m'
+export WHITE='\033[01;37m'
 
 function test_colors(){
 
@@ -334,9 +334,23 @@ function cleanup_path()
 
 function pull_py_tools()
 {
-  savedpath=${PWD}
-
+  current_path=${PWD}
+  builtin cd $REPO_DIR/cclyon_py_tools
+  git pull
+  builtin cd $current_path
+  echo -e "${LYELLOW}CCLyon py tools have been pushed.${RESTORE}"
+  return;
 }; export -f pull_py_tools
+
+function pull_bash_tools()
+{
+  current_path=${PWD}
+  builtin cd $REPO_DIR/cclyon_bash_tools
+  git pull
+  builtin cd $current_path
+  echo -e "${LYELLOW}CCLyon bash tools have been pushed.${RESTORE}"
+  return;
+}; export -f pull_bash_tools
 
 # Default software setup
 setup_programs
