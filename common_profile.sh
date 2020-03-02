@@ -113,7 +113,8 @@ WHITE='\033[01;37m'
 
 function test_colors(){
 
-  echo -e "${GREEN}Hello ${CYAN}THERE${RESTORE} Restored here ${LCYAN}HELLO again ${RED} Red socks aren't sexy ${BLUE} neither are blue ${RESTORE} "
+  echo -e "${RED}Hello ${GREEN}Hello ${YELLOW}Hello ${BLUE}Hello ${PURPLE}Hello ${CYAN}Hello ${LIGHTGRAY}Hello ${RESTORE}Hello"
+  echo -e "${LRED}Hello ${LGREEN}Hello ${LYELLOW}Hello ${LBLUE}Hello ${LPURPLE}Hello ${LCYAN}Hello ${WHITE}Hello ${RESTORE}Hello"
 
 }; export -f test_colors
 
