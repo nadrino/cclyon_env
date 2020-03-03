@@ -112,10 +112,18 @@ function set_t2k_irods(){
   return;
 }; export -f set_t2k_irods
 
-function set_t2k_highland2(){
+function set_t2k_cvs(){
   cur_dir="$PWD"
   export CVSROOT=":ext:anoncvs@repo.nd280.org:/home/trt2kmgr/ND280Repository"
   source $REPO_DIR/nd280-cvs/CMT/v*/mgr/setup.sh
+  builtin cd $cur_dir
+  echo -e "${LYELLOW}NOTICE: T2K CVS has been setup.${RESTORE}"
+  return;
+}; export -f set_t2k_cvs
+
+function set_t2k_highland2(){
+  cur_dir="$PWD"
+  set_t2k_cvs
   export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
   source $CMTPATH/nd280Highland2/v*/cmt/setup.sh
   builtin cd $cur_dir
@@ -125,8 +133,7 @@ function set_t2k_highland2(){
 
 function set_t2k_NEUT(){
   cur_dir="$PWD"
-  export CVSROOT=":ext:anoncvs@repo.nd280.org:/home/trt2kmgr/ND280Repository"
-  source $REPO_DIR/nd280-cvs/CMT/v*/mgr/setup.sh
+  set_t2k_cvs
   export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
   source $CMTPATH/NEUT/v*/cmt/setup.sh
   builtin cd $cur_dir
