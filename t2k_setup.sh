@@ -66,7 +66,7 @@ function set_t2k_root(){
   echo "   ├─ ROOT Prefix : $(root-config --prefix)"
   echo "   ├─ ROOT Version : $(root-config --version)"
 
-  echo "NOTICE: ROOT (T2K) has been setup." >&2
+  echo -e "${LYELLOW}NOTICE: ROOT (T2K) has been setup.${RESTORE}" >&2
   return;
 }; export -f set_t2k_root
 
@@ -108,7 +108,7 @@ function set_t2k_irods(){
   builtin cd $REPO_DIR/irods-legacy/iRODS
   source ./add-clients.sh &> /dev/null
   builtin cd $cur_dir
-  echo -e "${LYELLOW}T2K iRODS has been setup.${RESTORE}"
+  echo -e "${LYELLOW}NOTICE: T2K iRODS has been setup.${RESTORE}"
   return;
 }; export -f set_t2k_irods
 
@@ -119,7 +119,7 @@ function set_t2k_highland2(){
   export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
   source $CMTPATH/nd280Highland2/v*/cmt/setup.sh
   builtin cd $cur_dir
-  echo -e "${LYELLOW}T2K Highland2 has been setup.${RESTORE}"
+  echo -e "${LYELLOW}NOTICE: T2K Highland2 has been setup.${RESTORE}"
   return;
 }; export -f set_t2k_highland2
 
@@ -130,6 +130,6 @@ function set_t2k_NEUT(){
   export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
   source $CMTPATH/NEUT/v*/cmt/setup.sh
   builtin cd $cur_dir
-  echo -e "${LYELLOW}T2K NEUT has been setup.${RESTORE}"
+  echo -e "${LYELLOW}NOTICE: T2K NEUT has been setup.${RESTORE}"
   return;
 }; export -f set_t2k_NEUT
