@@ -106,7 +106,7 @@ function link_t2k_soft()
 function set_t2k_irods(){
   cur_dir="$PWD"
   builtin cd $REPO_DIR/irods-legacy/iRODS
-  source ./add-clients.sh
+  source ./add-clients.sh &> /dev/null
   builtin cd $cur_dir
   echo -e "${LYELLOW}T2K iRODS has been setup.${RESTORE}"
   return;
