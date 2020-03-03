@@ -297,7 +297,7 @@ function setup_old_gcc(){
 
 function setup_very_old_gcc(){
   ccenv gcc 3.4.6
-  source /opt/rh/devtoolset-3/enable
+  # source /opt/rh/devtoolset-3/enable
   export CC="$(which gcc)"
   export CXX="$(which g++)"
   echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
