@@ -140,3 +140,18 @@ function set_t2k_NEUT(){
   echo -e "${LYELLOW}NOTICE: T2K NEUT has been setup.${RESTORE}"
   return;
 }; export -f set_t2k_NEUT
+
+function set_t2k_CERNLIB(){
+  cur_dir="$PWD"
+  export CERN="/sps/t2k/ablanche/repo/nd280-cvs/Highland2_HEAD/CERNLIB/v2005r6/Linux-x86_64"
+  export CERN_LEVEL=2005
+  export CERN_ROOT=$CERN/$CERN_LEVEL
+  export CERNLIB=$CERN_ROOT/lib
+  export CERNLIBDIR=$CERNLIB
+  export CERNPATH=$CERNLIB
+  export PATH=$CERN_ROOT/bin:$PATH
+  export LD_LIBRARY_PATH=$CERNLIB:$LD_LIBRARY_PATH
+  builtin cd $cur_dir
+  echo -e "${LYELLOW}NOTICE: T2K CERNLIB has been setup.${RESTORE}"
+  return;
+}; export -f set_t2k_NEUT
