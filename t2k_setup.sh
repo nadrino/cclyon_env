@@ -91,9 +91,9 @@ function link_t2k_soft()
   done
 
   # custom setup files
-  source $INSTALL_DIR/xsLLhFitter/setup.sh
-  alias readlink="/usr/local/bin/greadlink" # fix readlink on mac
-  source $REPO_DIR/xsLLhFitter/setup.sh
+  source $INSTALL_DIR/xsLLhFitter/setup.sh &> /dev/null
+  # alias readlink="/usr/local/bin/greadlink" # fix readlink on mac
+  source $REPO_DIR/xsLLhFitter/setup.sh &> /dev/null
 
   echo "$(tput bold)$(tput setaf 3)NOTICE: T2K libs have been setup.$(tput sgr 0)$(tput dim)" >&2
 

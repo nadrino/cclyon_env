@@ -82,5 +82,5 @@ function pull_env(){
 
 # By default the T2K env is setup
 set_t2k_env
-set_root_t2k
+set_t2k_root
 sps # go to t2k sps directory
