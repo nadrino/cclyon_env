@@ -51,7 +51,7 @@ function set_t2k_env(){
 }; export -f set_t2k_env
 
 
-function setup_root_t2k(){
+function set_t2k_root(){
   echo "├─ Setting up ROOT (Recompiled for T2K projects)..." >&2
 
   if [ -z ${T2K_ENV_IS_SETUP+x} ];
@@ -68,7 +68,7 @@ function setup_root_t2k(){
 
   echo "NOTICE: ROOT (T2K) has been setup." >&2
   return;
-}; export -f setup_root_t2k
+}; export -f set_t2k_root
 
 function link_t2k_soft()
 {
@@ -108,7 +108,7 @@ function set_t2k_irods(){
   builtin cd $REPO_DIR/irods-legacy/iRODS
   source ./add-clients.sh
   builtin cd $cur_dir
-  echo "${LYELLOW}T2K iRODS has been setup.${RESTORE}"
+  echo -e "${LYELLOW}T2K iRODS has been setup.${RESTORE}"
   return;
 }; export -f set_t2k_irods
 
@@ -119,6 +119,17 @@ function set_t2k_highland2(){
   export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
   source $CMTPATH/nd280Highland2/v*/cmt/setup.sh
   builtin cd $cur_dir
-  echo "${LYELLOW}T2K Highland2 has been setup.${RESTORE}"
+  echo -e "${LYELLOW}T2K Highland2 has been setup.${RESTORE}"
   return;
 }; export -f set_t2k_highland2
+
+function set_t2k_NEUT(){
+  cur_dir="$PWD"
+  export CVSROOT=":ext:anoncvs@repo.nd280.org:/home/trt2kmgr/ND280Repository"
+  source $REPO_DIR/nd280-cvs/CMT/v*/mgr/setup.sh
+  export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
+  source $CMTPATH/NEUT/v*/cmt/setup.sh
+  builtin cd $cur_dir
+  echo -e "${LYELLOW}T2K NEUT has been setup.${RESTORE}"
+  return;
+}; export -f set_t2k_NEUT
