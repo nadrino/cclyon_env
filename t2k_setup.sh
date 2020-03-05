@@ -143,6 +143,7 @@ function set_t2k_NEUT(){
 
 function set_t2k_CERNLIB(){
   cur_dir="$PWD"
+  set_t2k_cvs
   export CERN="/sps/t2k/ablanche/repo/nd280-cvs/Highland2_HEAD/CERNLIB/v2005r6/Linux-x86_64"
   export CERN_LEVEL=2005
   export CERN_ROOT=$CERN/$CERN_LEVEL
