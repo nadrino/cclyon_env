@@ -337,6 +337,7 @@ function cleanup_path()
     export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
     echo "Cleaning LD_LIBRARY_PATH..." >&2
     export LD_LIBRARY_PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{LD_LIBRARY_PATH}))')"
+    $(python /sps/t2k/ablanche/repo/cclyon_py_tools/scripts/cleanup_path.py)
     return;
 }; export -f cleanup_path
 
