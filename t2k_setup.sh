@@ -45,6 +45,7 @@ function set_t2k_env(){
 
   link_t2k_soft
   set_t2k_irods
+  set_t2k_NEUT
 
   echo "$(tput bold)$(tput setaf 3)NOTICE: T2K env has been setup.$(tput sgr 0)$(tput dim)" >&2
   return;
@@ -133,9 +134,7 @@ function set_t2k_highland2(){
 
 function set_t2k_NEUT(){
   cur_dir="$PWD"
-  set_t2k_cvs
-  export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
-  source $CMTPATH/NEUT/v*/cmt/setup.sh
+  source $INSTALL_DIR/setup.sh
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K NEUT has been setup.${RESTORE}"
   return;
