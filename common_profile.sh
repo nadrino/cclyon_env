@@ -331,16 +331,16 @@ function setup_geant4()
   return;
 }; export -f setup_geant4
 
-function cleanup_path()
+function cleanup_env()
 {
     # echo "Cleaning PATH..." >&2
     # export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
     # echo "Cleaning LD_LIBRARY_PATH..." >&2
     # export LD_LIBRARY_PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{LD_LIBRARY_PATH}))')"
     echo -e "${LYELLOW}Cleaning up PATH...${RESTORE}"
-    /bin/bash $(python $REPO_DIR/cclyon_py_tools/scripts/cleanup_env.py PATH)
+    $(python $REPO_DIR/cclyon_py_tools/scripts/cleanup_env.py PATH)
     echo -e "${LYELLOW}Cleaning up LD_LIBRARY_PATH...${RESTORE}"
-    /bin/bash $(python $REPO_DIR/cclyon_py_tools/scripts/cleanup_env.py LD_LIBRARY_PATH)
+    $(python $REPO_DIR/cclyon_py_tools/scripts/cleanup_env.py LD_LIBRARY_PATH)
     return;
 }; export -f cleanup_path
 

@@ -45,7 +45,10 @@ function set_t2k_env(){
 
   link_t2k_soft
   set_t2k_irods
+  set_t2k_root
   # set_t2k_NEUT
+
+  cleanup_env
 
   echo "$(tput bold)$(tput setaf 3)NOTICE: T2K env has been setup.$(tput sgr 0)$(tput dim)" >&2
   return;
@@ -100,8 +103,6 @@ function link_t2k_soft()
 
   builtin cd $current_path
 
-  cleanup_path
-
 }; export -f link_t2k_soft
 
 function set_t2k_irods(){
@@ -127,7 +128,7 @@ function set_t2k_psyche(){
   set_t2k_cvs
   export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
   source $CMTPATH/nd280Psyche/v*/cmt/setup.sh
-  cleanup_path
+  cleanup_env
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K Psyche has been setup.${RESTORE}"
   return;
@@ -138,7 +139,7 @@ function set_t2k_highland2(){
   set_t2k_cvs
   export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
   source $CMTPATH/nd280Highland2/v*/cmt/setup.sh
-  cleanup_path
+  cleanup_env
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K Highland2 has been setup.${RESTORE}"
   return;
@@ -147,7 +148,7 @@ function set_t2k_highland2(){
 function set_t2k_neut(){
   cur_dir="$PWD"
   source $INSTALL_DIR/neut/setup.sh
-  cleanup_path
+  cleanup_env
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K NEUT has been setup.${RESTORE}"
   return;
@@ -164,7 +165,7 @@ function set_t2k_CERNLIB(){
   export CERNPATH=$CERNLIB
   export PATH=$CERN_ROOT/bin:$PATH
   export LD_LIBRARY_PATH=$CERNLIB:$LD_LIBRARY_PATH
-  cleanup_path
+  cleanup_env
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K CERNLIB has been setup.${RESTORE}"
   return;
