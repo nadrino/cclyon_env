@@ -128,7 +128,6 @@ function set_t2k_psyche(){
   set_t2k_cvs
   export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
   source $CMTPATH/nd280Psyche/v*/cmt/setup.sh
-  cleanup_env
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K Psyche has been setup.${RESTORE}"
   return;
@@ -139,7 +138,6 @@ function set_t2k_highland2(){
   set_t2k_cvs
   export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
   source $CMTPATH/nd280Highland2/v*/cmt/setup.sh
-  cleanup_env
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K Highland2 has been setup.${RESTORE}"
   return;
@@ -147,8 +145,10 @@ function set_t2k_highland2(){
 
 function set_t2k_neut(){
   cur_dir="$PWD"
-  source $INSTALL_DIR/neut/setup.sh
-  cleanup_env
+  # source $INSTALL_DIR/neut/setup.sh
+  export NEUT=$INSTALL_DIR/neut
+  export PATH=$NEUT/bin:$PATH
+  export LD_LIBRARY_PATH=$NEUT/lib:$LD_LIBRARY_PATH
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K NEUT has been setup.${RESTORE}"
   return;
@@ -165,7 +165,6 @@ function set_t2k_CERNLIB(){
   export CERNPATH=$CERNLIB
   export PATH=$CERN_ROOT/bin:$PATH
   export LD_LIBRARY_PATH=$CERNLIB:$LD_LIBRARY_PATH
-  cleanup_env
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K CERNLIB has been setup.${RESTORE}"
   return;
