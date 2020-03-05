@@ -134,7 +134,7 @@ function set_t2k_highland2(){
 
 function set_t2k_NEUT(){
   cur_dir="$PWD"
-  source $INSTALL_DIR/setup.sh
+  source $INSTALL_DIR/neut/setup.sh
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K NEUT has been setup.${RESTORE}"
   return;
