@@ -342,7 +342,7 @@ function cleanup_env()
     echo -e "${LYELLOW}Cleaning up LD_LIBRARY_PATH...${RESTORE}"
     $(python $REPO_DIR/cclyon_py_tools/scripts/cleanup_env.py LD_LIBRARY_PATH)
     return;
-}; export -f cleanup_path
+}; export -f cleanup_env
 
 function pull_py_tools()
 {
