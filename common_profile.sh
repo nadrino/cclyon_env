@@ -333,11 +333,13 @@ function setup_geant4()
 
 function cleanup_path()
 {
-    echo "Cleaning PATH..." >&2
-    export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
-    echo "Cleaning LD_LIBRARY_PATH..." >&2
-    export LD_LIBRARY_PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{LD_LIBRARY_PATH}))')"
-    $(python /sps/t2k/ablanche/repo/cclyon_py_tools/scripts/cleanup_path.py)
+    # echo "Cleaning PATH..." >&2
+    # export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
+    # echo "Cleaning LD_LIBRARY_PATH..." >&2
+    # export LD_LIBRARY_PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{LD_LIBRARY_PATH}))')"
+    echo -e "${LYELLOW}Cleaning up PATH/LD_LIBRARY_PATH...${RESTORE}"
+    python $REPO_DIR/cclyon_py_tools/scripts/cleanup_path.py
+    $(python $REPO_DIR/cclyon_py_tools/scripts/cleanup_path.py)
     return;
 }; export -f cleanup_path
 

@@ -116,9 +116,7 @@ function set_t2k_irods(){
 function set_t2k_cvs(){
   cur_dir="$PWD"
   export CVSROOT=":ext:anoncvs@repo.nd280.org:/home/trt2kmgr/ND280Repository"
-  cleanup_path
   source $REPO_DIR/nd280-cvs/CMT/v*/mgr/setup.sh
-  cleanup_path
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K CVS has been setup.${RESTORE}"
   return;
@@ -128,7 +126,6 @@ function set_t2k_psyche(){
   cur_dir="$PWD"
   set_t2k_cvs
   export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
-  cleanup_path
   source $CMTPATH/nd280Psyche/v*/cmt/setup.sh
   cleanup_path
   builtin cd $cur_dir
@@ -140,7 +137,6 @@ function set_t2k_highland2(){
   cur_dir="$PWD"
   set_t2k_cvs
   export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
-  cleanup_path
   source $CMTPATH/nd280Highland2/v*/cmt/setup.sh
   cleanup_path
   builtin cd $cur_dir
@@ -148,13 +144,14 @@ function set_t2k_highland2(){
   return;
 }; export -f set_t2k_highland2
 
-function set_t2k_NEUT(){
+function set_t2k_neut(){
   cur_dir="$PWD"
   source $INSTALL_DIR/neut/setup.sh
+  cleanup_path
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K NEUT has been setup.${RESTORE}"
   return;
-}; export -f set_t2k_NEUT
+}; export -f set_t2k_neut
 
 function set_t2k_CERNLIB(){
   cur_dir="$PWD"
@@ -167,6 +164,7 @@ function set_t2k_CERNLIB(){
   export CERNPATH=$CERNLIB
   export PATH=$CERN_ROOT/bin:$PATH
   export LD_LIBRARY_PATH=$CERNLIB:$LD_LIBRARY_PATH
+  cleanup_path
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K CERNLIB has been setup.${RESTORE}"
   return;
