@@ -132,9 +132,9 @@ function set_t2k_psyche(){
   source $CMTPATH/nd280Psyche/v*/cmt/setup.sh
   cleanup_path
   builtin cd $cur_dir
-  echo -e "${LYELLOW}NOTICE: T2K Highland2 has been setup.${RESTORE}"
+  echo -e "${LYELLOW}NOTICE: T2K Psyche has been setup.${RESTORE}"
   return;
-}; export -f set_t2k_highland2
+}; export -f set_t2k_psyche
 
 function set_t2k_highland2(){
   cur_dir="$PWD"
