@@ -338,9 +338,9 @@ function cleanup_path()
     # echo "Cleaning LD_LIBRARY_PATH..." >&2
     # export LD_LIBRARY_PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{LD_LIBRARY_PATH}))')"
     echo -e "${LYELLOW}Cleaning up PATH...${RESTORE}"
-    $(python $REPO_DIR/cclyon_py_tools/scripts/cleanup_env.py PATH)
+    /bin/bash $(python $REPO_DIR/cclyon_py_tools/scripts/cleanup_env.py PATH)
     echo -e "${LYELLOW}Cleaning up LD_LIBRARY_PATH...${RESTORE}"
-    $(python $REPO_DIR/cclyon_py_tools/scripts/cleanup_env.py LD_LIBRARY_PATH)
+    /bin/bash $(python $REPO_DIR/cclyon_py_tools/scripts/cleanup_env.py LD_LIBRARY_PATH)
     return;
 }; export -f cleanup_path
 
