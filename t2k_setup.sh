@@ -45,7 +45,7 @@ function set_t2k_env(){
 
   link_t2k_soft
   set_t2k_irods
-  set_t2k_NEUT
+  # set_t2k_NEUT
 
   echo "$(tput bold)$(tput setaf 3)NOTICE: T2K env has been setup.$(tput sgr 0)$(tput dim)" >&2
   return;
