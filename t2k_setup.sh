@@ -46,7 +46,6 @@ function set_t2k_env(){
   link_t2k_soft
   set_t2k_irods
   set_t2k_root
-  # set_t2k_NEUT
 
   cleanup_env
 
@@ -168,4 +167,4 @@ function set_t2k_CERNLIB(){
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K CERNLIB has been setup.${RESTORE}"
   return;
-}; export -f set_t2k_NEUT
+}; export -f set_t2k_CERNLIB
