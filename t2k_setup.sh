@@ -107,7 +107,8 @@ function link_t2k_soft()
 
 function set_t2k_brew(){
   cur_dir="$PWD"
-  eval $(/pbs/home/a/ablanche/.linuxbrew/bin/brew shellenv)
+  eval $($HOME/.linuxbrew/bin/brew shellenv)
+  export PATH="$HOME/.linuxbrew/opt/python/libexec/bin/:$PATH"
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K brew has been setup.${RESTORE}"
   return;
