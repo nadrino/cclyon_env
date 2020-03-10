@@ -46,6 +46,7 @@ function set_t2k_env(){
   link_t2k_soft
   set_t2k_irods
   set_t2k_root
+  set_t2k_brew
 
   cleanup_env
 
@@ -103,6 +104,14 @@ function link_t2k_soft()
   builtin cd $current_path
 
 }; export -f link_t2k_soft
+
+function set_t2k_brew(){
+  cur_dir="$PWD"
+  eval $(/pbs/home/a/ablanche/.linuxbrew/bin/brew shellenv)
+  builtin cd $cur_dir
+  echo -e "${LYELLOW}NOTICE: T2K brew has been setup.${RESTORE}"
+  return;
+}; export -f set_t2k_brew
 
 function set_t2k_irods(){
   cur_dir="$PWD"
