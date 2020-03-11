@@ -349,6 +349,7 @@ function pull_root_macros()
   current_path=${PWD}
   builtin cd $REPO_DIR/cclyon_root_macros
   git pull
+  cp $REPO_DIR/cclyon_root_macros/logon/rootrc $HOME/.rootrc
   builtin cd $current_path
   echo -e "${LYELLOW}CCLyon root macros have been pushed.${RESTORE}"
   return;
