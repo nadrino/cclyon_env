@@ -344,6 +344,16 @@ function cleanup_env()
     return;
 }; export -f cleanup_env
 
+function pull_root_macros()
+{
+  current_path=${PWD}
+  builtin cd $REPO_DIR/cclyon_root_macros
+  git pull
+  builtin cd $current_path
+  echo -e "${LYELLOW}CCLyon root macros have been pushed.${RESTORE}"
+  return;
+}; export -f pull_root_macros
+
 function pull_py_tools()
 {
   current_path=${PWD}
