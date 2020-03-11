@@ -17,6 +17,7 @@ function set_t2k_env(){
   export BUILD_DIR="$T2K_SPS_DIR/build/"
   export WORK_DIR="$T2K_SPS_DIR/work/"
   export REPO_DIR="$T2K_SPS_DIR/repo/"
+  export SCRATCH_DIR="$T2K_SPS_DIR/scratch/"
 
   export RESULTS_DIR="$WORK_DIR/results/"
   export DATA_DIR="$WORK_DIR/data/"
@@ -109,9 +110,12 @@ function set_t2k_brew(){
   cur_dir="$PWD"
   eval $($HOME/.linuxbrew/bin/brew shellenv)
   export PATH="$HOME/.linuxbrew/opt/python/libexec/bin/:$PATH"
-  export HOMEBREW_TEMP=$TMPDIR
-  export HOMEBREW_CACHE=$TMPDIR
-  export HOMEBREW_LOGS=$TMPDIR/logs
+  # export HOMEBREW_TEMP=$TMPDIR
+  # export HOMEBREW_CACHE=$TMPDIR
+  # export HOMEBREW_LOGS=$TMPDIR/logs
+  export HOMEBREW_TEMP=$SCRATCH_DIR
+  export HOMEBREW_CACHE=$SCRATCH_DIR
+  export HOMEBREW_LOGS=$SCRATCH_DIR/logs
   cleanup_env
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K brew has been setup.${RESTORE}"
