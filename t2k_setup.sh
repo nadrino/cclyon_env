@@ -111,6 +111,8 @@ function set_t2k_brew(){
   export PATH="$HOME/.linuxbrew/opt/python/libexec/bin/:$PATH"
   export HOMEBREW_TEMP=$TMPDIR
   export HOMEBREW_CACHE=$TMPDIR
+  export HOMEBREW_LOGS=$TMPDIR/logs
+  cleanup_env
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K brew has been setup.${RESTORE}"
   return;
