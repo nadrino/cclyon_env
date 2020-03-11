@@ -109,6 +109,8 @@ function set_t2k_brew(){
   cur_dir="$PWD"
   eval $($HOME/.linuxbrew/bin/brew shellenv)
   export PATH="$HOME/.linuxbrew/opt/python/libexec/bin/:$PATH"
+  export HOMEBREW_TEMP=$TMPDIR
+  export HOMEBREW_CACHE=$TMPDIR
   builtin cd $cur_dir
   echo -e "${LYELLOW}NOTICE: T2K brew has been setup.${RESTORE}"
   return;
