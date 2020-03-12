@@ -295,6 +295,14 @@ function setup_old_gcc(){
   echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
 }; export -f setup_old_gcc
 
+function setup_brew_gcc7(){
+  # ccenv gcc 5.2.0
+  # source /opt/rh/devtoolset-6/enable
+  export CC="$(which gcc)"
+  export CXX="$(which g++)"
+  echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
+}; export -f setup_brew_gcc7
+
 function setup_very_old_gcc(){
   ccenv gcc 3.4.6
   # source /opt/rh/devtoolset-3/enable
@@ -392,5 +400,7 @@ alias quota='fs lq ${HOME}'
 alias sizeof='du -h --max-depth=1 | sort -hr'
 alias cpu='mpstat -P ALL'
 alias repo_cc="cd $CC_REPO_DIR"
+alias monitoring='watch -c -n 0.5 jobs.py'
+alias ccat='pygmentize -g'
 
 shopt -s direxpand # fixes tab while env variable
