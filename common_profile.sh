@@ -298,8 +298,8 @@ function setup_old_gcc(){
 function setup_brew_gcc7(){
   # ccenv gcc 5.2.0
   # source /opt/rh/devtoolset-6/enable
-  export CC="$(which gcc)"
-  export CXX="$(which g++)"
+  export CC="$(which gcc-7)"
+  export CXX="$(which g++-7)"
   echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
 }; export -f setup_brew_gcc7
 
