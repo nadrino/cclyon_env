@@ -107,7 +107,8 @@ function link_t2k_soft()
 
 function set_t2k_brew(){
   cur_dir="$PWD"
-  export PATH="/usr/bin"
+  export PATH="/usr/bin" # cd, ls...
+  export PATH="/opt/sge/bin/lx-amd64/:$PATH" # for qsub
   export LD_LIBRARY_PATH=""
   eval $($HOME/.linuxbrew/bin/brew shellenv)
   export PATH="$HOME/.linuxbrew/opt/python/libexec/bin/:$PATH"
