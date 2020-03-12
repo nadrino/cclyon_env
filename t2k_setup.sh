@@ -191,3 +191,32 @@ function set_t2k_CERNLIB(){
   echo -e "${LYELLOW}NOTICE: T2K CERNLIB has been setup.${RESTORE}"
   return;
 }; export -f set_t2k_CERNLIB
+
+function set_t2k_T2KReWeight(){
+  cur_dir="$PWD"
+  # For analysis tools
+  set_t2k_highland2
+  # For enabling psyche
+  set_t2k_psyche
+  # For enabling CERNLIB
+  set_t2k_CERNLIB
+  # For enabling NEUT
+  set_t2k_neut
+
+  # NIWG
+  export NIWG=$REPO_DIR/NIWGReWeight/
+  export LD_LIBRARY_PATH=${NIWG}:$LD_LIBRARY_PATH;
+  export NIWGREWEIGHT_INPUTS=${NIWG}/inputs
+
+  export T2KREWEIGHT=$REPO_DIR/T2KReWeight
+  export PATH=$T2KREWEIGHT/bin:$PATH:$T2KREWEIGHT/app:$ROOTSYS/bin:$PATH;
+  export LD_LIBRARY_PATH=$T2KREWEIGHT/lib:$LD_LIBRARY_PATH;
+
+  # For JReweight
+  export JNUBEAM=$REPO_DIR/t2k-cvs/GlobalAnalysisTools/JReWeight
+  export LD_LIBRARY_PATH=$JNUBEAM:$LD_LIBRARY_PATH;
+  cleanup_env
+  builtin cd $cur_dir
+  echo -e "${LYELLOW}NOTICE: T2K T2KReWeight has been setup.${RESTORE}"
+  return;
+}; export -f set_t2k_T2KReWeight
