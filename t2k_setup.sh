@@ -114,6 +114,8 @@ function set_t2k_brew(){
   # export HOMEBREW_TEMP=$TMPDIR
   # export HOMEBREW_CACHE=$TMPDIR
   # export HOMEBREW_LOGS=$TMPDIR/logs
+  export HOMEBREW_MAKE_JOBS=4
+  export HOMEBREW_VERBOSE=1
   export HOMEBREW_TEMP=$SCRATCH_DIR
   export HOMEBREW_CACHE=$SCRATCH_DIR
   export HOMEBREW_LOGS=$SCRATCH_DIR/logs
