@@ -108,6 +108,8 @@ function link_t2k_soft()
 
 function set_t2k_brew(){
   cur_dir="$PWD"
+  export PATH="/usr/bin"
+  export LD_LIBRARY_PATH=""
   eval $($HOME/.linuxbrew/bin/brew shellenv)
   export PATH="$HOME/.linuxbrew/opt/python/libexec/bin/:$PATH"
   # export HOMEBREW_TEMP=$TMPDIR
