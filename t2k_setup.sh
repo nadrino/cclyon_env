@@ -44,7 +44,6 @@ function set_t2k_env(){
 
   export T2K_ENV_IS_SETUP="1"
 
-  # set_t2k_brew
   link_t2k_soft
   set_t2k_irods
   set_t2k_root
@@ -120,6 +119,7 @@ function set_t2k_brew(){
   export HOMEBREW_LOGS=$SCRATCH_DIR/logs
   cleanup_env
   builtin cd $cur_dir
+  set_t2k_env
   echo -e "${LYELLOW}NOTICE: T2K brew has been setup.${RESTORE}"
   return;
 }; export -f set_t2k_brew
