@@ -295,6 +295,14 @@ function setup_old_gcc(){
   echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
 }; export -f setup_old_gcc
 
+function setup_brew_gcc(){
+  # ccenv gcc 5.2.0
+  # source /opt/rh/devtoolset-6/enable
+  export CC="$(brew --prefix gcc)/bin/gcc"
+  export CXX="$(brew --prefix gcc)/bin/g++"
+  echo "   ├─ GCC Version : $("$(brew --prefix gcc)/bin/gcc" --version | head -n 1)"
+}; export -f setup_brew_gcc
+
 function setup_brew_gcc7(){
   # ccenv gcc 5.2.0
   # source /opt/rh/devtoolset-6/enable
@@ -302,6 +310,14 @@ function setup_brew_gcc7(){
   export CXX="$(which g++-7)"
   echo "   ├─ GCC Version : $(gcc-7 --version | head -n 1)"
 }; export -f setup_brew_gcc7
+
+function setup_brew_gcc8(){
+  # ccenv gcc 5.2.0
+  # source /opt/rh/devtoolset-6/enable
+  export CC="$(which gcc-8)"
+  export CXX="$(which g++-8)"
+  echo "   ├─ GCC Version : $(gcc-8 --version | head -n 1)"
+}; export -f setup_brew_gcc8
 
 function setup_very_old_gcc(){
   ccenv gcc 3.4.6
