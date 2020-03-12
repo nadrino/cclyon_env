@@ -194,6 +194,7 @@ function set_t2k_CERNLIB(){
 
 function set_t2k_T2KReWeight(){
   cur_dir="$PWD"
+  setup_old_gcc
   # For analysis tools
   set_t2k_highland2
   # For enabling psyche
