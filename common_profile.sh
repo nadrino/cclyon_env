@@ -401,7 +401,7 @@ function pull_bash_tools()
 
 # Default software setup
 setup_programs
-setup_root
+# setup_root
 setup_geant4
 
 export CC_REPO_DIR="$HOME/work/repo/"
