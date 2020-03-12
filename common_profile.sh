@@ -300,7 +300,7 @@ function setup_brew_gcc7(){
   # source /opt/rh/devtoolset-6/enable
   export CC="$(which gcc-7)"
   export CXX="$(which g++-7)"
-  echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
+  echo "   ├─ GCC Version : $(gcc-7 --version | head -n 1)"
 }; export -f setup_brew_gcc7
 
 function setup_very_old_gcc(){
