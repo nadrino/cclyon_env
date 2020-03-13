@@ -105,7 +105,7 @@ function link_t2k_soft()
 
 }; export -f link_t2k_soft
 
-function set_t2k_brew(){
+function setup_brew(){
   cur_dir="$PWD"
   export PATH="/usr/bin" # cd, ls...
   export PATH="/opt/sge/bin/lx-amd64/:$PATH" # for qsub
@@ -123,9 +123,9 @@ function set_t2k_brew(){
   cleanup_env
   builtin cd $cur_dir
   set_t2k_env
-  echo -e "${LYELLOW}NOTICE: T2K brew has been setup.${RESTORE}"
+  echo -e "${LYELLOW}NOTICE: Brew env has been setup.${RESTORE}"
   return;
-}; export -f set_t2k_brew
+}; export -f setup_brew
 
 function set_t2k_irods(){
   cur_dir="$PWD"
