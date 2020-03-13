@@ -107,20 +107,31 @@ function link_t2k_soft()
 
 function setup_brew(){
   cur_dir="$PWD"
+
+  # Cleaning env
   export PATH="/usr/bin" # cd, ls...
   export PATH="/opt/sge/bin/lx-amd64/:$PATH" # for qsub
   export LD_LIBRARY_PATH=""
+
+  # Set brew env
   eval $($HOME/.linuxbrew/bin/brew shellenv)
   export PATH="$HOME/.linuxbrew/opt/python/libexec/bin/:$PATH"
-  # export HOMEBREW_TEMP=$TMPDIR
-  # export HOMEBREW_CACHE=$TMPDIR
-  # export HOMEBREW_LOGS=$TMPDIR/logs
-  export HOMEBREW_MAKE_JOBS=4
+
+  # Debug options
+  # export HOMEBREW_DEBUG=1
+  # export HOMEBREW_DEBUG_INSTALL=1
   export HOMEBREW_VERBOSE=1
+
+  # Parameters
+  export HOMEBREW_BUILD_FROM_SOURCE=1
+  export HOMEBREW_MAKE_JOBS=4
+
+  # Scratch
   export HOMEBREW_TEMP=$SCRATCH_DIR
   export HOMEBREW_CACHE=$SCRATCH_DIR
   export HOMEBREW_LOGS=$SCRATCH_DIR/logs
-  cleanup_env
+
+  # Reset the t2k env
   builtin cd $cur_dir
   set_t2k_env
   echo -e "${LYELLOW}NOTICE: Brew env has been setup.${RESTORE}"
