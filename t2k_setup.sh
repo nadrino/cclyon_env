@@ -129,9 +129,9 @@ function setup_brew(){
   cur_dir="$PWD"
 
   # Cleaning env
-  # export PATH="/usr/bin" # cd, ls...
-  # export PATH="/opt/sge/bin/lx-amd64/:$PATH" # for qsub
-  # export LD_LIBRARY_PATH=""
+  export PATH="/usr/bin" # cd, ls...
+  export PATH="/opt/sge/bin/lx-amd64/:$PATH" # for qsub
+  export LD_LIBRARY_PATH=""
 
   # Set brew env
   eval $($HOME/.linuxbrew/bin/brew shellenv)
