@@ -46,7 +46,9 @@ function set_t2k_env(){
 
   link_t2k_soft
   set_t2k_irods
-  set_t2k_root
+  setup_brew
+
+  # set_t2k_root
 
   cleanup_env
 
@@ -60,7 +62,7 @@ function set_t2k_root(){
 
   if [ -z ${T2K_ENV_IS_SETUP+x} ];
   then
-    echo "$T2K_ENV_IS_SETUP is not set. Please run set_t2k_env first.";
+    echo "T2K_ENV_IS_SETUP is not set. Please run set_t2k_env first.";
     return;
   fi
 
@@ -73,6 +75,24 @@ function set_t2k_root(){
   echo -e "${LYELLOW}NOTICE: ROOT (T2K) has been setup.${RESTORE}" >&2
   return;
 }; export -f set_t2k_root
+
+function set_brew_root(){
+  echo "├─ Setting up ROOT (Brew)..." >&2
+
+  if [ -z ${BREW_ENV_IS_SETUP+x} ];
+  then
+    echo "BREW_ENV_IS_SETUP is not set. Please run setup_brew first.";
+    return;
+  fi
+
+  . /sps/t2k/ablanche/linuxbrew/bin/thisroot.sh
+  echo "   ├─ ROOT Prefix : $(root-config --prefix)"
+  echo "   ├─ ROOT Version : $(root-config --version)"
+
+  echo -e "${LYELLOW}NOTICE: ROOT (Brew) has been setup.${RESTORE}" >&2
+  return;
+}; export -f set_brew_root
+
 
 function link_t2k_soft()
 {
@@ -109,9 +129,9 @@ function setup_brew(){
   cur_dir="$PWD"
 
   # Cleaning env
-  export PATH="/usr/bin" # cd, ls...
-  export PATH="/opt/sge/bin/lx-amd64/:$PATH" # for qsub
-  export LD_LIBRARY_PATH=""
+  # export PATH="/usr/bin" # cd, ls...
+  # export PATH="/opt/sge/bin/lx-amd64/:$PATH" # for qsub
+  # export LD_LIBRARY_PATH=""
 
   # Set brew env
   eval $($HOME/.linuxbrew/bin/brew shellenv)
@@ -131,9 +151,10 @@ function setup_brew(){
   export HOMEBREW_CACHE=$SCRATCH_DIR
   export HOMEBREW_LOGS=$SCRATCH_DIR/logs
 
+  export BREW_ENV_IS_SETUP=1
+
   # Reset the t2k env
   builtin cd $cur_dir
-  set_t2k_env
   echo -e "${LYELLOW}NOTICE: Brew env has been setup.${RESTORE}"
   return;
 }; export -f setup_brew
