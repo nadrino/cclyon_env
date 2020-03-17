@@ -44,11 +44,11 @@ function set_t2k_env(){
 
   export T2K_ENV_IS_SETUP="1"
 
-  # link_t2k_soft
+  link_t2k_soft
   set_t2k_irods
   setup_brew
-  set_brew_root
-  # set_t2k_root
+  # set_brew_root
+  set_t2k_root
 
   cleanup_env
 
