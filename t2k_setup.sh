@@ -46,7 +46,7 @@ function set_t2k_env(){
 
   link_t2k_soft
   set_t2k_irods
-  setup_brew
+  # setup_brew
   # set_brew_root
   set_t2k_root
 
