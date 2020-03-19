@@ -253,3 +253,14 @@ function set_t2k_T2KReWeight(){
   echo -e "${LYELLOW}NOTICE: T2K T2KReWeight has been setup.${RESTORE}"
   return;
 }; export -f set_t2k_T2KReWeight
+
+
+function pull_xsllhFitter()
+{
+  current_path=${PWD}
+  builtin cd $REPO_DIR/xsllhFitter
+  git pull
+  builtin cd $current_path
+  echo -e "${LYELLOW}xsllhFitter has been pulled.${RESTORE}"
+  return;
+}; export -f pull_xsllhFitter
