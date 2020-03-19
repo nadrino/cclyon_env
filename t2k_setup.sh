@@ -260,6 +260,11 @@ function pull_xsLLhFitter()
   current_path=${PWD}
   builtin cd $REPO_DIR/xsLLhFitter
   git pull
+  builtin cd $BUILD_DIR/xsLLhFitter
+  cmake \
+    -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/xsLLhFitter \
+    $REPO_DIR/xsLLhFitter/.
+  make -j 8 install
   builtin cd $current_path
   echo -e "${LYELLOW}xsllhFitter has been pulled.${RESTORE}"
   return;
