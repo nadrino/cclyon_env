@@ -255,12 +255,12 @@ function set_t2k_T2KReWeight(){
 }; export -f set_t2k_T2KReWeight
 
 
-function pull_xsllhFitter()
+function pull_xsLLhFitter()
 {
   current_path=${PWD}
-  builtin cd $REPO_DIR/xsllhFitter
+  builtin cd $REPO_DIR/xsLLhFitter
   git pull
   builtin cd $current_path
   echo -e "${LYELLOW}xsllhFitter has been pulled.${RESTORE}"
   return;
-}; export -f pull_xsllhFitter
+}; export -f pull_xsLLhFitter
