@@ -17,6 +17,7 @@ function set_t2k_env(){
   export BUILD_DIR="$T2K_SPS_DIR/build/"
   export WORK_DIR="$T2K_SPS_DIR/work/"
   export REPO_DIR="$T2K_SPS_DIR/repo/"
+  export DOWNLOAD_DIR="$T2K_SPS_DIR/download/"
   export SCRATCH_DIR="$T2K_SPS_DIR/scratch/"
 
   export RESULTS_DIR="$WORK_DIR/results/"
@@ -264,8 +265,23 @@ function pull_xsLLhFitter()
   # cmake \
   #   -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/xsLLhFitter \
   #   $REPO_DIR/xsLLhFitter/.
-  make -j 8 install
+  make -j 4 install
   builtin cd $current_path
   echo -e "${LYELLOW}xsllhFitter has been pulled.${RESTORE}"
   return;
 }; export -f pull_xsLLhFitter
+
+function pull_p_theta()
+{
+  current_path=${PWD}
+  builtin cd $REPO_DIR/P-theta-dev
+  git pull
+  builtin cd $BUILD_DIR/P-theta-dev
+  # cmake \
+  #   -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/P-theta-dev \
+  #   $REPO_DIR/P-theta-dev/Minimal/.
+  make -j 4 install
+  builtin cd $current_path
+  echo -e "${LYELLOW}xsllhFitter has been pulled.${RESTORE}"
+  return;
+}; export -f pull_p_theta
