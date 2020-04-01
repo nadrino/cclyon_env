@@ -412,6 +412,7 @@ function pull_bash_tools()
 setup_programs
 # setup_root
 setup_geant4
+setup_brew
 
 export CC_REPO_DIR="$HOME/work/repo/"
 
