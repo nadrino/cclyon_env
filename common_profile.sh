@@ -111,6 +111,11 @@ export LPURPLE='\033[01;35m'
 export LCYAN='\033[01;36m'
 export WHITE='\033[01;37m'
 
+export INFO="$LGREEN<Info>$RESTORE"
+export WARNING="$LYELLOW<Warning>$RESTORE"
+export ERROR="$LRED<Error>$RESTORE"
+export ALERT="$LPURPLE<Alert>$RESTORE"
+
 function test_colors(){
 
   echo -e "${RED}RED ${GREEN}GREEN ${YELLOW}YELLOW ${BLUE}BLUE ${PURPLE}PURPLE ${CYAN}CYAN ${LIGHTGRAY}LIGHTGRAY ${RESTORE}RESTORE"
