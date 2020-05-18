@@ -179,13 +179,13 @@ function set_t2k_irods(){
 function set_t2k_cvs(){
   if [ -z ${T2K_CVS_IS_SET+x} ];
   then
-    version="v1r20p20081118"
+    cvs_version="v1r20p20081118"
     cur_dir="$PWD"
     export CVSROOT=":ext:anoncvs@repo.nd280.org:/home/trt2kmgr/ND280Repository"
-    source $REPO_DIR/nd280-cvs/CMT/${version}/mgr/setup.sh
+    source $REPO_DIR/nd280-cvs/CMT/${cvs_version}/mgr/setup.sh
     builtin cd $cur_dir
     export T2K_CVS_IS_SET=1
-    echo -e "${INFO} T2K CVS ${version} has been setup."
+    echo -e "${INFO} T2K CVS ${cvs_version} has been setup."
   else
     echo -e "${WARNING} T2K CVS is already setup."
   fi
@@ -195,14 +195,14 @@ function set_t2k_cvs(){
 function set_t2k_psyche(){
   if [ -z ${T2K_PSYCHE_IS_SET+x} ];
   then
-    version="v3r49"
+    psyche_version="v3r49"
     cur_dir="$PWD"
     set_t2k_cvs
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
-    source $CMTPATH/nd280Psyche/${version}/cmt/setup.sh
+    source $CMTPATH/nd280Psyche/${psyche_version}/cmt/setup.sh
     builtin cd $cur_dir
     export T2K_PSYCHE_IS_SET=1
-    echo -e "${INFO} T2K Psyche ${version} has been setup."
+    echo -e "${INFO} T2K Psyche ${psyche_version} has been setup."
   else
     echo -e "${WARNING} T2K Psyche is already setup."
   fi
@@ -212,15 +212,15 @@ function set_t2k_psyche(){
 function set_t2k_oaAnalysisReader(){
   if [ -z ${T2K_OAANALYSISREADER_IS_SET+x} ];
   then
-    version="v2r19"
+    oaAnalysisReader_version="v2r19"
     cur_dir="$PWD"
     setup_old_gcc
     set_t2k_cvs
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
-    source $CMTPATH/highland2/oaAnalysisReader/${version}/cmt/setup.sh
+    source $CMTPATH/highland2/oaAnalysisReader/${oaAnalysisReader_version}/cmt/setup.sh
     builtin cd $cur_dir
     export T2K_OAANALYSISREADER_IS_SET=1
-    echo -e "${INFO} T2K oaAnalysisReader ${version} has been setup."
+    echo -e "${INFO} T2K oaAnalysisReader ${oaAnalysisReader_version} has been setup."
   else
     echo -e "${WARNING} T2K oaAnalysisReader is already setup."
   fi
@@ -230,15 +230,15 @@ function set_t2k_oaAnalysisReader(){
 function set_t2k_highland2(){
   if [ -z ${T2K_HIGHLAND2_IS_SET+x} ];
   then
-    version="v2r45"
+    highland2_version="v2r45"
     cur_dir="$PWD"
     setup_old_gcc
     set_t2k_cvs
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
-    source $CMTPATH/nd280Highland2/${version}/cmt/setup.sh
+    source $CMTPATH/nd280Highland2/${highland2_version}/cmt/setup.sh
     builtin cd $cur_dir
     export T2K_HIGHLAND2_IS_SET=1
-    echo -e "${INFO} T2K Highland2 ${version} has been setup."
+    echo -e "${INFO} T2K Highland2 ${highland2_version} has been setup."
   else
     echo -e "${WARNING} T2K Highland2 is already setup."
   fi
