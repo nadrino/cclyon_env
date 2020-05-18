@@ -191,6 +191,7 @@ function set_t2k_psyche(){
 
 function set_t2k_highland2(){
   cur_dir="$PWD"
+  setup_old_gcc
   set_t2k_cvs
   export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
   source $CMTPATH/nd280Highland2/v*/cmt/setup.sh
