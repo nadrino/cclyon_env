@@ -209,6 +209,24 @@ function set_t2k_psyche(){
   return;
 }; export -f set_t2k_psyche
 
+function set_t2k_oaAnalysisReader(){
+  if [ -z ${T2K_OAANALYSISREADER_IS_SET+x} ];
+  then
+    version="v2r19"
+    cur_dir="$PWD"
+    setup_old_gcc
+    set_t2k_cvs
+    export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
+    source $CMTPATH/highland2/oaAnalysisReader/${version}/cmt/setup.sh
+    builtin cd $cur_dir
+    export T2K_OAANALYSISREADER_IS_SET=1
+    echo -e "${INFO} T2K oaAnalysisReader ${version} has been setup."
+  else
+    echo -e "${WARNING} T2K oaAnalysisReader is already setup."
+  fi
+  return;
+}; export -f set_t2k_oaAnalysisReader
+
 function set_t2k_highland2(){
   if [ -z ${T2K_HIGHLAND2_IS_SET+x} ];
   then
