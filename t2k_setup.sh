@@ -210,14 +210,15 @@ function set_t2k_psyche(){
 function set_t2k_highland2(){
   if [ -z ${T2K_HIGHLAND2_IS_SET+x} ];
   then
+    version="v2r45"
     cur_dir="$PWD"
     setup_old_gcc
     set_t2k_cvs
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
-    source $CMTPATH/nd280Highland2/v*/cmt/setup.sh
+    source $CMTPATH/nd280Highland2/${version}/cmt/setup.sh
     builtin cd $cur_dir
     export T2K_HIGHLAND2_IS_SET=1
-    echo -e "${INFO} T2K Highland2 has been setup."
+    echo -e "${INFO} T2K Highland2 ${version} has been setup."
   else
     echo -e "${WARNING} T2K Highland2 is already setup."
   fi
