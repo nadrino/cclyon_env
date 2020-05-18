@@ -17,6 +17,7 @@ function set_t2k_env(){
   export BUILD_DIR="$T2K_SPS_DIR/build/"
   export WORK_DIR="$T2K_SPS_DIR/work/"
   export REPO_DIR="$T2K_SPS_DIR/repo/"
+  export RESOURCES_DIR="$T2K_SPS_DIR/resources/"
   export DOWNLOAD_DIR="$T2K_SPS_DIR/download/"
   export SCRATCH_DIR="$T2K_SPS_DIR/scratch/"
 
