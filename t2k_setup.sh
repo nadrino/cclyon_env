@@ -179,12 +179,13 @@ function set_t2k_irods(){
 function set_t2k_cvs(){
   if [ -z ${T2K_CVS_IS_SET+x} ];
   then
+    version="v1r20p20081118"
     cur_dir="$PWD"
     export CVSROOT=":ext:anoncvs@repo.nd280.org:/home/trt2kmgr/ND280Repository"
-    source $REPO_DIR/nd280-cvs/CMT/v*/mgr/setup.sh
+    source $REPO_DIR/nd280-cvs/CMT/${version}/mgr/setup.sh
     builtin cd $cur_dir
     export T2K_CVS_IS_SET=1
-    echo -e "${INFO} T2K CVS has been setup."
+    echo -e "${INFO} T2K CVS ${version} has been setup."
   else
     echo -e "${WARNING} T2K CVS is already setup."
   fi
@@ -194,13 +195,14 @@ function set_t2k_cvs(){
 function set_t2k_psyche(){
   if [ -z ${T2K_PSYCHE_IS_SET+x} ];
   then
+    version="v3r49"
     cur_dir="$PWD"
     set_t2k_cvs
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
-    source $CMTPATH/nd280Psyche/v*/cmt/setup.sh
+    source $CMTPATH/nd280Psyche/${version}/cmt/setup.sh
     builtin cd $cur_dir
     export T2K_PSYCHE_IS_SET=1
-    echo -e "${INFO} T2K Psyche has been setup."
+    echo -e "${INFO} T2K Psyche ${version} has been setup."
   else
     echo -e "${WARNING} T2K Psyche is already setup."
   fi
