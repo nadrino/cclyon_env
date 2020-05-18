@@ -11,22 +11,22 @@
 function set_t2k_env(){
 
   # Env variables
-  export T2K_SPS_DIR="/sps/t2k/ablanche/"
+  export T2K_SPS_DIR="/sps/t2k/ablanche"
 
-  export INSTALL_DIR="$T2K_SPS_DIR/install/"
-  export BUILD_DIR="$T2K_SPS_DIR/build/"
-  export WORK_DIR="$T2K_SPS_DIR/work/"
-  export REPO_DIR="$T2K_SPS_DIR/repo/"
-  export RESOURCES_DIR="$T2K_SPS_DIR/resources/"
-  export DOWNLOAD_DIR="$T2K_SPS_DIR/download/"
-  export SCRATCH_DIR="$T2K_SPS_DIR/scratch/"
+  export INSTALL_DIR="$T2K_SPS_DIR/install"
+  export BUILD_DIR="$T2K_SPS_DIR/build"
+  export WORK_DIR="$T2K_SPS_DIR/work"
+  export REPO_DIR="$T2K_SPS_DIR/repo"
+  export RESOURCES_DIR="$T2K_SPS_DIR/resources"
+  export DOWNLOAD_DIR="$T2K_SPS_DIR/download"
+  export SCRATCH_DIR="$T2K_SPS_DIR/scratch"
 
-  export RESULTS_DIR="$WORK_DIR/results/"
-  export DATA_DIR="$WORK_DIR/data/"
-  export FIGURES_DIR="$WORK_DIR/figures/"
-  export JOBS_DIR="$WORK_DIR/jobs/"
+  export RESULTS_DIR="$WORK_DIR/results"
+  export DATA_DIR="$WORK_DIR/data"
+  export FIGURES_DIR="$WORK_DIR/figures"
+  export JOBS_DIR="$WORK_DIR/jobs"
 
-  export LOGS_DIR="$JOBS_DIR/logs/"
+  export LOGS_DIR="$JOBS_DIR/logs"
 
   # Aliases
   alias sps="cd $T2K_SPS_DIR"
@@ -37,12 +37,12 @@ function set_t2k_env(){
   alias fig="cd $FIGURES_DIR"
 
   # Python
-  export PYTHONPATH="$REPO_DIR/cclyon_py_tools/library/:$PYTHONPATH"
-  export PATH="$REPO_DIR/cclyon_py_tools/scripts/:$PATH"
+  export PYTHONPATH="$REPO_DIR/cclyon_py_tools/library:$PYTHONPATH"
+  export PATH="$REPO_DIR/cclyon_py_tools/scripts:$PATH"
   alias job="jobs.py"
 
   # Bash
-  export PATH="$REPO_DIR/cclyon_bash_tools/bin/:$PATH"
+  export PATH="$REPO_DIR/cclyon_bash_tools/bin:$PATH"
 
   export T2K_ENV_IS_SETUP="1"
 
@@ -68,7 +68,7 @@ function set_t2k_root(){
     return;
   fi
 
-  export PATH="$INSTALL_DIR/root/bin/:$PATH"
+  export PATH="$INSTALL_DIR/root/bin:$PATH"
   source $INSTALL_DIR/root/bin/thisroot.sh
 
   echo "   ├─ ROOT Prefix : $(root-config --prefix)"
@@ -132,12 +132,12 @@ function setup_brew(){
 
   # Cleaning env
   # export PATH="/usr/bin" # cd, ls...
-  # export PATH="/opt/sge/bin/lx-amd64/:$PATH" # for qsub
+  # export PATH="/opt/sge/bin/lx-amd64:$PATH" # for qsub
   # export LD_LIBRARY_PATH=""
 
   # Set brew env
   eval $($HOME/.linuxbrew/bin/brew shellenv)
-  export PATH="$HOME/.linuxbrew/opt/python/libexec/bin/:$PATH"
+  export PATH="$HOME/.linuxbrew/opt/python/libexec/bin:$PATH"
 
   # Debug options
   # export HOMEBREW_DEBUG=1
