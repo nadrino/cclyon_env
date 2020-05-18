@@ -54,7 +54,7 @@ function set_t2k_env(){
 
   cleanup_env
 
-  echo "$(tput bold)$(tput setaf 3)NOTICE: T2K env has been setup.$(tput sgr 0)$(tput dim)" >&2
+  echo -e "${INFO} T2K env has been setup."
   return;
 }; export -f set_t2k_env
 
@@ -74,7 +74,7 @@ function set_t2k_root(){
   echo "   ├─ ROOT Prefix : $(root-config --prefix)"
   echo "   ├─ ROOT Version : $(root-config --version)"
 
-  echo -e "${LYELLOW}NOTICE: ROOT (T2K) has been setup.${RESTORE}" >&2
+  echo -e "${INFO} ROOT (T2K) has been setup."
   return;
 }; export -f set_t2k_root
 
@@ -91,7 +91,7 @@ function set_brew_root(){
   echo "   ├─ ROOT Prefix : $(root-config --prefix)"
   echo "   ├─ ROOT Version : $(root-config --version)"
 
-  echo -e "${LYELLOW}NOTICE: ROOT (Brew) has been setup.${RESTORE}" >&2
+  echo -e "${INFO} ROOT (Brew) has been setup."
   return;
 }; export -f set_brew_root
 
@@ -121,9 +121,9 @@ function link_t2k_soft()
   # alias readlink="/usr/local/bin/greadlink" # fix readlink on mac
   source $REPO_DIR/xsLLhFitter/setup.sh &> /dev/null
 
-  echo "$(tput bold)$(tput setaf 3)NOTICE: T2K libs have been setup.$(tput sgr 0)$(tput dim)" >&2
-
   builtin cd $current_path
+
+  echo -e "${INFO} T2K libs have been setup."
 
 }; export -f link_t2k_soft
 
@@ -312,7 +312,7 @@ function pull_xsLLhFitter()
   #   $REPO_DIR/xsLLhFitter/.
   make -j 4 install
   builtin cd $current_path
-  echo -e "${LYELLOW}xsllhFitter has been pulled.${RESTORE}"
+  echo -e "${INFO} xsllhFitter has been pulled."
   return;
 }; export -f pull_xsLLhFitter
 
@@ -327,6 +327,6 @@ function pull_p_theta()
   #   $REPO_DIR/P-theta-dev/Minimal/.
   make -j 4 install
   builtin cd $current_path
-  echo -e "${LYELLOW}xsllhFitter has been pulled.${RESTORE}"
+  echo -e "${INFO} P-theta has been pulled."
   return;
 }; export -f pull_p_theta

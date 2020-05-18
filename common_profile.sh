@@ -352,7 +352,7 @@ function setup_root()
   echo "   ├─ ROOT Prefix : $(root-config --prefix)"
   echo "   ├─ ROOT Version : $(root-config --version)"
 
-  echo "NOTICE: ROOT has been setup." >&2
+  echo -e "${INFO} ROOT has been setup."
   return;
 }; export -f setup_root
 
@@ -365,7 +365,7 @@ function setup_geant4()
   echo "   ├─ Geant4 Prefix : $(geant4-config --prefix)"
   echo "   ├─ Geant4 Version : $(geant4-config --version)"
 
-  echo "NOTICE: Geant4 has been setup." >&2
+  echo -e "${INFO} Geant4 has been setup."
   return;
 }; export -f setup_geant4
 
@@ -375,9 +375,9 @@ function cleanup_env()
     # export PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{PATH}))')"
     # echo "Cleaning LD_LIBRARY_PATH..." >&2
     # export LD_LIBRARY_PATH="$(perl -e 'print join(":", grep { not $seen{$_}++ } split(/:/, $ENV{LD_LIBRARY_PATH}))')"
-    echo -e "${LYELLOW}Cleaning up PATH...${RESTORE}"
+    echo -e "${WARNING} Cleaning up PATH..."
     $(python $REPO_DIR/cclyon_py_tools/scripts/cleanup_env.py PATH)
-    echo -e "${LYELLOW}Cleaning up LD_LIBRARY_PATH...${RESTORE}"
+    echo -e "${WARNING} Cleaning up LD_LIBRARY_PATH..."
     $(python $REPO_DIR/cclyon_py_tools/scripts/cleanup_env.py LD_LIBRARY_PATH)
     return;
 }; export -f cleanup_env
@@ -389,7 +389,7 @@ function pull_root_macros()
   git pull
   cp $REPO_DIR/cclyon_root_macros/logon/rootrc $HOME/.rootrc
   builtin cd $current_path
-  echo -e "${LYELLOW}CCLyon root macros have been pushed.${RESTORE}"
+  echo -e "${INFO} CCLyon root macros have been pulled."
   return;
 }; export -f pull_root_macros
 
@@ -399,7 +399,7 @@ function pull_py_tools()
   builtin cd $REPO_DIR/cclyon_py_tools
   git pull
   builtin cd $current_path
-  echo -e "${LYELLOW}CCLyon py tools have been pushed.${RESTORE}"
+  echo -e "${INFO} CCLyon py tools have been pulled."
   return;
 }; export -f pull_py_tools
 
@@ -409,7 +409,7 @@ function pull_bash_tools()
   builtin cd $REPO_DIR/cclyon_bash_tools
   git pull
   builtin cd $current_path
-  echo -e "${LYELLOW}CCLyon bash tools have been pushed.${RESTORE}"
+  echo -e "${INFO} CCLyon bash tools have been pulled."
   return;
 }; export -f pull_bash_tools
 
