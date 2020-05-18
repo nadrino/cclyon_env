@@ -106,7 +106,7 @@ function link_t2k_soft()
     return;
   fi
 
-  echo "Linking libs in $INSTALL_DIR"
+  echo -e "${WARNING} Linking libs in $INSTALL_DIR"
   for dir in $INSTALL_DIR/*/     # list directories in the form "/tmp/dirname/"
   do
       dir=${dir%*/}      # remove the trailing "/"
