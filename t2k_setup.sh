@@ -162,98 +162,141 @@ function setup_brew(){
 }; export -f setup_brew
 
 function set_t2k_irods(){
-  cur_dir="$PWD"
-  builtin cd $REPO_DIR/irods-legacy/iRODS
-  source ./add-clients.sh &> /dev/null
-  builtin cd $cur_dir
-  echo -e "${LYELLOW}NOTICE: T2K iRODS has been setup.${RESTORE}"
+  if [ -z ${T2K_IRODS_IS_SET+x} ];
+  then
+    cur_dir="$PWD"
+    builtin cd $REPO_DIR/irods-legacy/iRODS
+    source ./add-clients.sh &> /dev/null
+    builtin cd $cur_dir
+    export T2K_IRODS_IS_SET=1
+    echo -e "${INFO} T2K iRODS has been setup."
+  else
+    echo -e "${WARNING} T2K iRODS is already setup."
+  fi
   return;
 }; export -f set_t2k_irods
 
 function set_t2k_cvs(){
-  cur_dir="$PWD"
-  export CVSROOT=":ext:anoncvs@repo.nd280.org:/home/trt2kmgr/ND280Repository"
-  source $REPO_DIR/nd280-cvs/CMT/v*/mgr/setup.sh
-  builtin cd $cur_dir
-  echo -e "${LYELLOW}NOTICE: T2K CVS has been setup.${RESTORE}"
+  if [ -z ${T2K_CVS_IS_SET+x} ];
+  then
+    cur_dir="$PWD"
+    export CVSROOT=":ext:anoncvs@repo.nd280.org:/home/trt2kmgr/ND280Repository"
+    source $REPO_DIR/nd280-cvs/CMT/v*/mgr/setup.sh
+    builtin cd $cur_dir
+    export T2K_CVS_IS_SET=1
+    echo -e "${INFO} T2K CVS has been setup."
+  else
+    echo -e "${WARNING} T2K CVS is already setup."
+  fi
   return;
 }; export -f set_t2k_cvs
 
 function set_t2k_psyche(){
-  cur_dir="$PWD"
-  set_t2k_cvs
-  export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
-  source $CMTPATH/nd280Psyche/v*/cmt/setup.sh
-  builtin cd $cur_dir
-  echo -e "${LYELLOW}NOTICE: T2K Psyche has been setup.${RESTORE}"
+  if [ -z ${T2K_PSYCHE_IS_SET+x} ];
+  then
+    cur_dir="$PWD"
+    set_t2k_cvs
+    export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
+    source $CMTPATH/nd280Psyche/v*/cmt/setup.sh
+    builtin cd $cur_dir
+    export T2K_PSYCHE_IS_SET=1
+    echo -e "${INFO} T2K Psyche has been setup."
+  else
+    echo -e "${WARNING} T2K Psyche is already setup."
+  fi
   return;
 }; export -f set_t2k_psyche
 
 function set_t2k_highland2(){
-  cur_dir="$PWD"
-  setup_old_gcc
-  set_t2k_cvs
-  export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
-  source $CMTPATH/nd280Highland2/v*/cmt/setup.sh
-  builtin cd $cur_dir
-  echo -e "${LYELLOW}NOTICE: T2K Highland2 has been setup.${RESTORE}"
+  if [ -z ${T2K_HIGHLAND2_IS_SET+x} ];
+  then
+    cur_dir="$PWD"
+    setup_old_gcc
+    set_t2k_cvs
+    export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
+    source $CMTPATH/nd280Highland2/v*/cmt/setup.sh
+    builtin cd $cur_dir
+    export T2K_HIGHLAND2_IS_SET=1
+    echo -e "${INFO} T2K Highland2 has been setup."
+  else
+    echo -e "${WARNING} T2K Highland2 is already setup."
+  fi
   return;
 }; export -f set_t2k_highland2
 
 function set_t2k_neut(){
-  cur_dir="$PWD"
-  # source $INSTALL_DIR/neut/setup.sh
-  export NEUT=$INSTALL_DIR/neut
-  export PATH=$NEUT/bin:$PATH
-  export LD_LIBRARY_PATH=$NEUT/lib:$LD_LIBRARY_PATH
-  builtin cd $cur_dir
-  echo -e "${LYELLOW}NOTICE: T2K NEUT has been setup.${RESTORE}"
+  if [ -z ${T2K_NEUT_IS_SET+x} ];
+  then
+    cur_dir="$PWD"
+    # source $INSTALL_DIR/neut/setup.sh
+    export NEUT=$INSTALL_DIR/neut
+    export PATH=$NEUT/bin:$PATH
+    export LD_LIBRARY_PATH=$NEUT/lib:$LD_LIBRARY_PATH
+    builtin cd $cur_dir
+    export T2K_NEUT_IS_SET=1
+    echo -e "${INFO} T2K NEUT has been setup."
+  else
+    echo -e "${WARNING} T2K NEUT is already setup."
+  fi
   return;
 }; export -f set_t2k_neut
 
 function set_t2k_CERNLIB(){
-  cur_dir="$PWD"
-  set_t2k_cvs
-  export CERN="/sps/t2k/ablanche/repo/nd280-cvs/Highland2_HEAD/CERNLIB/v2005r6/Linux-x86_64"
-  export CERN_LEVEL=2005
-  export CERN_ROOT=$CERN/$CERN_LEVEL
-  export CERNLIB=$CERN_ROOT/lib
-  export CERNLIBDIR=$CERNLIB
-  export CERNPATH=$CERNLIB
-  export PATH=$CERN_ROOT/bin:$PATH
-  export LD_LIBRARY_PATH=$CERNLIB:$LD_LIBRARY_PATH
-  builtin cd $cur_dir
-  echo -e "${LYELLOW}NOTICE: T2K CERNLIB has been setup.${RESTORE}"
+  if [ -z ${T2K_CERNLIB_IS_SET+x} ];
+  then
+    cur_dir="$PWD"
+    set_t2k_cvs
+    export CERN="/sps/t2k/ablanche/repo/nd280-cvs/Highland2_HEAD/CERNLIB/v2005r6/Linux-x86_64"
+    export CERN_LEVEL=2005
+    export CERN_ROOT=$CERN/$CERN_LEVEL
+    export CERNLIB=$CERN_ROOT/lib
+    export CERNLIBDIR=$CERNLIB
+    export CERNPATH=$CERNLIB
+    export PATH=$CERN_ROOT/bin:$PATH
+    export LD_LIBRARY_PATH=$CERNLIB:$LD_LIBRARY_PATH
+    builtin cd $cur_dir
+    export T2K_CERNLIB_IS_SET=1
+    echo -e "${INFO} T2K CERNLIB has been setup."
+  else
+    echo -e "${WARNING} T2K CERNLIB is already setup."
+  fi
   return;
 }; export -f set_t2k_CERNLIB
 
 function set_t2k_T2KReWeight(){
-  cur_dir="$PWD"
-  setup_old_gcc
-  # For analysis tools
-  set_t2k_highland2
-  # For enabling psyche
-  set_t2k_psyche
-  # For enabling CERNLIB
-  set_t2k_CERNLIB
-  # For enabling NEUT
-  set_t2k_neut
+  if [ -z ${T2K_T2KREWEIGHT_IS_SET+x} ];
+  then
+    cur_dir="$PWD"
+    setup_old_gcc
+    # For analysis tools
+    set_t2k_highland2
+    # For enabling psyche
+    set_t2k_psyche
+    # For enabling CERNLIB
+    set_t2k_CERNLIB
+    # For enabling NEUT
+    set_t2k_neut
 
-  # NIWG
-  export NIWG=$REPO_DIR/NIWGReWeight/
-  export LD_LIBRARY_PATH=${NIWG}:$LD_LIBRARY_PATH;
-  export NIWGREWEIGHT_INPUTS=${NIWG}/inputs
+    # NIWG
+    export NIWG=$REPO_DIR/NIWGReWeight/
+    export LD_LIBRARY_PATH=${NIWG}:$LD_LIBRARY_PATH;
+    export NIWGREWEIGHT_INPUTS=${NIWG}/inputs
 
-  export T2KREWEIGHT=$REPO_DIR/T2KReWeight
-  export PATH=$T2KREWEIGHT/bin:$PATH:$T2KREWEIGHT/app:$ROOTSYS/bin:$PATH;
-  export LD_LIBRARY_PATH=$T2KREWEIGHT/lib:$LD_LIBRARY_PATH;
+    export T2KREWEIGHT=$REPO_DIR/T2KReWeight
+    export PATH=$T2KREWEIGHT/bin:$PATH:$T2KREWEIGHT/app:$ROOTSYS/bin:$PATH;
+    export LD_LIBRARY_PATH=$T2KREWEIGHT/lib:$LD_LIBRARY_PATH;
 
-  # For JReweight
-  export JNUBEAM=$REPO_DIR/t2k-cvs/GlobalAnalysisTools/JReWeight
-  export LD_LIBRARY_PATH=$JNUBEAM:$LD_LIBRARY_PATH;
-  cleanup_env
-  builtin cd $cur_dir
-  echo -e "${LYELLOW}NOTICE: T2K T2KReWeight has been setup.${RESTORE}"
+    # For JReweight
+    export JNUBEAM=$REPO_DIR/t2k-cvs/GlobalAnalysisTools/JReWeight
+    export LD_LIBRARY_PATH=$JNUBEAM:$LD_LIBRARY_PATH;
+    cleanup_env
+    builtin cd $cur_dir
+
+    export T2K_T2KREWEIGHT_IS_SET=1
+    echo -e "${INFO} T2K T2KReWeight has been setup."
+  else
+    echo -e "${WARNING} T2K T2KReWeight is already setup."
+  fi
   return;
 }; export -f set_t2k_T2KReWeight
 
