@@ -67,7 +67,7 @@ else
   echo "Can't find T2K_PROFILE : $T2K_PROFILE";
 fi
 
-function pull_env(){
+function pull_cc_env(){
   savedpath=${PWD}
   builtin cd $ENV_SETUP_DIR
   echo "-> Pulling updates on git repository..."
@@ -78,7 +78,7 @@ function pull_env(){
   source $HOME/.profile
   cd $savedpath
   echo "-> Env upgraded."
-}; export -f pull_env
+}; export -f pull_cc_env
 
 # By default the T2K env is setup
 set_t2k_env
