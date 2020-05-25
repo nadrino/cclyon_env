@@ -437,9 +437,6 @@ function pull_cc_bash_tools()
   return;
 }; export -f pull_cc_bash_tools
 
-function export_variable(){
-  source $REPO_DIR/cclyon_env/scripts/export_var.sh $1 $2
-}; export -f export_variable
 
 # Default software setup
 setup_programs
