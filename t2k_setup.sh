@@ -49,9 +49,6 @@ function set_t2k_env(){
   export T2K_ENV_IS_SETUP="1"
 
   link_t2k_soft | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
-
-  echo $PATH
-
   set_t2k_irods | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
   # setup_brew
   # set_brew_root
@@ -134,6 +131,8 @@ function link_t2k_soft()
   echo $PATH
 
   echo -e "${INFO} T2K libs have been setup."
+
+  echo $PATH
 
 }; export -f link_t2k_soft
 
