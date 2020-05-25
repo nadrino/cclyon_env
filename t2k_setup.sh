@@ -54,6 +54,8 @@ function set_t2k_env(){
   # set_brew_root
   set_t2k_root | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
+  echo $PATH
+
   cleanup_env | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
   echo -e "${INFO} T2K env has been setup."
