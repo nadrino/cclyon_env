@@ -437,6 +437,10 @@ function pull_cc_bash_tools()
   return;
 }; export -f pull_cc_bash_tools
 
+function export_variable(){
+  source $REPO_DIR/cclyon_env/scripts/export_var.sh $1 $2
+}; export -f export_variable
+
 # Default software setup
 setup_programs
 setup_root
@@ -445,15 +449,14 @@ setup_root
 export CC_REPO_DIR="$HOME/work/repo/"
 
 # Seting up python paths for CCLyon
-export PATH="$CC_REPO_DIR/cclyon_py_tools/scripts/:$PATH"
-export PYTHONPATH="$CC_REPO_DIR/cclyon_py_tools/library/:$PYTHONPATH"
+export PATH="$REPO_DIR/cclyon_py_tools/scripts/:$PATH"
+export PYTHONPATH="$REPO_DIR/cclyon_py_tools/library/:$PYTHONPATH"
 
 # Aliases
 alias root='root -l'
 alias quota='fs lq ${HOME}'
 alias sizeof='du -h --max-depth=1 | sort -hr'
 alias cpu='mpstat -P ALL'
-alias repo_cc="cd $CC_REPO_DIR"
 alias monitoring='watch -c -n 0.5 jobs.py'
 alias ccat='pygmentize -g'
 
