@@ -134,6 +134,7 @@ function link_t2k_soft()
   echo -e "${INFO} T2K libs have been setup."
 
   echo $PATH
+  export PATH=$PATH
 
 }; export -f link_t2k_soft
 
