@@ -19,7 +19,5 @@ else
   export VAR_VALUE=$2
 fi
 
-export ${VAR_NAME}=${VAR_VALUE}
+export "${VAR_NAME}=${VAR_VALUE}"
 # echo ${VAR_NAME}=${VAR_VALUE}
-# shift
-# shift

@@ -50,12 +50,12 @@ function set_t2k_env(){
 
   link_t2k_soft # DO NOT PIPE BECAUSE IT'S SETTING ENV VAR
 
-  set_t2k_irods | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  set_t2k_irods > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
   # setup_brew
   # set_brew_root
-  set_t2k_root | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  set_t2k_root > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
-  cleanup_env | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  cleanup_env > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
   echo -e "${INFO} T2K env has been setup."
   return;
@@ -203,7 +203,7 @@ function set_t2k_psyche(){
   then
     psyche_version="v3r49"
     cur_dir="$PWD"
-    set_t2k_cvs | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_cvs > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
     source $CMTPATH/nd280Psyche/${psyche_version}/cmt/setup.sh
     builtin cd $cur_dir
@@ -220,8 +220,8 @@ function set_t2k_oaAnalysisReader(){
   then
     oaAnalysisReader_version="v2r19"
     cur_dir="$PWD"
-    setup_old_gcc | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
-    set_t2k_cvs | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    setup_old_gcc > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_cvs > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
     source $CMTPATH/highland2/oaAnalysisReader/${oaAnalysisReader_version}/cmt/setup.sh
     builtin cd $cur_dir
@@ -238,8 +238,8 @@ function set_t2k_highland2(){
   then
     highland2_version="v2r45"
     cur_dir="$PWD"
-    setup_old_gcc | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
-    set_t2k_cvs | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    setup_old_gcc > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_cvs > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
     source $CMTPATH/nd280Highland2/${highland2_version}/cmt/setup.sh
     builtin cd $cur_dir
@@ -272,7 +272,7 @@ function set_t2k_CERNLIB(){
   if [ -z ${T2K_CERNLIB_IS_SET+x} ];
   then
     cur_dir="$PWD"
-    set_t2k_cvs | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_cvs > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     export CERN="/sps/t2k/ablanche/repo/nd280-cvs/Highland2_HEAD/CERNLIB/v2005r6/Linux-x86_64"
     export CERN_LEVEL=2005
     export CERN_ROOT=$CERN/$CERN_LEVEL
@@ -294,15 +294,15 @@ function set_t2k_T2KReWeight(){
   if [ -z ${T2K_T2KREWEIGHT_IS_SET+x} ];
   then
     cur_dir="$PWD"
-    setup_old_gcc | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    setup_old_gcc > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     # For analysis tools
-    set_t2k_highland2 | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_highland2 > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     # For enabling psyche
-    set_t2k_psyche | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_psyche > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     # For enabling CERNLIB
-    set_t2k_CERNLIB | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_CERNLIB > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     # For enabling NEUT
-    set_t2k_neut | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_neut > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
     # NIWG
     export NIWG=$REPO_DIR/NIWGReWeight/
@@ -316,7 +316,7 @@ function set_t2k_T2KReWeight(){
     # For JReweight
     export JNUBEAM=$REPO_DIR/t2k-cvs/GlobalAnalysisTools/JReWeight
     export LD_LIBRARY_PATH=$JNUBEAM:$LD_LIBRARY_PATH;
-    cleanup_env | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    cleanup_env > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     builtin cd $cur_dir
 
     export T2K_T2KREWEIGHT_IS_SET=1
@@ -360,6 +360,7 @@ function pull_p_theta_dev()
       $REPO_DIR/P-theta-dev/Minimal/.
       make clean
   fi
+
   make -j 4 install
   builtin cd $current_path
   echo -e "${INFO} P-theta-dev has been pulled."
