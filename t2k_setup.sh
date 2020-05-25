@@ -48,7 +48,7 @@ function set_t2k_env(){
 
   export T2K_ENV_IS_SETUP="1"
 
-  link_t2k_soft # DO NOT PIPE BECAUSE IT'S SETTING ENV VAR
+  link_t2k_soft > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
   set_t2k_irods > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
   # setup_brew
