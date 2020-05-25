@@ -119,8 +119,8 @@ function link_t2k_soft()
   do
       dir=${dir%*/}      # remove the trailing "/"
       sub_folder=${dir##*/} # print everything after the final "/"
-      export PATH="$INSTALL_DIR/$sub_folder/bin:$PATH"
-      export LD_LIBRARY_PATH="$INSTALL_DIR/$sub_folder/lib:$LD_LIBRARY_PATH"
+      global PATH="$INSTALL_DIR/$sub_folder/bin:$PATH"
+      global LD_LIBRARY_PATH="$INSTALL_DIR/$sub_folder/lib:$LD_LIBRARY_PATH"
       echo "   ├─ Adding : $sub_folder"
   done
 
@@ -131,10 +131,9 @@ function link_t2k_soft()
 
   builtin cd $current_path
 
-  echo -e "${INFO} T2K libs have been setup."
-
-  cleanup_env
   echo $PATH
+
+  echo -e "${INFO} T2K libs have been setup."
 
 }; export -f link_t2k_soft
 
