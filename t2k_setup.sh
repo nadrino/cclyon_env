@@ -70,9 +70,9 @@ function set_t2k_root(){
     return;
   fi
 
-  # export PATH="$INSTALL_DIR/root/bin:$PATH"
-  # source $INSTALL_DIR/root/bin/thisroot.sh
-  ccenv root 6.18.04_gcc73
+  export PATH="$INSTALL_DIR/root/bin:$PATH"
+  source $INSTALL_DIR/root/bin/thisroot.sh
+  # ccenv root 6.18.04_gcc73
 
   echo "   ├─ ROOT Prefix : $(root-config --prefix)"
   echo "   ├─ ROOT Version : $(root-config --version)"

@@ -343,13 +343,34 @@ function setup_very_old_gcc(){
   echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
 }; export -f setup_old_gcc
 
-function setup_root()
+
+function setup_root_gcc7()
 {
-  echo "├─ Setting up ROOT..." >&2
+  echo "├─ Setting up ROOT gcc7..." >&2
   # https://doc.cc.in2p3.fr/soft_liste_des_logiciels_disponibles_au_centre_de_calcul
   # ccenv --list root -> pour récupérer les versions valides
   ccenv root 6.18.04_gcc73
   . $(root-config --prefix)/bin/thisroot.sh
+
+  # Next line can be mandatory... Check python
+  # export PYTHONPATH="$ROOTSYS/lib:$ROOTSYS/lib/python"
+  echo "   ├─ ROOT Prefix : $(root-config --prefix)"
+  echo "   ├─ ROOT Version : $(root-config --version)"
+
+  echo -e "${INFO} ROOT gcc7 has been setup."
+  return;
+}; export -f setup_root_gcc7
+
+function setup_root()
+{
+  echo "├─ Setting up ROOT..." >&2
+
+  setup_gcc7 | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  # https://doc.cc.in2p3.fr/soft_liste_des_logiciels_disponibles_au_centre_de_calcul
+  # ccenv --list root -> pour récupérer les versions valides
+  ccenv root
+  . $(root-config --prefix)/bin/thisroot.sh
+
   # Next line can be mandatory... Check python
   # export PYTHONPATH="$ROOTSYS/lib:$ROOTSYS/lib/python"
   echo "   ├─ ROOT Prefix : $(root-config --prefix)"
@@ -419,7 +440,7 @@ function pull_cc_bash_tools()
 # Default software setup
 setup_programs
 setup_root
-setup_geant4
+# setup_geant4
 
 export CC_REPO_DIR="$HOME/work/repo/"
 
