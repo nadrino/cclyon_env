@@ -10,6 +10,8 @@
 
 function set_t2k_env(){
 
+  echo -e "${WARNING} Setting up T2K env..."
+
   # Env variables
   export T2K_SPS_DIR="/sps/t2k/ablanche"
 
@@ -46,13 +48,13 @@ function set_t2k_env(){
 
   export T2K_ENV_IS_SETUP="1"
 
-  link_t2k_soft
-  set_t2k_irods
+  link_t2k_soft | (while read; do echo "    $REPLY"; done)
+  set_t2k_irods | (while read; do echo "    $REPLY"; done)
   # setup_brew
   # set_brew_root
-  set_t2k_root
+  set_t2k_root | (while read; do echo "    $REPLY"; done)
 
-  cleanup_env
+  cleanup_env | (while read; do echo "    $REPLY"; done)
 
   echo -e "${INFO} T2K env has been setup."
   return;
@@ -60,7 +62,7 @@ function set_t2k_env(){
 
 
 function set_t2k_root(){
-  echo "├─ Setting up ROOT (Recompiled for T2K projects)..." >&2
+  echo "├─ Setting up ROOT (Recompiled for T2K projects)..."
 
   if [ -z ${T2K_ENV_IS_SETUP+x} ];
   then
@@ -79,7 +81,7 @@ function set_t2k_root(){
 }; export -f set_t2k_root
 
 function set_brew_root(){
-  echo "├─ Setting up ROOT (Brew)..." >&2
+  echo "├─ Setting up ROOT (Brew)..."
 
   if [ -z ${BREW_ENV_IS_SETUP+x} ];
   then
@@ -98,7 +100,9 @@ function set_brew_root(){
 
 function link_t2k_soft()
 {
-  current_path=${PWD}
+  echo -e "${WARNING} Setting up T2K libs..."
+
+  local current_path=${PWD}
 
   if [ -z ${T2K_ENV_IS_SETUP+x} ];
   then
@@ -197,7 +201,7 @@ function set_t2k_psyche(){
   then
     psyche_version="v3r49"
     cur_dir="$PWD"
-    set_t2k_cvs
+    set_t2k_cvs | (while read; do echo "    $REPLY"; done)
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
     source $CMTPATH/nd280Psyche/${psyche_version}/cmt/setup.sh
     builtin cd $cur_dir
@@ -214,8 +218,8 @@ function set_t2k_oaAnalysisReader(){
   then
     oaAnalysisReader_version="v2r19"
     cur_dir="$PWD"
-    setup_old_gcc
-    set_t2k_cvs
+    setup_old_gcc | (while read; do echo "    $REPLY"; done)
+    set_t2k_cvs | (while read; do echo "    $REPLY"; done)
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
     source $CMTPATH/highland2/oaAnalysisReader/${oaAnalysisReader_version}/cmt/setup.sh
     builtin cd $cur_dir
@@ -232,8 +236,8 @@ function set_t2k_highland2(){
   then
     highland2_version="v2r45"
     cur_dir="$PWD"
-    setup_old_gcc
-    set_t2k_cvs
+    setup_old_gcc | (while read; do echo "    $REPLY"; done)
+    set_t2k_cvs | (while read; do echo "    $REPLY"; done)
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
     source $CMTPATH/nd280Highland2/${highland2_version}/cmt/setup.sh
     builtin cd $cur_dir
@@ -266,7 +270,7 @@ function set_t2k_CERNLIB(){
   if [ -z ${T2K_CERNLIB_IS_SET+x} ];
   then
     cur_dir="$PWD"
-    set_t2k_cvs
+    set_t2k_cvs | (while read; do echo "    $REPLY"; done)
     export CERN="/sps/t2k/ablanche/repo/nd280-cvs/Highland2_HEAD/CERNLIB/v2005r6/Linux-x86_64"
     export CERN_LEVEL=2005
     export CERN_ROOT=$CERN/$CERN_LEVEL
@@ -288,15 +292,15 @@ function set_t2k_T2KReWeight(){
   if [ -z ${T2K_T2KREWEIGHT_IS_SET+x} ];
   then
     cur_dir="$PWD"
-    setup_old_gcc
+    setup_old_gcc | (while read; do echo "    $REPLY"; done)
     # For analysis tools
-    set_t2k_highland2
+    set_t2k_highland2 | (while read; do echo "    $REPLY"; done)
     # For enabling psyche
-    set_t2k_psyche
+    set_t2k_psyche | (while read; do echo "    $REPLY"; done)
     # For enabling CERNLIB
-    set_t2k_CERNLIB
+    set_t2k_CERNLIB | (while read; do echo "    $REPLY"; done)
     # For enabling NEUT
-    set_t2k_neut
+    set_t2k_neut | (while read; do echo "    $REPLY"; done)
 
     # NIWG
     export NIWG=$REPO_DIR/NIWGReWeight/
@@ -310,7 +314,7 @@ function set_t2k_T2KReWeight(){
     # For JReweight
     export JNUBEAM=$REPO_DIR/t2k-cvs/GlobalAnalysisTools/JReWeight
     export LD_LIBRARY_PATH=$JNUBEAM:$LD_LIBRARY_PATH;
-    cleanup_env
+    cleanup_env | (while read; do echo "    $REPLY"; done)
     builtin cd $cur_dir
 
     export T2K_T2KREWEIGHT_IS_SET=1
@@ -325,7 +329,7 @@ function set_t2k_T2KReWeight(){
 function pull_xsLLhFitter()
 {
   echo -e "${ALERT} Pulling xsllhFitter..."
-  current_path=${PWD}
+  local current_path=${PWD}
   builtin cd $REPO_DIR/xsLLhFitter
   git pull
   builtin cd $BUILD_DIR/xsLLhFitter
@@ -341,7 +345,7 @@ function pull_xsLLhFitter()
 function pull_p_theta_dev()
 {
   echo -e "${ALERT} Pulling P-theta-dev..."
-  current_path=${PWD}
+  local current_path=${PWD}
   builtin cd $REPO_DIR/P-theta-dev
   git pull
   builtin cd $BUILD_DIR/P-theta-dev
