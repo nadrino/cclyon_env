@@ -70,8 +70,9 @@ function set_t2k_root(){
     return;
   fi
 
-  export PATH="$INSTALL_DIR/root/bin:$PATH"
-  source $INSTALL_DIR/root/bin/thisroot.sh
+  # export PATH="$INSTALL_DIR/root/bin:$PATH"
+  # source $INSTALL_DIR/root/bin/thisroot.sh
+  ccenv root 6.18.04_gcc73
 
   echo "   ├─ ROOT Prefix : $(root-config --prefix)"
   echo "   ├─ ROOT Version : $(root-config --version)"
@@ -349,9 +350,6 @@ function pull_p_theta_dev()
   builtin cd $REPO_DIR/P-theta-dev
   git pull
   builtin cd $BUILD_DIR/P-theta-dev
-  # cmake \
-  #   -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/P-theta-dev \
-  #   $REPO_DIR/P-theta-dev/Minimal/.
   # cmake \
   #   -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/$PROJECT_NAME \
   #   -D CMAKE_BUILD_TYPE=RELEASE \
