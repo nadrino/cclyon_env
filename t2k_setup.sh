@@ -48,9 +48,7 @@ function set_t2k_env(){
 
   export T2K_ENV_IS_SETUP="1"
 
-  link_t2k_soft
-
-  echo $PATH
+  link_t2k_soft # DO NOT PIPE BECAUSE IT'S SETTING ENV VAR
 
   set_t2k_irods | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
   # setup_brew
@@ -130,8 +128,6 @@ function link_t2k_soft()
   source $REPO_DIR/xsLLhFitter/setup.sh &> /dev/null
 
   builtin cd $current_path
-
-  echo $PATH
 
   echo -e "${INFO} T2K libs have been setup."
 
