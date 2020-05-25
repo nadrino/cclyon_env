@@ -349,6 +349,7 @@ function setup_root()
   # https://doc.cc.in2p3.fr/soft_liste_des_logiciels_disponibles_au_centre_de_calcul
   # ccenv --list root -> pour récupérer les versions valides
   ccenv root
+  . $(root-config --prefix)/bin/thisroot.sh
   # Next line can be mandatory... Check python
   # export PYTHONPATH="$ROOTSYS/lib:$ROOTSYS/lib/python"
   echo "   ├─ ROOT Prefix : $(root-config --prefix)"
@@ -384,7 +385,7 @@ function cleanup_env()
     return;
 }; export -f cleanup_env
 
-function pull_root_macros()
+function pull_cc_root_macros()
 {
   current_path=${PWD}
   builtin cd $REPO_DIR/cclyon_root_macros
@@ -393,9 +394,9 @@ function pull_root_macros()
   builtin cd $current_path
   echo -e "${INFO} CCLyon root macros have been pulled."
   return;
-}; export -f pull_root_macros
+}; export -f pull_cc_root_macros
 
-function pull_py_tools()
+function pull_cc_py_tools()
 {
   current_path=${PWD}
   builtin cd $REPO_DIR/cclyon_py_tools
@@ -403,9 +404,9 @@ function pull_py_tools()
   builtin cd $current_path
   echo -e "${INFO} CCLyon py tools have been pulled."
   return;
-}; export -f pull_py_tools
+}; export -f pull_cc_py_tools
 
-function pull_bash_tools()
+function pull_cc_bash_tools()
 {
   current_path=${PWD}
   builtin cd $REPO_DIR/cclyon_bash_tools
@@ -413,11 +414,11 @@ function pull_bash_tools()
   builtin cd $current_path
   echo -e "${INFO} CCLyon bash tools have been pulled."
   return;
-}; export -f pull_bash_tools
+}; export -f pull_cc_bash_tools
 
 # Default software setup
 setup_programs
-# setup_root
+setup_root
 setup_geant4
 
 export CC_REPO_DIR="$HOME/work/repo/"

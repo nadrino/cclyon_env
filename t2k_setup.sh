@@ -351,12 +351,12 @@ function pull_p_theta_dev()
   git pull
   builtin cd $BUILD_DIR/P-theta-dev
   # cmake \
-  #   -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/$PROJECT_NAME \
+  #   -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/P-theta-dev \
   #   -D CMAKE_BUILD_TYPE=RELEASE \
-  #   $REPO_DIR/$PROJECT_NAME/Minimal/.
+  #   $REPO_DIR/P-theta-dev/Minimal/.
   make clean
   make -j 4 install
   builtin cd $current_path
   echo -e "${INFO} P-theta-dev has been pulled."
   return;
-}; export -f pull_p_theta
+}; export -f pull_p_theta_dev
