@@ -77,7 +77,7 @@ function pull_cc_env(){
   echo "-> Resourcing .profile."
   # source $HOME/.profile
   bash $HOME/.profile
-  builtin cd $savedpath
+  cd $savedpath
   echo "-> Env upgraded."
 }; export -f pull_cc_env
 
