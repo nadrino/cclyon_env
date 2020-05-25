@@ -48,13 +48,13 @@ function set_t2k_env(){
 
   export T2K_ENV_IS_SETUP="1"
 
-  link_t2k_soft | (while read; do echo "    $REPLY"; done)
-  set_t2k_irods | (while read; do echo "    $REPLY"; done)
+  link_t2k_soft | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  set_t2k_irods | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
   # setup_brew
   # set_brew_root
-  set_t2k_root | (while read; do echo "    $REPLY"; done)
+  set_t2k_root | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
-  cleanup_env | (while read; do echo "    $REPLY"; done)
+  cleanup_env | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
   echo -e "${INFO} T2K env has been setup."
   return;
@@ -175,7 +175,7 @@ function set_t2k_irods(){
     export T2K_IRODS_IS_SET=1
     echo -e "${INFO} T2K iRODS has been setup."
   else
-    echo -e "${WARNING} T2K iRODS is already setup."
+    echo -e "${ALERT} T2K iRODS is already setup."
   fi
   return;
 }; export -f set_t2k_irods
@@ -191,7 +191,7 @@ function set_t2k_cvs(){
     export T2K_CVS_IS_SET=1
     echo -e "${INFO} T2K CVS ${cvs_version} has been setup."
   else
-    echo -e "${WARNING} T2K CVS is already setup."
+    echo -e "${ALERT} T2K CVS is already setup."
   fi
   return;
 }; export -f set_t2k_cvs
@@ -201,14 +201,14 @@ function set_t2k_psyche(){
   then
     psyche_version="v3r49"
     cur_dir="$PWD"
-    set_t2k_cvs | (while read; do echo "    $REPLY"; done)
+    set_t2k_cvs | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
     source $CMTPATH/nd280Psyche/${psyche_version}/cmt/setup.sh
     builtin cd $cur_dir
     export T2K_PSYCHE_IS_SET=1
     echo -e "${INFO} T2K Psyche ${psyche_version} has been setup."
   else
-    echo -e "${WARNING} T2K Psyche is already setup."
+    echo -e "${ALERT} T2K Psyche is already setup."
   fi
   return;
 }; export -f set_t2k_psyche
@@ -218,15 +218,15 @@ function set_t2k_oaAnalysisReader(){
   then
     oaAnalysisReader_version="v2r19"
     cur_dir="$PWD"
-    setup_old_gcc | (while read; do echo "    $REPLY"; done)
-    set_t2k_cvs | (while read; do echo "    $REPLY"; done)
+    setup_old_gcc | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_cvs | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
     source $CMTPATH/highland2/oaAnalysisReader/${oaAnalysisReader_version}/cmt/setup.sh
     builtin cd $cur_dir
     export T2K_OAANALYSISREADER_IS_SET=1
     echo -e "${INFO} T2K oaAnalysisReader ${oaAnalysisReader_version} has been setup."
   else
-    echo -e "${WARNING} T2K oaAnalysisReader is already setup."
+    echo -e "${ALERT} T2K oaAnalysisReader is already setup."
   fi
   return;
 }; export -f set_t2k_oaAnalysisReader
@@ -236,15 +236,15 @@ function set_t2k_highland2(){
   then
     highland2_version="v2r45"
     cur_dir="$PWD"
-    setup_old_gcc | (while read; do echo "    $REPLY"; done)
-    set_t2k_cvs | (while read; do echo "    $REPLY"; done)
+    setup_old_gcc | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_cvs | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
     source $CMTPATH/nd280Highland2/${highland2_version}/cmt/setup.sh
     builtin cd $cur_dir
     export T2K_HIGHLAND2_IS_SET=1
     echo -e "${INFO} T2K Highland2 ${highland2_version} has been setup."
   else
-    echo -e "${WARNING} T2K Highland2 is already setup."
+    echo -e "${ALERT} T2K Highland2 is already setup."
   fi
   return;
 }; export -f set_t2k_highland2
@@ -261,7 +261,7 @@ function set_t2k_neut(){
     export T2K_NEUT_IS_SET=1
     echo -e "${INFO} T2K NEUT has been setup."
   else
-    echo -e "${WARNING} T2K NEUT is already setup."
+    echo -e "${ALERT} T2K NEUT is already setup."
   fi
   return;
 }; export -f set_t2k_neut
@@ -270,7 +270,7 @@ function set_t2k_CERNLIB(){
   if [ -z ${T2K_CERNLIB_IS_SET+x} ];
   then
     cur_dir="$PWD"
-    set_t2k_cvs | (while read; do echo "    $REPLY"; done)
+    set_t2k_cvs | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
     export CERN="/sps/t2k/ablanche/repo/nd280-cvs/Highland2_HEAD/CERNLIB/v2005r6/Linux-x86_64"
     export CERN_LEVEL=2005
     export CERN_ROOT=$CERN/$CERN_LEVEL
@@ -283,7 +283,7 @@ function set_t2k_CERNLIB(){
     export T2K_CERNLIB_IS_SET=1
     echo -e "${INFO} T2K CERNLIB has been setup."
   else
-    echo -e "${WARNING} T2K CERNLIB is already setup."
+    echo -e "${ALERT} T2K CERNLIB is already setup."
   fi
   return;
 }; export -f set_t2k_CERNLIB
@@ -292,15 +292,15 @@ function set_t2k_T2KReWeight(){
   if [ -z ${T2K_T2KREWEIGHT_IS_SET+x} ];
   then
     cur_dir="$PWD"
-    setup_old_gcc | (while read; do echo "    $REPLY"; done)
+    setup_old_gcc | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
     # For analysis tools
-    set_t2k_highland2 | (while read; do echo "    $REPLY"; done)
+    set_t2k_highland2 | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
     # For enabling psyche
-    set_t2k_psyche | (while read; do echo "    $REPLY"; done)
+    set_t2k_psyche | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
     # For enabling CERNLIB
-    set_t2k_CERNLIB | (while read; do echo "    $REPLY"; done)
+    set_t2k_CERNLIB | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
     # For enabling NEUT
-    set_t2k_neut | (while read; do echo "    $REPLY"; done)
+    set_t2k_neut | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
     # NIWG
     export NIWG=$REPO_DIR/NIWGReWeight/
@@ -314,13 +314,13 @@ function set_t2k_T2KReWeight(){
     # For JReweight
     export JNUBEAM=$REPO_DIR/t2k-cvs/GlobalAnalysisTools/JReWeight
     export LD_LIBRARY_PATH=$JNUBEAM:$LD_LIBRARY_PATH;
-    cleanup_env | (while read; do echo "    $REPLY"; done)
+    cleanup_env | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
     builtin cd $cur_dir
 
     export T2K_T2KREWEIGHT_IS_SET=1
     echo -e "${INFO} T2K T2KReWeight has been setup."
   else
-    echo -e "${WARNING} T2K T2KReWeight is already setup."
+    echo -e "${ALERT} T2K T2KReWeight is already setup."
   fi
   return;
 }; export -f set_t2k_T2KReWeight

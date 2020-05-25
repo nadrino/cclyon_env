@@ -26,6 +26,8 @@ export FULLNAME
 ORGANIZATION='LPNHE'
 export ORGANIZATION
 
+export INDENT_SPACES="  "
+
 #=============================================================================#
 #                        ENVIRONMENT DEPENDENT SETTINGS                       #
 #=============================================================================#
