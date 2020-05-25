@@ -354,7 +354,7 @@ function pull_p_theta_dev()
   #   -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/P-theta-dev \
   #   -D CMAKE_BUILD_TYPE=RELEASE \
   #   $REPO_DIR/P-theta-dev/Minimal/.
-  make clean
+  # make clean
   make -j 4 install
   builtin cd $current_path
   echo -e "${INFO} P-theta-dev has been pulled."
