@@ -128,6 +128,8 @@ function link_t2k_soft()
 
   builtin cd $current_path
 
+  echo $PATH
+
   echo -e "${INFO} T2K libs have been setup."
 
 }; export -f link_t2k_soft
