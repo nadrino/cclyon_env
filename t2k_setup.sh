@@ -48,7 +48,7 @@ function set_t2k_env(){
 
   export T2K_ENV_IS_SETUP="1"
 
-  link_t2k_soft | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  link_t2k_soft >> (while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
   echo $PATH
 
@@ -119,8 +119,8 @@ function link_t2k_soft()
   do
       dir=${dir%*/}      # remove the trailing "/"
       sub_folder=${dir##*/} # print everything after the final "/"
-      global PATH="$INSTALL_DIR/$sub_folder/bin:$PATH"
-      global LD_LIBRARY_PATH="$INSTALL_DIR/$sub_folder/lib:$LD_LIBRARY_PATH"
+      export PATH="$INSTALL_DIR/$sub_folder/bin:$PATH"
+      export LD_LIBRARY_PATH="$INSTALL_DIR/$sub_folder/lib:$LD_LIBRARY_PATH"
       echo "   ├─ Adding : $sub_folder"
   done
 
