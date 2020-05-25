@@ -348,7 +348,7 @@ function setup_root()
   echo "├─ Setting up ROOT..." >&2
   # https://doc.cc.in2p3.fr/soft_liste_des_logiciels_disponibles_au_centre_de_calcul
   # ccenv --list root -> pour récupérer les versions valides
-  ccenv root
+  ccenv root 6.18.04_gcc73
   . $(root-config --prefix)/bin/thisroot.sh
   # Next line can be mandatory... Check python
   # export PYTHONPATH="$ROOTSYS/lib:$ROOTSYS/lib/python"
