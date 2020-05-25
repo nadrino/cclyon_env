@@ -324,6 +324,7 @@ function set_t2k_T2KReWeight(){
 
 function pull_xsLLhFitter()
 {
+  echo -e "${ALERT} Pulling xsllhFitter..."
   current_path=${PWD}
   builtin cd $REPO_DIR/xsLLhFitter
   git pull
@@ -337,8 +338,9 @@ function pull_xsLLhFitter()
   return;
 }; export -f pull_xsLLhFitter
 
-function pull_p_theta()
+function pull_p_theta_dev()
 {
+  echo -e "${ALERT} Pulling P-theta-dev..."
   current_path=${PWD}
   builtin cd $REPO_DIR/P-theta-dev
   git pull
@@ -346,8 +348,13 @@ function pull_p_theta()
   # cmake \
   #   -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/P-theta-dev \
   #   $REPO_DIR/P-theta-dev/Minimal/.
+  # cmake \
+  #   -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/$PROJECT_NAME \
+  #   -D CMAKE_BUILD_TYPE=RELEASE \
+  #   $REPO_DIR/$PROJECT_NAME/Minimal/.
+  make clean
   make -j 4 install
   builtin cd $current_path
-  echo -e "${INFO} P-theta has been pulled."
+  echo -e "${INFO} P-theta-dev has been pulled."
   return;
 }; export -f pull_p_theta
