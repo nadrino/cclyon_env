@@ -68,7 +68,7 @@ else
 fi
 
 function pull_cc_env(){
-  savedpath=${PWD}
+  local savedpath=${PWD}
   builtin cd $ENV_SETUP_DIR
   echo "-> Pulling updates on git repository..."
   git pull > /dev/null
@@ -77,7 +77,7 @@ function pull_cc_env(){
   echo "-> Resourcing .profile."
   # source $HOME/.profile
   # bash $HOME/.profile
-  cd $savedpath
+  builtin cd $savedpath
   echo "-> Env upgraded."
 }; export -f pull_cc_env
 
