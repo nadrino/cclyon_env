@@ -30,14 +30,11 @@
     . /afs/in2p3.fr/common/uss/system_profile
  fi
 
- # THRONG LINES ARE COMMENTED BECAUSE SOME OF THE SCRIPTS FORCE THE SHELL TO
- # CALL SH INSTEAD OF BASH.
-
- # if [ -n "$THRONG_DIR" ];then
- #    if [ -r $THRONG_DIR/group_profile ];then
- #       . $THRONG_DIR/group_profile
- #    fi
- # fi
+ if [ -n "$THRONG_DIR" ];then
+    if [ -r $THRONG_DIR/group_profile ];then
+       . $THRONG_DIR/group_profile
+    fi
+ fi
 
 #=============================================================================#
 #                               USER SECTION                                  #
