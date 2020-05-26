@@ -26,15 +26,15 @@
 # (BQS) and data access services. DO NOT DISABLE OR MODIFY THIS SECTION.      #
 #=============================================================================#
 
- # if [ -r /afs/in2p3.fr/common/uss/system_profile ];then
- #    . /afs/in2p3.fr/common/uss/system_profile
- # fi
- #
- # if [ -n "$THRONG_DIR" ];then
- #    if [ -r $THRONG_DIR/group_profile ];then
- #       . $THRONG_DIR/group_profile
- #    fi
- # fi
+ if [ -r /afs/in2p3.fr/common/uss/system_profile ];then
+    . /afs/in2p3.fr/common/uss/system_profile
+ fi
+
+ if [ -n "$THRONG_DIR" ];then
+    if [ -r $THRONG_DIR/group_profile ];then
+       # . $THRONG_DIR/group_profile
+    fi
+ fi
 
 #=============================================================================#
 #                               USER SECTION                                  #
