@@ -71,7 +71,6 @@ else
   echo "Can't find T2K_PROFILE : $T2K_PROFILE";
 fi
 
-unset -f pull_cc_env
 function pull_cc_env(){
   local savedpath=${PWD}
   builtin cd $ENV_SETUP_DIR
