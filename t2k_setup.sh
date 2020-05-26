@@ -48,12 +48,14 @@ function set_t2k_env(){
 
   export T2K_ENV_IS_SETUP="1"
 
-  link_t2k_soft > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
-  set_t2k_irods > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  # can't run this with sh: > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  # sh (which in most (Debian-derived) systems is linked to dash) doesn't allow process substitution
+  link_t2k_soft # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  set_t2k_irods # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
   # setup_brew
   # set_brew_root
-  set_t2k_root > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
-  cleanup_env > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  set_t2k_root # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  cleanup_env # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
   echo -e "${INFO} T2K env has been setup."
   return;
@@ -201,7 +203,7 @@ function set_t2k_psyche(){
   then
     psyche_version="v3r49"
     cur_dir="$PWD"
-    set_t2k_cvs > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_cvs # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
     source $CMTPATH/nd280Psyche/${psyche_version}/cmt/setup.sh
     builtin cd $cur_dir
@@ -218,8 +220,8 @@ function set_t2k_oaAnalysisReader(){
   then
     oaAnalysisReader_version="v2r19"
     cur_dir="$PWD"
-    setup_old_gcc > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
-    set_t2k_cvs > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    setup_old_gcc # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_cvs # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
     source $CMTPATH/highland2/oaAnalysisReader/${oaAnalysisReader_version}/cmt/setup.sh
     builtin cd $cur_dir
@@ -236,8 +238,8 @@ function set_t2k_highland2(){
   then
     highland2_version="v2r45"
     cur_dir="$PWD"
-    setup_old_gcc > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
-    set_t2k_cvs > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    setup_old_gcc # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_cvs # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     export CMTPATH="$REPO_DIR/nd280-cvs/Highland2_HEAD"
     source $CMTPATH/nd280Highland2/${highland2_version}/cmt/setup.sh
     builtin cd $cur_dir
@@ -292,15 +294,15 @@ function set_t2k_T2KReWeight(){
   if [ -z ${T2K_T2KREWEIGHT_IS_SET+x} ];
   then
     cur_dir="$PWD"
-    setup_old_gcc > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    setup_old_gcc # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     # For analysis tools
-    set_t2k_highland2 > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_highland2 # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     # For enabling psyche
-    set_t2k_psyche > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_psyche # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     # For enabling CERNLIB
-    set_t2k_CERNLIB > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_CERNLIB # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     # For enabling NEUT
-    set_t2k_neut > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_neut # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
     # NIWG
     export NIWG=$REPO_DIR/NIWGReWeight/
@@ -314,7 +316,7 @@ function set_t2k_T2KReWeight(){
     # For JReweight
     export JNUBEAM=$REPO_DIR/t2k-cvs/GlobalAnalysisTools/JReWeight
     export LD_LIBRARY_PATH=$JNUBEAM:$LD_LIBRARY_PATH;
-    cleanup_env > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    cleanup_env # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     builtin cd $cur_dir
 
     export T2K_T2KREWEIGHT_IS_SET=1

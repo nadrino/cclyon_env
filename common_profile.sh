@@ -365,7 +365,7 @@ function setup_root()
 {
   echo "├─ Setting up ROOT..." >&2
 
-  setup_gcc7 | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  setup_gcc7 # | (while read; do echo "${INDENT_SPACES}$REPLY"; done)
   # https://doc.cc.in2p3.fr/soft_liste_des_logiciels_disponibles_au_centre_de_calcul
   # ccenv --list root -> pour récupérer les versions valides
   ccenv root
