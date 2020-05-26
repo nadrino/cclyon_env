@@ -33,6 +33,7 @@
  if [ -n "$THRONG_DIR" ];then
     if [ -r $THRONG_DIR/group_profile ];then
        # . $THRONG_DIR/group_profile
+       continue
     fi
  fi
 
