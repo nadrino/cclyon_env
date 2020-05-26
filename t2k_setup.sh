@@ -272,7 +272,7 @@ function set_t2k_CERNLIB(){
   if [ -z ${T2K_CERNLIB_IS_SET+x} ];
   then
     cur_dir="$PWD"
-    set_t2k_cvs > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+    set_t2k_cvs # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
     export CERN="/sps/t2k/ablanche/repo/nd280-cvs/Highland2_HEAD/CERNLIB/v2005r6/Linux-x86_64"
     export CERN_LEVEL=2005
     export CERN_ROOT=$CERN/$CERN_LEVEL
