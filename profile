@@ -27,12 +27,13 @@
 #=============================================================================#
 
  if [ -r /afs/in2p3.fr/common/uss/system_profile ];then
-    . /afs/in2p3.fr/common/uss/system_profile
+    # . /afs/in2p3.fr/common/uss/system_profile
+    continue
  fi
 
  if [ -n "$THRONG_DIR" ];then
     if [ -r $THRONG_DIR/group_profile ];then
-       # . $THRONG_DIR/group_profile
+       . $THRONG_DIR/group_profile
        continue
     fi
  fi
