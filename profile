@@ -27,16 +27,17 @@
 #=============================================================================#
 
  if [ -r /afs/in2p3.fr/common/uss/system_profile ];then
-    # . /afs/in2p3.fr/common/uss/system_profile
-    continue
+    . /afs/in2p3.fr/common/uss/system_profile
  fi
 
- if [ -n "$THRONG_DIR" ];then
-    if [ -r $THRONG_DIR/group_profile ];then
-       . $THRONG_DIR/group_profile
-       continue
-    fi
- fi
+ # THRONG LINES ARE COMMENTED BECAUSE SOME OF THE SCRIPTS FORCE THE SHELL TO
+ # CALL SH INSTEAD ON BASH.
+
+ # if [ -n "$THRONG_DIR" ];then
+ #    if [ -r $THRONG_DIR/group_profile ];then
+ #       . $THRONG_DIR/group_profile
+ #    fi
+ # fi
 
 #=============================================================================#
 #                               USER SECTION                                  #
