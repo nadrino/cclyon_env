@@ -53,7 +53,8 @@ export ENV_SETUP_DIR="$HOME/work/repo/cclyon_env/"
 export COMMON_PROFILE="$ENV_SETUP_DIR/common_profile.sh"
 if [ -f $COMMON_PROFILE ];
 then
-  source $COMMON_PROFILE
+  # source $COMMON_PROFILE
+  . $COMMON_PROFILE
 else
   echo "Can't find common_profile.sh : $COMMON_PROFILE";
 fi
@@ -62,7 +63,8 @@ fi
 export T2K_PROFILE="$ENV_SETUP_DIR/t2k_setup.sh"
 if [ -f $T2K_PROFILE ];
 then
-  source $T2K_PROFILE
+  # source $T2K_PROFILE
+  . $T2K_PROFILE
 else
   echo "Can't find T2K_PROFILE : $T2K_PROFILE";
 fi
@@ -80,6 +82,8 @@ function pull_cc_env(){
   cd $savedpath
   echo "-> Env upgraded."
 }; export -f pull_cc_env
+
+echo -e "${INFO} .profile is loaded."
 
 # By default the T2K env is setup
 set_t2k_env
