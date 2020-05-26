@@ -79,7 +79,7 @@ function pull_cc_env(){
   echo "-> Copying .profile to HOME."
   cp $ENV_SETUP_DIR/profile $HOME/.profile
   echo "-> Resourcing .profile."
-  # source $HOME/.profile
+  source $HOME/.profile
   # /bin/bash $HOME/.profile
   cd $savedpath
   echo "-> Env upgraded."
