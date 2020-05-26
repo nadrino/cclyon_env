@@ -55,6 +55,7 @@ if [ -f $COMMON_PROFILE ];
 then
   # source $COMMON_PROFILE
   . $COMMON_PROFILE
+  echo -e "${INFO} common_profile has been loaded."
 else
   echo "Can't find common_profile.sh : $COMMON_PROFILE";
 fi
@@ -65,6 +66,7 @@ if [ -f $T2K_PROFILE ];
 then
   # source $T2K_PROFILE
   . $T2K_PROFILE
+  echo -e "${INFO} t2k_setup has been loaded."
 else
   echo "Can't find T2K_PROFILE : $T2K_PROFILE";
 fi
