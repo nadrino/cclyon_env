@@ -408,8 +408,9 @@ function cleanup_env()
 
 function pull_cc_root_macros()
 {
-  current_path=${PWD}
-  builtin cd $REPO_DIR/cclyon_root_macros
+  echo -e "${ALERT} Pulling CCLyon root macros..."
+  local current_path=${PWD}
+  builtin cd $CC_ROOT_MACROS
   git pull
   cp $REPO_DIR/cclyon_root_macros/logon/rootrc $HOME/.rootrc
   builtin cd $current_path
@@ -419,8 +420,9 @@ function pull_cc_root_macros()
 
 function pull_cc_py_tools()
 {
-  current_path=${PWD}
-  builtin cd $REPO_DIR/cclyon_py_tools
+  echo -e "${ALERT} Pulling CCLyon py tools..."
+  local current_path=${PWD}
+  builtin cd $CC_PY_TOOLS
   git pull
   builtin cd $current_path
   echo -e "${INFO} CCLyon py tools have been pulled."
@@ -429,8 +431,9 @@ function pull_cc_py_tools()
 
 function pull_cc_bash_tools()
 {
-  current_path=${PWD}
-  builtin cd $REPO_DIR/cclyon_bash_tools
+  echo -e "${ALERT} Pulling CCLyon bash tools..."
+  local current_path=${PWD}
+  builtin cd $CC_BASH_TOOLS
   git pull
   builtin cd $current_path
   echo -e "${INFO} CCLyon bash tools have been pulled."
@@ -442,6 +445,10 @@ function pull_cc_bash_tools()
 setup_programs
 setup_root
 # setup_geant4
+
+export CC_ROOT_MACROS="$REPO_DIR/cclyon_root_macros/"
+export CC_BASH_TOOLS="$REPO_DIR/cclyon_bash_tools/"
+export CC_PY_TOOLS="$REPO_DIR/cclyon_py_tools/"
 
 export CC_REPO_DIR="$HOME/work/repo/"
 

@@ -328,8 +328,7 @@ function set_t2k_T2KReWeight(){
 }; export -f set_t2k_T2KReWeight
 
 
-function pull_xsLLhFitter()
-{
+function pull_xsLLhFitter(){
   echo -e "${ALERT} Pulling xsllhFitter..."
   local current_path=${PWD}
   builtin cd $REPO_DIR/xsLLhFitter
@@ -344,8 +343,7 @@ function pull_xsLLhFitter()
   return;
 }; export -f pull_xsLLhFitter
 
-function pull_p_theta_dev()
-{
+function pull_p_theta_dev(){
   echo -e "${ALERT} Pulling P-theta-dev..."
   local current_path=${PWD}
   builtin cd $REPO_DIR/P-theta-dev
