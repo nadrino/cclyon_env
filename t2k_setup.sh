@@ -334,6 +334,16 @@ function pull_xsLLhFitter(){
   builtin cd $REPO_DIR/xsLLhFitter
   git pull
   builtin cd $BUILD_DIR/xsLLhFitter
+
+  if [ "" != "$1" ]
+  then
+    cmake \
+      -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/xsLLhFitter \
+      -D CMAKE_BUILD_TYPE=$1 \
+      $REPO_DIR/xsLLhFitter/.
+    make clean
+  fi
+
   # cmake \
   #   -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/xsLLhFitter \
   #   $REPO_DIR/xsLLhFitter/.
@@ -356,7 +366,7 @@ function pull_p_theta_dev(){
       -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/P-theta-dev \
       -D CMAKE_BUILD_TYPE=$1 \
       $REPO_DIR/P-theta-dev/Minimal/.
-      make clean
+    make clean
   fi
 
   make -j 4 install
