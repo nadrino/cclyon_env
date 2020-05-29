@@ -446,11 +446,12 @@ setup_programs
 setup_root
 # setup_geant4
 
+export CC_REPO_DIR="$HOME/work/repo/"
+
 export CC_ROOT_MACROS="$REPO_DIR/cclyon_root_macros/"
 export CC_BASH_TOOLS="$REPO_DIR/cclyon_bash_tools/"
 export CC_PY_TOOLS="$REPO_DIR/cclyon_py_tools/"
 
-export CC_REPO_DIR="$HOME/work/repo/"
 
 # Seting up python paths for CCLyon
 export PATH="$REPO_DIR/cclyon_py_tools/scripts/:$PATH"
