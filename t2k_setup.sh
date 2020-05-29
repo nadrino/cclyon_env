@@ -54,13 +54,34 @@ function set_t2k_env(){
   set_t2k_irods # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
   # setup_brew
   # set_brew_root
-  set_t2k_root # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  # set_t2k_root # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  set_t2k_root_62004
   cleanup_env # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
   echo -e "${INFO} T2K env has been setup."
   return;
 }; export -f set_t2k_env
 
+
+function set_t2k_root_62004(){
+  echo "├─ Setting up ROOT (Recompiled for T2K projects)..."
+
+  if [ -z ${T2K_ENV_IS_SETUP+x} ];
+  then
+    echo "T2K_ENV_IS_SETUP is not set. Please run set_t2k_env first.";
+    return;
+  fi
+
+  export PATH="$INSTALL_DIR/root-v6-20-04/bin:$PATH"
+  source $INSTALL_DIR/root-v6-20-04/bin/thisroot.sh
+  # ccenv root 6.18.04_gcc73
+
+  echo "   ├─ ROOT Prefix : $(root-config --prefix)"
+  echo "   ├─ ROOT Version : $(root-config --version)"
+
+  echo -e "${INFO} ROOT (T2K) has been setup."
+  return;
+}; export -f set_t2k_root_62004
 
 function set_t2k_root(){
   echo "├─ Setting up ROOT (Recompiled for T2K projects)..."
