@@ -45,8 +45,6 @@ function set_t2k_env(){
   alias job="jobs.py"
 
   export CC_ROOT_MACROS="$REPO_DIR/cclyon_root_macros/"
-  echo $REPO_DIR
-  echo $CC_ROOT_MACROS
   export CC_BASH_TOOLS="$REPO_DIR/cclyon_bash_tools/"
   export CC_PY_TOOLS="$REPO_DIR/cclyon_py_tools/"
 
