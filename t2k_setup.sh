@@ -41,10 +41,14 @@ function set_t2k_env(){
   # Python
   export PYTHONPATH="$REPO_DIR/cclyon_py_tools/library:$PYTHONPATH"
   export PATH="$REPO_DIR/cclyon_py_tools/scripts:$PATH"
+  export PATH="$REPO_DIR/cclyon_bash_tools/bin:$PATH"
   alias job="jobs.py"
 
-  # Bash
-  export PATH="$REPO_DIR/cclyon_bash_tools/bin:$PATH"
+  export CC_ROOT_MACROS="$REPO_DIR/cclyon_root_macros/"
+  echo $REPO_DIR
+  echo $CC_ROOT_MACROS
+  export CC_BASH_TOOLS="$REPO_DIR/cclyon_bash_tools/"
+  export CC_PY_TOOLS="$REPO_DIR/cclyon_py_tools/"
 
   export T2K_ENV_IS_SETUP="1"
 
