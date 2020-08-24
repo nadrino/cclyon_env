@@ -444,6 +444,7 @@ function pull_cc_bash_tools()
 # Default software setup
 setup_programs
 setup_root
+setup_brew
 # setup_geant4
 
 # Aliases
