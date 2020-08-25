@@ -356,6 +356,7 @@ function pull_xsLLhFitter(){
   local current_path=${PWD}
   builtin cd $REPO_DIR/xsLLhFitter
   git pull
+  git submodule update --remote
   builtin cd $BUILD_DIR/xsLLhFitter
 
   if [ "" != "$1" ]
