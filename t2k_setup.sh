@@ -382,6 +382,7 @@ function pull_p_theta_dev(){
   local current_path=${PWD}
   builtin cd $REPO_DIR/P-theta-dev
   git pull
+  git submodule update --remote
   builtin cd $BUILD_DIR/P-theta-dev
 
   if [ "" != "$1" ]
