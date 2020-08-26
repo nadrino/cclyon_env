@@ -385,15 +385,15 @@ function pull_p_theta_dev(){
   git submodule update --remote
   builtin cd $BUILD_DIR/P-theta-dev
 
-  export NIWG=$REPO_DIR/NIWGReWeight_ROOT6
+  # export NIWG=$REPO_DIR/NIWGReWeight_ROOT6
   if [ "" != "$1" ]
   then
     rm -rf $BUILD_DIR/P-theta-dev/*
     cmake \
       -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/P-theta-dev \
       -D CMAKE_BUILD_TYPE=$1 \
-      -D USE_NIWG=TRUE \
       $REPO_DIR/P-theta-dev/Minimal/.
+      # -D USE_NIWG=TRUE \
     make clean
   fi
 
