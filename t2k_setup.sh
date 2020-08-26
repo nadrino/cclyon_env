@@ -387,7 +387,7 @@ function pull_p_theta_dev(){
 
   if [ "" != "$1" ]
   then
-    export NIWG=$REPO_DIR/NIWGReWeight
+    export NIWG=$REPO_DIR/NIWGReWeight_ROOT6
     cmake \
       -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/P-theta-dev \
       -D CMAKE_BUILD_TYPE=$1 \
