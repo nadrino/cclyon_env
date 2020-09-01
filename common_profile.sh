@@ -412,7 +412,8 @@ function pull_cc_root_macros()
   local current_path=${PWD}
   builtin cd $CC_ROOT_MACROS
   git pull
-  cp $REPO_DIR/cclyon_root_macros/logon/rootrc $HOME/.rootrc
+  git submodule update --recursive --remote
+  # ln -s $REPO_DIR/cclyon_root_macros/logon/rootrc $HOME/.rootrc
   builtin cd $current_path
   echo -e "${INFO} CCLyon root macros have been pulled."
   return;
