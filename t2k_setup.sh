@@ -60,6 +60,8 @@ function set_t2k_env(){
   # set_t2k_root_62004
   cleanup_env # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
+  export NIWG=$REPO_DIR/NIWGReWeight_ROOT6
+
   echo -e "${INFO} T2K env has been setup."
   return;
 }; export -f set_t2k_env
