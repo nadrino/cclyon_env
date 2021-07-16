@@ -15,6 +15,10 @@ function set_t2k_env(){
   # Env variables
   export T2K_SPS_DIR="/sps/t2k/ablanche"
 
+  export COMMON_INSTALL_DIR="/sps/t2k/common/software/install"
+  export COMMON_BUILD_DIR="/sps/t2k/common/software/build"
+  export COMMON_SOURCE_DIR="/sps/t2k/common/software/source"
+
   export INSTALL_DIR="$T2K_SPS_DIR/install"
   export BUILD_DIR="$T2K_SPS_DIR/build"
   export WORK_DIR="$T2K_SPS_DIR/work"

@@ -441,6 +441,15 @@ function pull_cc_bash_tools()
   return;
 }; export -f pull_cc_bash_tools
 
+function connect_worker(){
+  echo -e "${ALERT} Connecting to worker..."
+  local nb_cores=1
+  if [ -z ${1+x} ];
+    then echo "var is unset";
+    else echo "var is set to '$var'";
+  fi
+  qlogin -P P_t2k  -l sps=1,s_fsize=1G,s_cpu=1:00:00,s_rss=1G
+}
 
 # Default software setup
 setup_programs
