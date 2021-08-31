@@ -446,10 +446,8 @@ function qLogin(){
   if [ -z ${1+x} ];
   then
     echo "nb_cores is unset -> Single core";
-    qlogin \
-      -P P_t2k \
-      -l sps=1,s_fsize=1G,s_cpu=1:00:00,s_rss=1G \
-      -q mc_interactive
+    set -x
+    qlogin -P P_t2k -l sps=1,s_fsize=1G,s_cpu=1:00:00,s_rss=1G -q mc_interactive
   else
     echo "nb_cores is set to '$1'";
     qlogin \
