@@ -441,14 +441,18 @@ function pull_cc_bash_tools()
   return;
 }; export -f pull_cc_bash_tools
 
-function connect_worker(){
+function qLoginMc(){
   echo -e "${ALERT} Connecting to worker..."
-  local nb_cores=1
   if [ -z ${1+x} ];
-    then echo "var is unset";
-    else echo "var is set to '$var'";
+    then echo "nb_cores is unset";
+    else echo "nb_cores is set to '$nb_cores'";
   fi
-  qlogin -P P_t2k  -l sps=1,s_fsize=1G,s_cpu=1:00:00,s_rss=1G
+  local nb_cores=$1
+  qlogin \
+    -P P_t2k \
+    -l sps=1,s_fsize=1G,s_cpu=1:00:00,s_rss=1G \
+    -q mc_interactive \
+    -pe multicores $nb_cores
 }
 
 # Default software setup
