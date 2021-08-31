@@ -448,13 +448,16 @@ function qLogin(){
     echo "nb_cores is unset -> Single core";
     set -x
     qlogin -P P_t2k -l sps=1,s_fsize=1G,s_cpu=1:00:00,s_rss=1G
+    set +x
   else
     echo "nb_cores is set to '$1'";
+    set -x
     qlogin \
       -pe multicores $1 \
       -P P_t2k \
       -l sps=1,s_fsize=1G,s_cpu=1:00:00,s_rss=1G \
       -q mc_interactive
+    set +x
   fi
 }
 
