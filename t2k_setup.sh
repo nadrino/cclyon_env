@@ -383,6 +383,32 @@ function pull_xsLLhFitter(){
   return;
 }; export -f pull_xsLLhFitter
 
+function pull_gundam(){
+  echo -e "${ALERT} Pulling GUNDAM..."
+  local current_path=${PWD}
+  builtin cd $REPO_DIR/gundam
+  git pull
+  git submodule update --remote
+  builtin cd $BUILD_DIR/gundam
+
+  if [ "" != "$1" ]
+  then
+    cmake \
+      -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/gundam \
+      -D CMAKE_BUILD_TYPE=$1 \
+      $REPO_DIR/gundam/.
+    make clean
+  fi
+
+  # cmake \
+  #   -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/xsLLhFitter \
+  #   $REPO_DIR/xsLLhFitter/.
+  make -j 4 install
+  builtin cd $current_path
+  echo -e "${INFO} GUNDAM has been pulled."
+  return;
+}; export -f pull_gundam
+
 function pull_p_theta_dev(){
   echo -e "${ALERT} Pulling P-theta-dev..."
   local current_path=${PWD}
