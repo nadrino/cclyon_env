@@ -174,6 +174,10 @@ function setup_brew(){
   eval $($HOME/.linuxbrew/bin/brew shellenv)
   export PATH="$HOME/.linuxbrew/opt/python/libexec/bin:$PATH"
 
+  export HOMEBREW_DEVELOPER=1
+  export HOMEBREW_GIT_PATH="/pbs/software/centos-7-x86_64/git/2.30.1/bin/git"
+  export HOMEBREW_CURL_PATH="/pbs/software/centos-7-x86_64/curl/7.60.0/bin/curl"
+
   # Debug options
   # export HOMEBREW_DEBUG=1
   # export HOMEBREW_DEBUG_INSTALL=1
