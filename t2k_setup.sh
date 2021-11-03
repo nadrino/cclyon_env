@@ -397,10 +397,11 @@ function pull_gundam(){
 
   if [ "" != "$1" ]
   then
+    rm -rf $BUILD_DIR/gundam/*
     cmake \
       -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/gundam \
       -D CMAKE_BUILD_TYPE=$1 \
-      -D -D yaml-cpp_DIR=$INSTALL_DIR/yaml-cpp/share/cmake/yaml-cpp\
+      -D yaml-cpp_DIR=$INSTALL_DIR/yaml-cpp/share/cmake/yaml-cpp \
       $REPO_DIR/gundam/.
     make clean
   fi
