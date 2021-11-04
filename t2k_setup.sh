@@ -151,7 +151,8 @@ function link_t2k_soft()
       echo "   ├─ Adding : $sub_folder"
   done
 
-  echo -e
+  echo -e "${WARNING} Loading common t2k software"
+  source /sps/t2k/common/software/env.sh
 
   builtin cd $current_path
 
