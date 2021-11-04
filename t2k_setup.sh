@@ -60,7 +60,7 @@ function set_t2k_env(){
   set_t2k_irods # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
   # setup_brew
   # set_brew_root
-  set_t2k_root # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
+  # set_t2k_root # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
   # set_t2k_root_62004
   cleanup_env # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
 
