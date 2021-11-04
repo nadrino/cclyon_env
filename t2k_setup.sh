@@ -403,9 +403,6 @@ function pull_gundam(){
       -D CMAKE_BUILD_TYPE=$1 \
       -D YAMLCPP_DIR=$INSTALL_DIR/yaml-cpp \
       $REPO_DIR/gundam/.
-
-
-      #
     make clean
   fi
 
