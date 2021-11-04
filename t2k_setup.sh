@@ -151,10 +151,7 @@ function link_t2k_soft()
       echo "   ├─ Adding : $sub_folder"
   done
 
-  # custom setup files
-  source $INSTALL_DIR/xsLLhFitter/setup.sh &> /dev/null
-  # alias readlink="/usr/local/bin/greadlink" # fix readlink on mac
-  source $REPO_DIR/xsLLhFitter/setup.sh &> /dev/null
+  echo -e
 
   builtin cd $current_path
 
