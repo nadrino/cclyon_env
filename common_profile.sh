@@ -463,6 +463,8 @@ function qLogin(){
   fi
 }
 
+alias nextcloud='cadaver https://nextcloud.nms.kcl.ac.uk/remote.php/dav/files/ASG_READER'
+
 # Default software setup
 setup_programs
 # setup_root
