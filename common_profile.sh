@@ -476,6 +476,22 @@ function nd280Env(){
   source $ROOTSYS/bin/thisroot.sh
 }
 
+function nd280Env2(){
+  export NDSOFT="/sps/t2k/ablanche/repo/nd280"
+  export ND280_NJOBS=1
+  cd $NDSOFT/nd280SoftwarePilot
+  ./configure.sh
+  source nd280SoftwarePilot.profile
+  cd $NDSOFT/highland2SoftwarePilot
+  source highland2SoftwarePilot.profile
+  highland-install -c -r 2.67
+  ccenv root 5.34.38
+  source $ROOTSYS/bin/thisroot.sh
+  cd $NDSOFT
+  highland_set_use_psycheROOT -r psycheROOT
+  cd $NDSOFT/psycheMaster_3.69/
+}
+
 alias nextcloud='cadaver https://nextcloud.nms.kcl.ac.uk/remote.php/dav/files/ASG_READER'
 
 # Default software setup
