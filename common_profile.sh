@@ -465,7 +465,6 @@ function qLogin(){
 
 function nd280Env(){
   source /etc/profile.d/modules.sh
-  unset CMAKE_PREFIX_PATH
 
   # module add Compilers/gcc/9.3.1
   # source /opt/rh/devtoolset-9/enable  # module add gcc
@@ -478,6 +477,7 @@ function nd280Env(){
 
   ccenv root 5.34.38
   source $ROOTSYS/bin/thisroot.sh
+  unset CMAKE_PREFIX_PATH
 }
 
 function nd280Env2(){
