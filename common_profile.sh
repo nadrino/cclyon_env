@@ -463,6 +463,13 @@ function qLogin(){
   fi
 }
 
+function nd280Env(){
+  ccenv gcc 10.3.0
+  ccenv root 5.34.38
+  unset CMAKE_PREFIX_PATH
+  source $ROOTSYS/bin/thisroot.sh
+}
+
 alias nextcloud='cadaver https://nextcloud.nms.kcl.ac.uk/remote.php/dav/files/ASG_READER'
 
 # Default software setup
