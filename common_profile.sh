@@ -464,7 +464,10 @@ function qLogin(){
 }
 
 function nd280Env(){
-  ccenv gcc 10.3.0
+  source /etc/profile.d/modules.sh
+  # ccenv gcc 10.3.0
+  module add gcc
+  # module add Analysis/root/5.34.38
   ccenv root 5.34.38
   unset CMAKE_PREFIX_PATH
   source $ROOTSYS/bin/thisroot.sh
