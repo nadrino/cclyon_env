@@ -467,8 +467,11 @@ function nd280Env(){
   source /etc/profile.d/modules.sh
   unset CMAKE_PREFIX_PATH
 
-  module add Compilers/gcc/9.3.1
-  source /opt/rh/devtoolset-9/enable  # module add gcc
+  # module add Compilers/gcc/9.3.1
+  # source /opt/rh/devtoolset-9/enable  # module add gcc
+  module add Compilers/gcc/4.9.1
+  export CC="$(which gcc)"
+  export CXX="$(which g++)"
 
   module unload Programming_Languages/python && module add Programming_Languages/python/2.7.15
 
