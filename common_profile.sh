@@ -484,7 +484,7 @@ function nd280Env2(){
   nd280Env
 
   export NDSOFT="/sps/t2k/ablanche/repo/nd280"
-  export ND280_NJOBS=1
+  export ND280_NJOBS=4
 
   cd $NDSOFT/
   git clone https://git.t2k.org/nd280/pilot/nd280SoftwarePilot.git
@@ -503,8 +503,18 @@ function nd280Env2(){
 
   cd $NDSOFT
   highland_set_use_psycheROOT -r psycheROOT
-  cd $NDSOFT/psycheMaster_3.69/
 
+  cd $NDSOFT/psycheMaster_3.69/
+  module add cmake
+  mkdir Linux-CentOS_7-gcc_4.9-x86_64
+  cd Linux-CentOS_7-gcc_4.9-x86_64
+
+  cmake ../cmake
+  source ../bin/makeAll.sh
+}
+
+function setPsyche(){
+  source /sps/t2k/ablanche/repo/nd280/psycheMaster_3.69/bin/setup.sh
 }
 
 alias nextcloud='cadaver https://nextcloud.nms.kcl.ac.uk/remote.php/dav/files/ASG_READER'
