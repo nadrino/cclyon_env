@@ -465,11 +465,14 @@ function qLogin(){
 
 function nd280Env(){
   source /etc/profile.d/modules.sh
-  # ccenv gcc 10.3.0
-  module add gcc
-  # module add Analysis/root/5.34.38
-  ccenv root 5.34.38
   unset CMAKE_PREFIX_PATH
+
+  module add Compilers/gcc/9.3.1
+  source /opt/rh/devtoolset-9/enable  # module add gcc
+
+  module unload Programming_Languages/python && module add Programming_Languages/python/2.7.15
+
+  ccenv root 5.34.38
   source $ROOTSYS/bin/thisroot.sh
 }
 
