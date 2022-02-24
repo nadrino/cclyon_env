@@ -470,6 +470,7 @@ function nd280Env(){
   # module add Compilers/gcc/9.3.1
   # source /opt/rh/devtoolset-9/enable  # module add gcc
   module add Compilers/gcc/4.9.1
+  source /opt/rh/devtoolset-3/enable # yes it is the version 4
   export CC="$(which gcc)"
   export CXX="$(which g++)"
 
@@ -480,19 +481,30 @@ function nd280Env(){
 }
 
 function nd280Env2(){
+  nd280Env
+
   export NDSOFT="/sps/t2k/ablanche/repo/nd280"
   export ND280_NJOBS=1
+
+  cd $NDSOFT/
+  git clone https://git.t2k.org/nd280/pilot/nd280SoftwarePilot.git
   cd $NDSOFT/nd280SoftwarePilot
   ./configure.sh
   source nd280SoftwarePilot.profile
+
+  cd $NDSOFT/
+  git clone https://git.t2k.org/nd280/highland2Software/highland2SoftwarePilot.git
   cd $NDSOFT/highland2SoftwarePilot
   source highland2SoftwarePilot.profile
+
   highland-install -c -r 2.67
-  ccenv root 5.34.38
-  source $ROOTSYS/bin/thisroot.sh
+  # ccenv root 5.34.38
+  # source $ROOTSYS/bin/thisroot.sh
+
   cd $NDSOFT
   highland_set_use_psycheROOT -r psycheROOT
   cd $NDSOFT/psycheMaster_3.69/
+
 }
 
 alias nextcloud='cadaver https://nextcloud.nms.kcl.ac.uk/remote.php/dav/files/ASG_READER'
