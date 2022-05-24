@@ -533,7 +533,7 @@ alias root='root -l'
 alias quota='fs lq ${HOME}'
 alias sizeof='du -h --max-depth=1 | sort -hr'
 alias cpu='mpstat -P ALL'
-alias monitoring='watch -c -n 0.5 jobs.py'
+alias monitoring='watch -c -n 0.5 jobSlurm.py'
 alias ccat='pygmentize -g'
 
 shopt -s direxpand # fixes tab while env variable
