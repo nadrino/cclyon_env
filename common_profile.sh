@@ -427,6 +427,7 @@ function pull_cc_py_tools()
   local current_path=${PWD}
   builtin cd $CC_PY_TOOLS
   git pull
+  git submodule update --recursive --remote
   builtin cd $current_path
   echo -e "${INFO} CCLyon py tools have been pulled."
   return;

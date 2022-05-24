@@ -43,7 +43,7 @@ function set_t2k_env(){
   alias fig="cd $FIGURES_DIR"
 
   # Python
-  export PYTHONPATH="$REPO_DIR/cclyon_py_tools/library:$PYTHONPATH"
+  export PYTHONPATH="$REPO_DIR/cclyon_py_tools/submodules/py-generic-toolbox/src:$PYTHONPATH"
   export PATH="$REPO_DIR/cclyon_py_tools/scripts:$PATH"
   export PATH="$REPO_DIR/cclyon_bash_tools/bin:$PATH"
   alias job="jobs.py"
