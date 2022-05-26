@@ -395,6 +395,7 @@ function pull_gundam(){
 
   if [ "" != "$1" ]
   then
+    read -p "Rebuilding with $1 build type? Press enter to validate"
     # rm -rf $BUILD_DIR/gundam/*
     cmake \
       -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/gundam \
