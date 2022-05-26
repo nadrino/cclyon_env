@@ -295,7 +295,7 @@ function setup_programs(){
   # source /opt/rh/devtoolset-7/enable
   # export CC="$(which gcc)"
   # export CXX="$(which g++)"
-  echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
+  # echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
 }; export -f setup_programs
 
 
