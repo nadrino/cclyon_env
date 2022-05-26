@@ -280,15 +280,16 @@ function rackdel(){
 # Setting up programs
 function setup_programs(){
   echo "├─ Setting up Programs..." >&2
-  ccenv cmake
+  ccenv cmake 3.20.2
   echo "   ├─ CMake Version : $(cmake --version | head -n 1)"
   ccenv git
   echo "   ├─ Git Version : $(git --version)"
   ccenv curl
   echo "   ├─ curl Version : $(curl --version)"
-  ccenv python 3.6.7
+  ccenv python
   echo "   ├─ Python Version : $(python --version)"
-  setup_gcc7
+  # setup_gcc7
+  setup_gcc10
   # ccenv gcc 7.3.0
   # ccenv gcc 5.5.0
   # source /opt/rh/devtoolset-7/enable
@@ -296,6 +297,15 @@ function setup_programs(){
   # export CXX="$(which g++)"
   echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
 }; export -f setup_programs
+
+
+function setup_gcc10(){
+  ccenv gcc 10.3.0
+  # source /opt/rh/devtoolset-7/enable
+  export CC="$(which gcc)"
+  export CXX="$(which g++)"
+  echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
+}; export -f setup_gcc10
 
 function setup_gcc7(){
   ccenv gcc 7.3.0
