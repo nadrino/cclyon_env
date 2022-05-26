@@ -288,8 +288,8 @@ function setup_programs(){
   echo "   ├─ curl Version : $(curl --version)"
   ccenv python
   echo "   ├─ Python Version : $(python --version)"
-  # setup_gcc7
-  setup_gcc10
+  setup_gcc7
+  # setup_gcc10
   # ccenv gcc 7.3.0
   # ccenv gcc 5.5.0
   # source /opt/rh/devtoolset-7/enable
