@@ -401,6 +401,7 @@ function pull_gundam(){
       -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/gundam \
       -D CMAKE_BUILD_TYPE=$1 \
       -D YAMLCPP_DIR=$COMMON_INSTALL_DIR/yaml-cpp \
+      -D USE_STATIC_LINKS=ON
       $REPO_DIR/gundam/.
     make clean
   fi

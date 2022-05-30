@@ -21,10 +21,8 @@ export PATH
 ENV=$HOME/.kshrc
 export ENV
 
-FULLNAME='Adrien Blanchet'
-export FULLNAME
-ORGANIZATION='LPNHE'
-export ORGANIZATION
+export FULLNAME='Adrien Blanchet'
+export ORGANIZATION='LPNHE'
 
 export INDENT_SPACES="  "
 
