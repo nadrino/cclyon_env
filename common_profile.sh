@@ -465,7 +465,7 @@ function qLogin(){
   else
     echo "nb_cores is set to '$1'";
     set -x
-    srun -p htc_interactive -L sps -n $1 --pty bash -i
+    srun -p htc_interactive -L sps -c $1 --pty bash -i
     # qlogin \
     #   -pe multicores $1 \
     #   -P P_t2k \
