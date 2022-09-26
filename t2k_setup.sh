@@ -403,7 +403,6 @@ function pull_gundam(){
       -D YAMLCPP_DIR=$COMMON_INSTALL_DIR/yaml-cpp \
       -D USE_STATIC_LINKS=ON \
       -D WITH_CACHE_MANAGER=ON \
-      -D DISABLE_CUDA=OFF \
       $REPO_DIR/gundam/.
     make clean
   fi
