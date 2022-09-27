@@ -538,6 +538,10 @@ function setPsyche(){
   source /sps/t2k/ablanche/repo/nd280/psycheMaster_3.69/bin/setup.sh
 }
 
+function printLog(){
+  tail -n +1 -f $LOGS_DIR/*/$1
+}
+
 alias nextcloud='cadaver https://nextcloud.nms.kcl.ac.uk/remote.php/dav/files/ASGReader'
 
 # Default software setup
