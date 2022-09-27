@@ -539,7 +539,14 @@ function setPsyche(){
 }
 
 function printLog(){
-  tail -n +1 -f $LOGS_DIR/*/$1
+  if [[ $1 == *.sh ]]
+  then
+   logFile= ${1%.sh}.log
+   logFile="${logFile/Script_/log_}"
+   tail -n +1 -f $LOGS_DIR/*/$logFile
+  else
+    tail -n +1 -f $LOGS_DIR/*/$1
+  fi
 }
 
 alias nextcloud='cadaver https://nextcloud.nms.kcl.ac.uk/remote.php/dav/files/ASGReader'
