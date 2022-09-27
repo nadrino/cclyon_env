@@ -538,7 +538,7 @@ function setPsyche(){
   source /sps/t2k/ablanche/repo/nd280/psycheMaster_3.69/bin/setup.sh
 }
 
-function printLog(){
+function logPrint(){
   if [[ $1 == *.sh ]]
   then
    logTempFile="${1%.sh}.log"
