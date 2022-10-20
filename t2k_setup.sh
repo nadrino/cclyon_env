@@ -402,8 +402,8 @@ function pull_gundam(){
       -D CMAKE_BUILD_TYPE=$1 \
       -D YAMLCPP_DIR=$COMMON_INSTALL_DIR/yaml-cpp \
       -D USE_STATIC_LINKS=ON \
-      # -D WITH_CACHE_MANAGER=ON \
       $REPO_DIR/gundam/.
+      # -D WITH_CACHE_MANAGER=ON \
     make clean
   fi
 
