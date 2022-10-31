@@ -444,10 +444,10 @@ function pull_cc_py_tools()
 function pull_cc_bash_tools()
 {
   echo -e "${ALERT} Pulling CCLyon bash tools..."
-  local current_path=${PWD}
   builtin cd $CC_BASH_TOOLS
   git pull
-  builtin cd $current_path
+  git submodule update --recursive --remote
+  builtin cd --
   echo -e "${INFO} CCLyon bash tools have been pulled."
   return;
 }; export -f pull_cc_bash_tools
