@@ -404,7 +404,7 @@ function build_gundam(){
   fi
 
   make -j 4 install
-  builtin cd $current_path
+  builtin cd --
   echo -e "${INFO} GUNDAM has been built."
   return;
 }; export -f build_gundam
