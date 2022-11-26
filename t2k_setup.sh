@@ -154,6 +154,9 @@ function link_t2k_soft()
   echo -e "${WARNING} Loading common t2k software"
   source /sps/t2k/common/software/env.sh
 
+  echo -e "${WARNING} Using dev ROOT version..."
+  dev_root
+
   builtin cd $current_path
 
   echo -e "${INFO} T2K libs have been setup."
