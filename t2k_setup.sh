@@ -385,20 +385,16 @@ function pull_xsLLhFitter(){
   return;
 }; export -f pull_xsLLhFitter
 
-function pull_gundam(){
-  echo -e "${ALERT} Pulling GUNDAM..."
-  local current_path=${PWD}
-  builtin cd $REPO_DIR/gundam
-  git pull
-  git submodule update --remote
+function build_gundam(){
+  echo -e "${ALERT} Building GUNDAM..."
   builtin cd $BUILD_DIR/gundam
 
   if [ "" != "$1" ]
   then
     read -p "Rebuilding with $1 build type? Press enter to validate"
-    # rm -rf $BUILD_DIR/gundam/*
+    rm $BUILD_DIR/gundam/CMakeCache.txt
     cmake \
-      -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/gundam \
+      -D CMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/gundam \
       -D CMAKE_BUILD_TYPE=$1 \
       -D YAMLCPP_DIR=$COMMON_INSTALL_DIR/yaml-cpp \
       -D USE_STATIC_LINKS=ON \
@@ -407,12 +403,21 @@ function pull_gundam(){
     make clean
   fi
 
-  # cmake \
-  #   -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/xsLLhFitter \
-  #   $REPO_DIR/xsLLhFitter/.
   make -j 4 install
   builtin cd $current_path
-  echo -e "${INFO} GUNDAM has been pulled."
+  echo -e "${INFO} GUNDAM has been built."
+  return;
+}; export -f build_gundam
+
+function pull_gundam(){
+  echo -e "${ALERT} Updating GUNDAM..."
+  builtin cd $REPO_DIR/gundam
+  git pull
+  git submodule update --remote
+  builtin cd --
+  echo -e "${INFO} GUNDAM code has been updated. Calling build..."
+
+  build_gundam "$@"
   return;
 }; export -f pull_gundam
 

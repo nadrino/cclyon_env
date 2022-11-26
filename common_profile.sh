@@ -447,7 +447,7 @@ function pull_cc_bash_tools()
   builtin cd $CC_BASH_TOOLS
   git pull
   git submodule update --recursive --remote
-  builtin cd --
+  builtin cd $current_path
   echo -e "${INFO} CCLyon bash tools have been pulled."
   return;
 }; export -f pull_cc_bash_tools
