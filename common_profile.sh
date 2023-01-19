@@ -282,13 +282,13 @@ function setup_programs(){
   if [[ $machineName =~ "login2.baobab" ]];
   then
     #https://doc.eresearch.unige.ch/hpc/applications_and_libraries
-    module load GCC
+    # module load GCC # ROOT HANDLED
+    module load ROOT
     module load Python
     module load CMake
     module load git
     module load yaml-cpp
     module load zlib
-    module load ROOT
     module load CUDA
     module load nlohmann_json
   else
