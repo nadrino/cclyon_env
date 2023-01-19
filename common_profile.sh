@@ -278,22 +278,34 @@ function rackdel(){
 # Setting up programs
 function setup_programs(){
   echo "├─ Setting up Programs..." >&2
-  ccenv cmake 3.20.2
+
+  if [[ $machineName =~ "login2.baobab" ]];
+  then
+    module load GCC
+    module load CMake
+    module load git
+    module load python
+    module load CUDA
+  else
+    ccenv cmake 3.20.2
+    ccenv git
+    ccenv curl
+    ccenv python
+    setup_gcc7
+    # setup_gcc10
+    # ccenv gcc 7.3.0
+    # ccenv gcc 5.5.0
+    # source /opt/rh/devtoolset-7/enable
+    # export CC="$(which gcc)"
+    # export CXX="$(which g++)"
+    # echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
+  fi
+
   echo "   ├─ CMake Version : $(cmake --version | head -n 1)"
-  ccenv git
   echo "   ├─ Git Version : $(git --version)"
-  ccenv curl
   echo "   ├─ curl Version : $(curl --version)"
-  ccenv python
   echo "   ├─ Python Version : $(python --version)"
-  setup_gcc7
-  # setup_gcc10
-  # ccenv gcc 7.3.0
-  # ccenv gcc 5.5.0
-  # source /opt/rh/devtoolset-7/enable
-  # export CC="$(which gcc)"
-  # export CXX="$(which g++)"
-  # echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
+  echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
 }; export -f setup_programs
 
 

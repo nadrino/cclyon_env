@@ -56,10 +56,6 @@ if [[ $machineName =~ "login2.baobab" ]];
 then
   export ENV_SETUP_DIR="$HOME/repo/cclyon_env/"
   export T2K_SPS_DIR="$HOME"
-  module load GCC
-  module load CMake
-  module load git
-  module load CUDA
 fi
 
 export COMMON_PROFILE="$ENV_SETUP_DIR/common_profile.sh"
