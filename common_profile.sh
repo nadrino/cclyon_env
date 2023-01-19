@@ -290,8 +290,8 @@ function setup_programs(){
     module load ROOT
 
     echo "Loading yaml-cpp module"
-    ml load GCCcore
-    module load yaml-cpp
+    ml load GCCcore/11.3.0
+    module load yaml-cpp/0.7.0
 
     echo "Loading other modules..."
     module load nlohmann_json
@@ -299,7 +299,6 @@ function setup_programs(){
     module load Python
     module load CMake
     module load git
-    module load zlib
     module load CUDA
   else
     ccenv cmake 3.20.2
