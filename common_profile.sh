@@ -286,13 +286,17 @@ function setup_programs(){
     ml load GCC/11.2.0
     ml load OpenMPI/4.1.1
     module load ROOT
+
+    ml load GCCcore
+    module load yaml-cpp
+    
+    module load nlohmann_json
+
     module load Python
     module load CMake
     module load git
-    module load yaml-cpp
     module load zlib
     module load CUDA
-    module load nlohmann_json
   else
     ccenv cmake 3.20.2
     ccenv git
