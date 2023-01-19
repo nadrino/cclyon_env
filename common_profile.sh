@@ -281,11 +281,16 @@ function setup_programs(){
 
   if [[ $machineName =~ "login2.baobab" ]];
   then
+    #https://doc.eresearch.unige.ch/hpc/applications_and_libraries
     module load GCC
+    module load Python
     module load CMake
     module load git
-    module load python
+    module load yaml-cpp
+    module load zlib
+    module load ROOT
     module load CUDA
+    module load nlohmann_json
   else
     ccenv cmake 3.20.2
     ccenv git
