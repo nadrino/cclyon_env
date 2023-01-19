@@ -50,6 +50,11 @@
 
 export ENV_SETUP_DIR="$HOME/work/repo/cclyon_env/"
 
+if [ $( hostname --fqdn ) -eq "login2.baobab" ];
+then
+  ENV_SETUP_DIR="$HOME/repo/cclyon_env/"
+fi
+
 export COMMON_PROFILE="$ENV_SETUP_DIR/common_profile.sh"
 if [ -f $COMMON_PROFILE ];
 then
