@@ -283,6 +283,8 @@ function setup_programs(){
   then
     #https://doc.eresearch.unige.ch/hpc/applications_and_libraries
     # module load GCC # ROOT HANDLED
+    ml load GCC/11.2.0
+    ml load OpenMPI/4.1.1
     module load ROOT
     module load Python
     module load CMake
