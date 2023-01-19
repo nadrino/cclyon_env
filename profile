@@ -50,7 +50,9 @@
 
 export ENV_SETUP_DIR="$HOME/work/repo/cclyon_env/"
 
-if [ $( hostname --fqdn ) -eq "login2.baobab" ];
+
+machineName="$(hostname --fqdn)"
+if [[ $machineName =~ "login2.baobab" ]];
 then
   ENV_SETUP_DIR="$HOME/repo/cclyon_env/"
 fi
