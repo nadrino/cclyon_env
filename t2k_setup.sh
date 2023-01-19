@@ -13,7 +13,13 @@ function set_t2k_env(){
   echo -e "${WARNING} Setting up T2K env..."
 
   # Env variables
-  export T2K_SPS_DIR="/sps/t2k/ablanche"
+
+  if [ -z ${T2K_SPS_DIR+x} ];
+  then
+    export T2K_SPS_DIR="/sps/t2k/ablanche"
+  else
+    echo "T2K_SPS_DIR = '$T2K_SPS_DIR'";
+  fi
 
   export COMMON_INSTALL_DIR="/sps/t2k/common/software/install"
   export COMMON_BUILD_DIR="/sps/t2k/common/software/build"
