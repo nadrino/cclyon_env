@@ -283,13 +283,17 @@ function setup_programs(){
   then
     #https://doc.eresearch.unige.ch/hpc/applications_and_libraries
     # module load GCC # ROOT HANDLED
+
+    echo "Loading ROOT module"
     ml load GCC/11.2.0
     ml load OpenMPI/4.1.1
     module load ROOT
 
+    echo "Loading yaml-cpp module"
     ml load GCCcore
     module load yaml-cpp
-    
+
+    echo "Loading other modules..."
     module load nlohmann_json
 
     module load Python
