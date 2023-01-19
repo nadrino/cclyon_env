@@ -54,7 +54,8 @@ export ENV_SETUP_DIR="$HOME/work/repo/cclyon_env/"
 machineName="$(hostname --fqdn)"
 if [[ $machineName =~ "login2.baobab" ]];
 then
-  ENV_SETUP_DIR="$HOME/repo/cclyon_env/"
+  export ENV_SETUP_DIR="$HOME/repo/cclyon_env/"
+  export T2K_SPS_DIR="$HOME"
 fi
 
 export COMMON_PROFILE="$ENV_SETUP_DIR/common_profile.sh"
