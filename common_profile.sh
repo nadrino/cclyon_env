@@ -300,6 +300,7 @@ function setup_programs(){
     module load CMake
     module load git
     module load CUDA
+    ml load Geant4
   else
     ccenv cmake 3.20.2
     ccenv git
