@@ -306,6 +306,7 @@ function setup_programs(){
     ccenv git
     ccenv curl
     ccenv python
+    ccenv geant4 10.03.p03
     setup_gcc7
     # setup_gcc10
     # ccenv gcc 7.3.0
