@@ -413,7 +413,7 @@ function build_gundam(){
   fi
 
   make -j 4 install
-  builtin cd --
+  builtin cd -
   echo -e "${INFO} GUNDAM has been built."
   return;
 }; export -f build_gundam
@@ -423,7 +423,7 @@ function pull_gundam(){
   builtin cd $REPO_DIR/gundam
   git pull
   git submodule update --remote
-  builtin cd --
+  builtin cd -
   echo -e "${INFO} GUNDAM code has been updated. Calling build..."
 
   build_gundam "$@"
