@@ -482,9 +482,9 @@ function pull_cc_bash_tools()
 
 function qLogin(){
   echo -e "${ALERT} Connecting to worker..."
+  nCores="1"
   if [ -z ${1+x} ];
   then
-    nCores=1
   else
     nCores=$1
   fi
