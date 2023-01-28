@@ -484,16 +484,14 @@ function qLogin(){
   echo -e "${ALERT} Connecting to worker..."
   if [ -z ${1+x} ];
   then
-    echo "nb_cores is unset -> Single core";
-    set -x
-    srun -p htc_interactive -L sps --pty bash -i
-    set +x
+    nCores=1
   else
-    echo "nb_cores is set to '$1'";
-    set -x
-    srun -p htc_interactive -L sps -c $1 --pty bash -i
-    set +x
+    nCores=$1
   fi
+  echo "nb_cores is set to '$1'";
+  set -x
+  srun -p htc_interactive -L sps -c $1 -t 0-08:00 --mem $(( 3*nCores )) --pty bash -i
+  set +x
 }
 
 function qLoginGpu(){
