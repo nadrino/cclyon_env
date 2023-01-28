@@ -492,7 +492,7 @@ function qLogin(){
   set -x
   srun -p htc_interactive -L sps -c $1 -t 0-08:00 --mem $(( 3*nCores )) --pty bash -i
   set +x
-}
+}; export -f qLogin
 
 function qLoginGpu(){
   echo -e "${ALERT} Connecting to GPU worker..."
@@ -508,7 +508,7 @@ function qLoginGpu(){
     srun -p gpu_interactive -L sps -c $1 --gres=gpu:v100:1 --pty bash -i
     set +x
   fi
-}
+}; export -f qLoginGpu
 
 function nd280Env(){
   source /etc/profile.d/modules.sh
