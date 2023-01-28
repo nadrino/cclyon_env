@@ -489,7 +489,7 @@ function qLogin(){
   fi
   echo "nb_cores is set to '$1'";
   set -x
-  srun -p htc_interactive -L sps -c $1 -t 0-08:00 --mem $(( 3*nCores )) --pty bash -i
+  srun -p htc_interactive -L sps -c $1 -t 0-08:00 --mem $(( 3*nCores ))G --pty bash -i
   set +x
 }; export -f qLogin
 
