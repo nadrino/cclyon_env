@@ -279,7 +279,7 @@ function rackdel(){
 function setup_programs(){
   echo "├─ Setting up Programs..." >&2
 
-  if [[ $machineName =~ "login2.baobab" ]];
+  if [[ $machineName =~ .baobab$ ]];
   then
     #https://doc.eresearch.unige.ch/hpc/applications_and_libraries
     # module load GCC # ROOT HANDLED
@@ -301,6 +301,9 @@ function setup_programs(){
     module load git
     module load CUDA
     ml load Geant4
+  elif [[ $machineName =~ .cern.ch$ ]];
+  then
+    echo "LXPlus config..."
   else
     ccenv cmake 3.20.2
     ccenv git

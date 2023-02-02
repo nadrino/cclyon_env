@@ -52,10 +52,14 @@ export ENV_SETUP_DIR="$HOME/work/repo/cclyon_env/"
 
 
 machineName="$(hostname --fqdn)"
-if [[ $machineName =~ "login2.baobab" ]];
+if [[ $machineName =~ .baobab$ ]];
 then
   export ENV_SETUP_DIR="$HOME/repo/cclyon_env/"
   export T2K_SPS_DIR="$HOME"
+elif [[ $machineName =~ .cern.ch$ ]];
+then
+  export ENV_SETUP_DIR="$HOME/private/software/repo/cclyon_env/"
+  export T2K_SPS_DIR="$HOME/private/software"
 fi
 
 export COMMON_PROFILE="$ENV_SETUP_DIR/common_profile.sh"
