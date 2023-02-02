@@ -304,6 +304,7 @@ function setup_programs(){
   elif [[ $machineName =~ .cern.ch$ ]];
   then
     echo "LXPlus config..."
+    alias cmake=cmake3
   else
     ccenv cmake 3.20.2
     ccenv git
