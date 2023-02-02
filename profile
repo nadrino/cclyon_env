@@ -26,15 +26,31 @@
 # (BQS) and data access services. DO NOT DISABLE OR MODIFY THIS SECTION.      #
 #=============================================================================#
 
- if [ -r /afs/in2p3.fr/common/uss/system_profile ];then
-    . /afs/in2p3.fr/common/uss/system_profile
- fi
+export ENV_SETUP_DIR="$HOME/work/repo/cclyon_env/"
 
- if [ -n "$THRONG_DIR" ];then
-    if [ -r $THRONG_DIR/group_profile ];then
-       . $THRONG_DIR/group_profile
-    fi
- fi
+
+machineName="$(hostname --fqdn)"
+if [[ $machineName =~ .baobab$ ]];
+then
+  export ENV_SETUP_DIR="$HOME/repo/cclyon_env/"
+  export T2K_SPS_DIR="$HOME"
+elif [[ $machineName =~ .cern.ch$ ]];
+then
+  export ENV_SETUP_DIR="$HOME/private/software/repo/cclyon_env/"
+  export T2K_SPS_DIR="$HOME/private/software"
+else
+  if [ -r /afs/in2p3.fr/common/uss/system_profile ];then
+     . /afs/in2p3.fr/common/uss/system_profile
+  fi
+
+  if [ -n "$THRONG_DIR" ];then
+     if [ -r $THRONG_DIR/group_profile ];then
+        . $THRONG_DIR/group_profile
+     fi
+  fi
+fi
+
+
 
 #=============================================================================#
 #                               USER SECTION                                  #
@@ -48,19 +64,6 @@
 #                              GLOBAL SETTINGS                                #
 #=============================================================================#
 
-export ENV_SETUP_DIR="$HOME/work/repo/cclyon_env/"
-
-
-machineName="$(hostname --fqdn)"
-if [[ $machineName =~ .baobab$ ]];
-then
-  export ENV_SETUP_DIR="$HOME/repo/cclyon_env/"
-  export T2K_SPS_DIR="$HOME"
-elif [[ $machineName =~ .cern.ch$ ]];
-then
-  export ENV_SETUP_DIR="$HOME/private/software/repo/cclyon_env/"
-  export T2K_SPS_DIR="$HOME/private/software"
-fi
 
 export COMMON_PROFILE="$ENV_SETUP_DIR/common_profile.sh"
 if [ -f $COMMON_PROFILE ];
