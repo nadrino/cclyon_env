@@ -281,7 +281,7 @@ function setup_programs(){
 
   if [[ $machineName =~ .baobab$ ]];
   then
-    #https://doc.eresearch.unige.ch/hpc/applications_and_libraries
+    # https://doc.eresearch.unige.ch/hpc/applications_and_libraries
     # module load GCC # ROOT HANDLED
 
     echo "Loading ROOT module"
@@ -301,6 +301,8 @@ function setup_programs(){
     module load git
     module load CUDA
     ml load Geant4
+
+    export OA_INPUT_FOLDER="${HOME}/work/inputs/gundam"
   elif [[ $machineName =~ .cern.ch$ ]];
   then
     echo "LXPlus config..."
@@ -319,6 +321,8 @@ function setup_programs(){
     # export CC="$(which gcc)"
     # export CXX="$(which g++)"
     # echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
+
+    export OA_INPUT_FOLDER="/sps/t2k/common/inputs"
   fi
 
   echo "   ├─ CMake Version : $(cmake --version | head -n 1)"
