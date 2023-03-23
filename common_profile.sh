@@ -271,9 +271,16 @@ extract () {
 
 function rackdel(){
 
-    qdel `seq -f "%.0f" $1 $2`
+    scancel `seq -f "%.0f" $1 $2`
     return;
 }; export -f rackdel
+
+function download_ccl(){
+  echo -e "${ALERT} Downloading files from the CCLyon..."
+  rsync -aP \
+    -e "ssh -i $HOME/.ssh/cca_in2p3_id_rsa" \
+    ablanche@cca.in2p3.fr:$1 ./
+}; export -f download_ccl
 
 # Setting up programs
 function setup_programs(){
