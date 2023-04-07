@@ -270,7 +270,6 @@ extract () {
 }; export -f extract
 
 function rackdel(){
-
     scancel `seq -f "%.0f" $1 $2`
     return;
 }; export -f rackdel
@@ -315,12 +314,22 @@ function setup_programs(){
     echo "LXPlus config..."
     alias cmake=cmake3
   else
-    ccenv cmake 3.20.2
-    ccenv git
-    ccenv curl
-    ccenv python
-    ccenv geant4 10.03.p03
-    setup_gcc7
+    module load gcc
+    module load fortran
+    module load git
+    module load perl
+    module load cmake
+    module load python
+    module load openmpi
+    module load geant4
+    module load root
+
+    # ccenv cmake 3.20.2
+    # ccenv git
+    # ccenv curl
+    # ccenv python
+    # ccenv geant4 10.03.p03
+    # setup_gcc7
     # setup_gcc10
     # ccenv gcc 7.3.0
     # ccenv gcc 5.5.0
