@@ -292,6 +292,7 @@ function setup_programs(){
 
     echo "Loading ROOT module"
     ml load GCC/11.2.0
+    ml load Automake
     ml load OpenMPI/4.1.1
     module load ROOT
 
