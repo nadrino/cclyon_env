@@ -317,14 +317,14 @@ function setup_programs(){
     alias cmake=cmake3
   else
     module load Compilers/gcc/9.3.1
+    module load Analysis/root
     module load Programming_Languages/perl
-    module load Programming_Languages/python
+    module load python
     module load fortran
     module load Collaborative_Tools/git
     module load Production/cmake
     module load HPC_GPU_Cloud/openmpi
-    module load Modelisation/geant4
-    module load Analysis/root
+    module load geant4
 
     # ccenv cmake 3.20.2
     # ccenv git
