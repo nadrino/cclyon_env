@@ -316,15 +316,15 @@ function setup_programs(){
     echo "LXPlus config..."
     alias cmake=cmake3
   else
-    module load root
-    module load gcc
+    module load Compilers/gcc/9.3.1
+    module load Programming_Languages/perl
+    module load Programming_Languages/python
     module load fortran
-    module load git
-    module load perl
-    module load cmake
-    module load python
-    module load openmpi
-    module load geant4
+    module load Collaborative_Tools/git
+    module load Production/cmake
+    module load HPC_GPU_Cloud/openmpi
+    module load Modelisation/geant4
+    module load Analysis/root
 
     # ccenv cmake 3.20.2
     # ccenv git
