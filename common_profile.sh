@@ -290,7 +290,7 @@ function setup_programs(){
     # https://doc.eresearch.unige.ch/hpc/applications_and_libraries
     # module load GCC # ROOT HANDLED
 
-    ml load ROOT/6.20.04-Python-3.7.4
+    ml load ROOT
 
     echo "Loading ROOT module"
     # ml load GCC/11.2.0
