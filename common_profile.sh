@@ -615,4 +615,9 @@ alias cpu='mpstat -P ALL'
 alias monitoring='watch -c -n 0.5 jobSlurm.py'
 alias ccat='pygmentize -g'
 
+# fixing locale
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
+export LANGUAGE="en_US.UTF-8"
+
 shopt -s direxpand # fixes tab while env variable
