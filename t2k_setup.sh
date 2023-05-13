@@ -157,11 +157,18 @@ function link_t2k_soft()
       echo "   ├─ Adding : $sub_folder"
   done
 
-  echo -e "${WARNING} Loading common t2k software"
-  source /sps/t2k/common/software/env.sh
+  if [[ $machineName =~ .in2p3.fr$ ]];
+  then
+    echo -e "${WARNING} Loading common t2k software"
+    source /sps/t2k/common/software/env.sh
 
-  echo -e "${WARNING} Using dev ROOT version..."
-  dev_root
+    echo -e "${WARNING} Using dev ROOT version..."
+    dev_root
+  elif [[ $machineName =~ .baobab$ ]];
+  then
+    echo -e "${WARNING} Loading local ROOT lib..."
+    source ${INSTALL_DIR}/root-v6-26-10/bin/thisroot.sh
+  fi
 
   builtin cd $current_path
 
