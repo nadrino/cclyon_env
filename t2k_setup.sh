@@ -401,7 +401,7 @@ function pull_xsLLhFitter(){
   return;
 }; export -f pull_xsLLhFitter
 
-function dam(){
+function build_gundam(){
   echo -e "${ALERT} Building GUNDAM..."
   builtin cd $BUILD_DIR/gundam
 
