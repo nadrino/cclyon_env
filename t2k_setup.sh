@@ -401,7 +401,7 @@ function pull_xsLLhFitter(){
   return;
 }; export -f pull_xsLLhFitter
 
-function build_gundam(){
+function dam(){
   echo -e "${ALERT} Building GUNDAM..."
   builtin cd $BUILD_DIR/gundam
 
@@ -413,7 +413,7 @@ function build_gundam(){
       -D CMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/gundam \
       -D CMAKE_BUILD_TYPE=$1 \
       -D YAMLCPP_DIR=$COMMON_INSTALL_DIR/yaml-cpp \
-      -D USE_STATIC_LINKS=ON \
+      -D USE_STATIC_LINKS=OFF \
       -D WITH_CACHE_MANAGER=OFF \
       $REPO_DIR/gundam/.
     make clean
