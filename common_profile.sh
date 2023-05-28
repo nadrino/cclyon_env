@@ -320,8 +320,8 @@ function setup_programs(){
     echo "EOS_PATH=$EOS_PATH"
 
     # HOMEBREW
-    export HOMEBREW_CURL_PATH="$INSTALL_DIR/curl"
-    export HOMEBREW_GIT_PATH="$INSTALL_DIR/git"
+    export HOMEBREW_CURL_PATH="$INSTALL_DIR/curl/bin/curl"
+    export HOMEBREW_GIT_PATH="$INSTALL_DIR/git/bin/git"
 
     eval "$(${EOS_PATH}/homebrew/bin/brew shellenv)"
 
