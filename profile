@@ -36,8 +36,11 @@ then
   export T2K_SPS_DIR="$HOME"
 elif [[ $machineName =~ .cern.ch$ ]];
 then
-  export ENV_SETUP_DIR="$HOME/private/software/repo/cclyon_env/"
-  export T2K_SPS_DIR="$HOME/private/software"
+  export EOS_PATH="/eos/home-a/adblanch"
+  echo "EOS_PATH=$EOS_PATH"
+  export ENV_SETUP_DIR="${EOS_PATH}/software/repo/cclyon_env"
+  # export T2K_SPS_DIR="$HOME/private/software"
+  export T2K_SPS_DIR="${EOS_PATH}/software"
 else
   if [ -r /afs/in2p3.fr/common/uss/system_profile ];then
      . /afs/in2p3.fr/common/uss/system_profile

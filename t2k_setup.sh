@@ -30,9 +30,9 @@ function set_t2k_env(){
   export SCRATCH_DIR="$T2K_SPS_DIR/scratch"
 
   if [[ $machineName =~ .cern.ch$ ]]; then
-      export COMMON_INSTALL_DIR=$INSTALL_DIR
-      export COMMON_BUILD_DIR=$BUILD_DIR
-      export COMMON_SOURCE_DIR=$REPO_DIR
+    export COMMON_INSTALL_DIR=$INSTALL_DIR
+    export COMMON_BUILD_DIR=$BUILD_DIR
+    export COMMON_SOURCE_DIR=$REPO_DIR
   else
     export COMMON_INSTALL_DIR="/sps/t2k/common/software/install"
     export COMMON_BUILD_DIR="/sps/t2k/common/software/build"

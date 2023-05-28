@@ -316,9 +316,6 @@ function setup_programs(){
     echo "LXPlus config..."
     alias cmake=cmake3
 
-    export EOS_PATH="/eos/home-a/adblanch"
-    echo "EOS_PATH=$EOS_PATH"
-
     # HOMEBREW
     export HOMEBREW_CURL_PATH="$INSTALL_DIR/curl/bin/curl"
     export HOMEBREW_GIT_PATH="$INSTALL_DIR/git/bin/git"
