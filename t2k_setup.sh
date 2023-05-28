@@ -172,6 +172,22 @@ function link_t2k_soft()
 
     echo -e "${WARNING} Using dev ROOT version..."
     dev_root
+  elif [[ $machineName =~ .cern.ch$ ]];
+  then
+    echo -e "${WARNING} Initializing GCC 13"
+    source /cvmfs/sft.cern.ch/lcg/contrib/gcc/13/x86_64-centos7/setup.sh
+
+    echo -e "${WARNING} Initializing CMake"
+    export PATH="/cvmfs/sft.cern.ch/lcg/contrib/CMake/latest/Linux-x86_64/bin:$PATH"
+    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/contrib/CMake/latest/Linux-x86_64/lib:$LD_LIBRARY_PATH"
+
+    echo -e "${WARNING} Initializing Git"
+    export PATH="/cvmfs/sft.cern.ch/lcg/contrib/git/2.28.0/x86_64-centos7/bin:$PATH"
+    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/contrib/git/2.28.0/x86_64-centos7/lib:$LD_LIBRARY_PATH"
+
+    echo -e "${WARNING} Initializing CUDA"
+    source /cvmfs/sft.cern.ch/lcg/contrib/cuda/12.1/x86_64-centos7/setup.sh
+
   elif [[ $machineName =~ .baobab$ ]];
   then
     echo -e "${WARNING} Loading local ROOT lib..."
