@@ -315,6 +315,16 @@ function setup_programs(){
   then
     echo "LXPlus config..."
     alias cmake=cmake3
+
+    export EOS_PATH="/eos/home-a/adblanch"
+    echo "EOS_PATH=$EOS_PATH"
+
+    # HOMEBREW
+    export HOMEBREW_CURL_PATH="$INSTALL_DIR/curl"
+    export HOMEBREW_GIT_PATH="$INSTALL_DIR/git"
+
+    eval "$(${EOS_PATH}/homebrew/bin/brew shellenv)"
+
   else
     module load Compilers/gcc/9.3.1
     module load Analysis/root
