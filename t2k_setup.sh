@@ -401,6 +401,23 @@ function pull_xsLLhFitter(){
   return;
 }; export -f pull_xsLLhFitter
 
+
+function installSoft(){
+  if [ "" != "$1" ]
+  then
+    echo -e "${ALERT} Installing $1..."
+    PROJECT_NAME="$1"
+    mkdir $BUILD_DIR/$PROJECT_NAME    # Creating build directory
+    mkdir $INSTALL_DIR/$PROJECT_NAME  # Creating install directory
+    cd $BUILD_DIR/$PROJECT_NAME
+    cmake \
+      -DCMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/$PROJECT_NAME \
+      $REPO_DIR/$PROJECT_NAME/.
+    make install -j 8
+    cd -;
+  fi
+}
+
 function build_gundam(){
   echo -e "${ALERT} Building GUNDAM..."
   builtin cd $BUILD_DIR/gundam
