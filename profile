@@ -36,6 +36,7 @@ then
   export T2K_SPS_DIR="$HOME"
 elif [[ $machineName =~ .cern.ch$ ]];
 then
+  scl enable devtoolset-9 bash
   export ENV_SETUP_DIR="$HOME/private/software/repo/cclyon_env/"
   export T2K_SPS_DIR="$HOME/private/software"
 else
