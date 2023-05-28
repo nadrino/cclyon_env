@@ -171,7 +171,7 @@ function link_t2k_soft()
 
     echo -e "${WARNING} Using dev ROOT version..."
     dev_root
-  elif [[ "$machineName" =~ .cern.ch$ ]]; then
+  elif [[ $machineName =~ .cern.ch$ ]]; then
     echo -e "${WARNING} Initializing GCC 13"
     source /cvmfs/sft.cern.ch/lcg/contrib/gcc/13/x86_64-centos7/setup.sh
 
