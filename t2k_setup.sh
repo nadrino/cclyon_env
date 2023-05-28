@@ -165,15 +165,13 @@ function link_t2k_soft()
       echo "   ├─ Adding : $sub_folder"
   done
 
-  if [[ $machineName =~ .in2p3.fr$ ]];
-  then
+  if [[ $machineName =~ .in2p3.fr$ ]]; then
     echo -e "${WARNING} Loading common t2k software"
     source /sps/t2k/common/software/env.sh
 
     echo -e "${WARNING} Using dev ROOT version..."
     dev_root
-  elif [[ $machineName =~ .cern.ch$ ]];
-  then
+  elif [[ "$machineName" =~ .cern.ch$ ]]; then
     echo -e "${WARNING} Initializing GCC 13"
     source /cvmfs/sft.cern.ch/lcg/contrib/gcc/13/x86_64-centos7/setup.sh
 
@@ -187,9 +185,7 @@ function link_t2k_soft()
 
     echo -e "${WARNING} Initializing CUDA"
     source /cvmfs/sft.cern.ch/lcg/contrib/cuda/12.1/x86_64-centos7/setup.sh
-
-  elif [[ $machineName =~ .baobab$ ]];
-  then
+  elif [[ $machineName =~ .baobab$ ]]; then
     echo -e "${WARNING} Loading local ROOT lib..."
     source ${INSTALL_DIR}/root-v6-26-10/bin/thisroot.sh
   fi
