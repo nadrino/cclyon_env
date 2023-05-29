@@ -71,7 +71,6 @@ function set_t2k_env(){
   # can't run this with sh: > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
   # sh (which in most (Debian-derived) systems is linked to dash) doesn't allow process substitution
   link_t2k_soft # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
-  set_t2k_irods # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
   # setup_brew
   # set_brew_root
   # set_t2k_root # > >(while read; do echo "${INDENT_SPACES}$REPLY"; done)
@@ -190,6 +189,13 @@ function link_t2k_soft()
     export PATH="/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc12-opt/bin:$PATH"
     export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc12-opt/lib:$LD_LIBRARY_PATH"
 
+    echo -e "${WARNING} Initializing clang"
+    export PATH="/cvmfs/sft.cern.ch/lcg/releases/clang/15.0.7-27d6b/x86_64-centos7/bin:$PATH"
+    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/clang/15.0.7-27d6b/x86_64-centos7/lib:$LD_LIBRARY_PATH"
+
+    echo -e "${WARNING} Initializing llvmmin"
+    source /cvmfs/sft.cern.ch/lcg/releases/llvmmin/14.0.3-5137c/x86_64-centos7-gcc11-opt/llvmmin-env.sh
+
   elif [[ $machineName =~ .baobab$ ]]; then
     echo -e "${WARNING} Loading local ROOT lib..."
     source ${INSTALL_DIR}/root-v6-26-10/bin/thisroot.sh
@@ -238,21 +244,6 @@ function setup_brew(){
   echo -e "${LYELLOW}NOTICE: Brew env has been setup.${RESTORE}"
   return;
 }; export -f setup_brew
-
-function set_t2k_irods(){
-  if [ -z ${T2K_IRODS_IS_SET+x} ];
-  then
-    cur_dir="$PWD"
-    builtin cd $REPO_DIR/irods-legacy/iRODS
-    source ./add-clients.sh &> /dev/null
-    builtin cd $cur_dir
-    export T2K_IRODS_IS_SET=1
-    echo -e "${INFO} T2K iRODS has been setup."
-  else
-    echo -e "${ALERT} T2K iRODS is already setup."
-  fi
-  return;
-}; export -f set_t2k_irods
 
 function set_t2k_cvs(){
   if [ -z ${T2K_CVS_IS_SET+x} ];
