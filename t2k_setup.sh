@@ -187,10 +187,14 @@ function link_t2k_soft()
     export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/lib64:$LD_LIBRARY_PATH"
     # source /cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/xrootd-env.sh
 
-
     echo -e "${WARNING} Initializing LZ4 1.9.2"
     export PATH="/cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/bin:$PATH"
     export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
+    # source /cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lz4-env.sh
+
+    echo -e "${WARNING} Initializing Zlib 1.2.11"
+    export PATH="/cvmfs/sft.cern.ch/lcg/releases/zlib/1.2.11-8af4c/x86_64-centos7-gcc11-opt//bin:$PATH"
+    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/lzlib/1.2.11-8af4c/x86_64-centos7-gcc11-opt//lib:$LD_LIBRARY_PATH"
     # source /cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lz4-env.sh
 
     echo -e "${WARNING} Initializing FFTW3 3.3.10"
