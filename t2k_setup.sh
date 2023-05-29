@@ -174,8 +174,8 @@ function link_t2k_soft()
     echo -e "${WARNING} Initializing GCC 11"
     source /cvmfs/sft.cern.ch/lcg/contrib/gcc/11/x86_64-centos7/setup.sh
 
-    echo -e "${WARNING} Initializing clang 15.0.7"
-    source /cvmfs/sft.cern.ch/lcg/releases/clang/15.0.7-27d6b/x86_64-centos7-gcc11-opt/setup.sh
+    # echo -e "${WARNING} Initializing clang 15.0.7"
+    # source /cvmfs/sft.cern.ch/lcg/releases/clang/15.0.7-27d6b/x86_64-centos7-gcc11-opt/setup.sh
 
     echo -e "${WARNING} Initializing Python 3.9.12"
     export PATH="/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/bin:$PATH"
@@ -191,6 +191,16 @@ function link_t2k_soft()
     echo -e "${WARNING} Initializing LZ4 1.9.2"
     export PATH="/cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/bin:$PATH"
     export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
+    # source /cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lz4-env.sh
+
+    echo -e "${WARNING} Initializing FFTW3 3.3.10"
+    export PATH="/cvmfs/sft.cern.ch/lcg/releases/fftw3/3.3.10-33229/x86_64-centos7-gcc11-opt/bin:$PATH"
+    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/fftw3/3.3.10-33229/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
+    # source /cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lz4-env.sh
+
+    echo -e "${WARNING} Initializing cfitsio 3.48"
+    export PATH="/cvmfs/sft.cern.ch/lcg/releases/cfitsio/3.48-e4bb8/x86_64-centos7-gcc11-opt/bin:$PATH"
+    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/cfitsio/3.48-e4bb8/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
     # source /cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lz4-env.sh
 
     # echo -e "${WARNING} Initializing ROOT 6.28.00"
