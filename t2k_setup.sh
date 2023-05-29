@@ -193,9 +193,6 @@ function link_t2k_soft()
     export PATH="/cvmfs/sft.cern.ch/lcg/releases/clang/15.0.7-27d6b/x86_64-centos7/bin:$PATH"
     export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/clang/15.0.7-27d6b/x86_64-centos7/lib:$LD_LIBRARY_PATH"
 
-    echo -e "${WARNING} Initializing llvm"
-    source /cvmfs/sft.cern.ch/lcg/releases/llvmlite/0.38.1-d69c1/x86_64-centos7-gcc12-opt/llvmlite-env.sh
-
   elif [[ $machineName =~ .baobab$ ]]; then
     echo -e "${WARNING} Loading local ROOT lib..."
     source ${INSTALL_DIR}/root-v6-26-10/bin/thisroot.sh
