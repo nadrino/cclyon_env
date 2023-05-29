@@ -178,10 +178,10 @@ function link_t2k_soft()
     source /cvmfs/sft.cern.ch/lcg/releases/clang/15.0.7-27d6b/x86_64-centos7-gcc11-opt/setup.sh
 
     echo -e "${WARNING} Initializing Python 3.9.12"
-    source /cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/Python-env.sh
+    # source /cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/Python-env.sh
 
     echo -e "${WARNING} Initializing XROOTD 5.5.0"
-    source /cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/xrootd-env.sh
+    # source /cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/xrootd-env.sh
 
     echo -e "${WARNING} Initializing ROOT 6.28.00"
     source /cvmfs/sft.cern.ch/lcg/latest/ROOT/6.28.00-fd53a/x86_64-ubuntu2204-gcc11-opt/ROOT-env.sh
