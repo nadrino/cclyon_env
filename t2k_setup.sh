@@ -174,6 +174,27 @@ function link_t2k_soft()
     echo -e "${WARNING} Initializing GCC 11"
     source /cvmfs/sft.cern.ch/lcg/contrib/gcc/11/x86_64-centos7/setup.sh
 
+    echo -e "${WARNING} Initializing clang 15.0.7"
+    source /cvmfs/sft.cern.ch/lcg/releases/clang/15.0.7-27d6b/x86_64-centos7-gcc11-opt/setup.sh
+
+    echo -e "${WARNING} Initializing Python 3.9.12"
+    source /cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/Python-env.sh
+
+    echo -e "${WARNING} Initializing XROOTD 5.5.0"
+    source /cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/xrootd-env.sh
+
+    echo -e "${WARNING} Initializing ROOT 6.28.00"
+    source /cvmfs/sft.cern.ch/lcg/latest/ROOT/6.28.00-fd53a/x86_64-ubuntu2204-gcc11-opt/ROOT-env.sh
+
+    echo -e "${WARNING} Initializing ZLib 1.2.11"
+    source /cvmfs/sft.cern.ch/lcg/releases/zlib/1.2.11-8af4c/x86_64-centos7-gcc11-opt/zlib-env.sh
+
+    echo -e "${WARNING} Initializing LZ4 1.9.2"
+    source /cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lz4-env.sh
+
+    echo -e "${WARNING} Initializing CUDA 12.1"
+    source /cvmfs/sft.cern.ch/lcg/contrib/cuda/12.1/x86_64-centos7/setup.sh
+
     echo -e "${WARNING} Initializing CMake"
     export PATH="/cvmfs/sft.cern.ch/lcg/contrib/CMake/latest/Linux-x86_64/bin:$PATH"
     export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/contrib/CMake/latest/Linux-x86_64/lib:$LD_LIBRARY_PATH"
@@ -182,19 +203,7 @@ function link_t2k_soft()
     export PATH="/cvmfs/sft.cern.ch/lcg/contrib/git/2.28.0/x86_64-centos7/bin:$PATH"
     export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/contrib/git/2.28.0/x86_64-centos7/lib:$LD_LIBRARY_PATH"
 
-    echo -e "${WARNING} Initializing CUDA"
-    source /cvmfs/sft.cern.ch/lcg/contrib/cuda/12.1/x86_64-centos7/setup.sh
 
-    echo -e "${WARNING} Initializing Python 3"
-    source /cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/Python-env.sh
-
-    echo -e "${WARNING} Initializing clang"
-    export PATH="/cvmfs/sft.cern.ch/lcg/releases/clang/15.0.7-27d6b/x86_64-centos7-gcc11-opt/bin:$PATH"
-    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/clang/15.0.7-27d6b/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
-
-    echo -e "${WARNING} Initializing XROOTD"
-    export PATH="/cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/bin:$PATH"
-    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
 
   elif [[ $machineName =~ .baobab$ ]]; then
     echo -e "${WARNING} Loading local ROOT lib..."
