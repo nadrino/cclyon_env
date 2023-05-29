@@ -601,7 +601,7 @@ function logPrint(){
   then
    logTempFile="${1%.sh}.log"
    logFile="${logTempFile/Script_/log_}"
-   tail -n +1 -f $LOGS_DIR/*/$logFile
+   tail -n +1 -f $LOGS_DIR/*/${logFile}*
   else
     tail -n +1 -f $LOGS_DIR/*/$1
   fi
