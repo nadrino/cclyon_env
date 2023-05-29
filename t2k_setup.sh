@@ -189,9 +189,9 @@ function link_t2k_soft()
 
 
     echo -e "${WARNING} Initializing LZ4 1.9.2"
-    source /cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lz4-env.sh
     export PATH="/cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/bin:$PATH"
     export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
+    # source /cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lz4-env.sh
 
     # echo -e "${WARNING} Initializing ROOT 6.28.00"
     # source /cvmfs/sft.cern.ch/lcg/latest/ROOT/6.28.00-fd53a/x86_64-ubuntu2204-gcc11-opt/bin/thisroot.sh
