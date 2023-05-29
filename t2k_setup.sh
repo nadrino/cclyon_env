@@ -182,7 +182,9 @@ function link_t2k_soft()
     export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
     # source /cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/Python-env.sh
 
-    # echo -e "${WARNING} Initializing XROOTD 5.5.0"
+    echo -e "${WARNING} Initializing XROOTD 5.5.0"
+    export PATH="/cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/bin:$PATH"
+    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
     # source /cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/xrootd-env.sh
 
     # echo -e "${WARNING} Initializing ROOT 6.28.00"
