@@ -185,6 +185,11 @@ function link_t2k_soft()
 
     echo -e "${WARNING} Initializing CUDA"
     source /cvmfs/sft.cern.ch/lcg/contrib/cuda/12.1/x86_64-centos7/setup.sh
+
+    echo -e "${WARNING} Initializing Python 3"
+    export PATH="/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc12-opt/bin:$PATH"
+    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc12-opt/lib:$LD_LIBRARY_PATH"
+
   elif [[ $machineName =~ .baobab$ ]]; then
     echo -e "${WARNING} Loading local ROOT lib..."
     source ${INSTALL_DIR}/root-v6-26-10/bin/thisroot.sh
