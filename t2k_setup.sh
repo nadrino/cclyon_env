@@ -184,7 +184,7 @@ function link_t2k_soft()
 
     echo -e "${WARNING} Initializing XROOTD 5.5.0"
     export PATH="/cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/bin:$PATH"
-    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
+    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/lib64:$LD_LIBRARY_PATH"
     # source /cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/xrootd-env.sh
 
     # echo -e "${WARNING} Initializing ROOT 6.28.00"
