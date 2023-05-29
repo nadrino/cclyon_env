@@ -223,9 +223,13 @@ function link_t2k_soft()
     export PATH="/cvmfs/sft.cern.ch/lcg/contrib/CMake/latest/Linux-x86_64/bin:$PATH"
     export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/contrib/CMake/latest/Linux-x86_64/lib:$LD_LIBRARY_PATH"
 
-    echo -e "${WARNING} Initializing Git"
+    echo -e "${WARNING} Initializing Git 2.28.0"
     export PATH="/cvmfs/sft.cern.ch/lcg/contrib/git/2.28.0/x86_64-centos7/bin:$PATH"
     export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/contrib/git/2.28.0/x86_64-centos7/lib:$LD_LIBRARY_PATH"
+
+    echo -e "${WARNING} Initializing ROOT v6.26.10"
+    export PATH="/afs/cern.ch/user/a/adblanch/public/software/install/root/6.26.10_x86_64_el7_gcc11_cxx17/bin:$PATH"
+    export LD_LIBRARY_PATH="/afs/cern.ch/user/a/adblanch/public/software/install/root/6.26.10_x86_64_el7_gcc11_cxx17/lib:$LD_LIBRARY_PATH"
 
 
 
