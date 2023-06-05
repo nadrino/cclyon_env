@@ -231,6 +231,10 @@ function link_t2k_soft()
     export PATH="/cvmfs/sft.cern.ch/lcg/releases/yamlcpp/0.6.3-d05b2/x86_64-centos7-gcc11-opt/bin:$PATH"
     export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/yamlcpp/0.6.3-d05b2/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
 
+    echo -e "${WARNING} Initializing yamlcpp 0.6.3"
+    export PATH="/cvmfs/sft.cern.ch/lcg/releases/yamlcpp/0.6.3-d05b2/x86_64-centos7-gcc11-opt/bin:$PATH"
+    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/yamlcpp/0.6.3-d05b2/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
+
     echo -e "${WARNING} Initializing ROOT v6.26.10"
     export PATH="/afs/cern.ch/user/a/adblanch/public/software/install/root/6.26.10_x86_64_el7_gcc11_cxx17/bin:$PATH"
     export LD_LIBRARY_PATH="/afs/cern.ch/user/a/adblanch/public/software/install/root/6.26.10_x86_64_el7_gcc11_cxx17/lib:$LD_LIBRARY_PATH"

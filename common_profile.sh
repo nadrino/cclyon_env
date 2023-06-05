@@ -330,9 +330,7 @@ function setup_programs(){
     module load fortran
     module load Collaborative_Tools/git
     module load Production/cmake
-    module load HPC_GPU_Cloud/openmpi
-    module load geant4
-
+    
     # ccenv cmake 3.20.2
     # ccenv git
     # ccenv curl
