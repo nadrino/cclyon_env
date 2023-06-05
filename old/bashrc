@@ -427,30 +427,42 @@ function setup_Geant41022()
 }
 export -f setup_Geant41022
 
-function setup_brew()
-{
-    echo "Seting up Brew..." >&2
+function setup_brew(){
+  cur_dir="$PWD"
 
-    # Bash completion
-    # echo "├─ Setting up bash completion for Homebrew..." >&2
-    # source $(brew --repository)/Library/Contributions/brew_bash_completion.sh
-    if [ -f $(brew --prefix)/etc/bash_completion ]; then
-        . $(brew --prefix)/etc/bash_completion
-    fi
+  # Cleaning env
+  export PATH="/usr/bin" # cd, ls...
+  export PATH="/opt/sge/bin/lx-amd64/:$PATH" # for qsub
+  export LD_LIBRARY_PATH=""
 
-    export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+  # Set brew env
+  eval $($HOME/.linuxbrew/bin/brew shellenv)
+  # export PATH="$HOME/.linuxbrew/opt/python/libexec/bin/:$PATH"
 
-    # BrewFile
-    # echo "├─ Setting up BrewFile..." >&2
-    # export HOMEBREW_BREWFILE="$HOME/Dropbox/Special/Mac/Brewfile"
-    #if [ -f $(brew --prefix)/etc/brew-wrap ];then
-    #  source $(brew --prefix)/etc/brew-wrap
-    #fi
+  # Debug options
+  # export HOMEBREW_DEBUG=1
+  # export HOMEBREW_DEBUG_INSTALL=1
+  export HOMEBREW_VERBOSE=1
 
-    echo "$(tput bold)$(tput setaf 3)NOTICE: Brew is now setup.$(tput sgr 0)$(tput dim)" >&2
-    return;
-}
-export -f setup_brew
+  # Parameters
+  # export HOMEBREW_BUILD_FROM_SOURCE=1
+  export HOMEBREW_MAKE_JOBS=16
+
+  # HB customs
+  export HOMEBREW_CURL_PATH=/pbs/software/centos-7-x86_64/curl/7.60.0/bin/curl
+  export HOMEBREW_GIT_PATH=/pbs/software/centos-7-x86_64/git/2.30.1/bin/git
+
+  # Scratch
+  export HOMEBREW_TEMP=$SCRATCH_DIR
+  export HOMEBREW_CACHE=$SCRATCH_DIR
+  export HOMEBREW_LOGS=$SCRATCH_DIR/logs
+
+  # Reset the t2k env
+  builtin cd $cur_dir
+  set_t2k_env
+  echo -e "${LYELLOW}NOTICE: Brew env has been setup.${RESTORE}"
+  return;
+}; export -f setup_brew
 
 function setup_stereo()
 {
