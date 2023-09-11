@@ -597,11 +597,14 @@ function setPsyche(){
 function logPrint(){
   if [[ $1 == *.sh ]]
   then
-   logTempFile="${1%.sh}.log"
-   logFile="${logTempFile/Script_/log_}"
-   tail -n +1 -f $LOGS_DIR/*/${logFile}*
+    logTempFile="${1%.sh}.log"
+    logFile="${logTempFile/Script_/log_}"
+    tail -n +1 -f $LOGS_DIR/*/${logFile}
+  elif [[ $1 == *.log ]]
+    tail -n +1 -f $LOGS_DIR/*/${1}
   else
-    tail -n +1 -f $LOGS_DIR/*/${1}*
+    logFile="${1/Script_/log_}"
+    tail -n +1 -f $LOGS_DIR/*/${logFile}*
   fi
 }
 
