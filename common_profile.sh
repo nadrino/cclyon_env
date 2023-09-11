@@ -330,7 +330,7 @@ function setup_programs(){
     module load fortran
     module load Collaborative_Tools/git
     module load Production/cmake
-    
+
     # ccenv cmake 3.20.2
     # ccenv git
     # ccenv curl
@@ -601,7 +601,7 @@ function logPrint(){
    logFile="${logTempFile/Script_/log_}"
    tail -n +1 -f $LOGS_DIR/*/${logFile}*
   else
-    tail -n +1 -f $LOGS_DIR/*/$1
+    tail -n +1 -f $LOGS_DIR/*/${1}*
   fi
 }
 
