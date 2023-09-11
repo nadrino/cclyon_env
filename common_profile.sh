@@ -601,6 +601,7 @@ function logPrint(){
     logFile="${logTempFile/Script_/log_}"
     tail -n +1 -f $LOGS_DIR/*/${logFile}
   elif [[ $1 == *.log ]]
+  then
     tail -n +1 -f $LOGS_DIR/*/${1}
   else
     logFile="${1/Script_/log_}"
