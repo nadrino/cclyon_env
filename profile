@@ -30,7 +30,7 @@ export ENV_SETUP_DIR="$HOME/work/repo/cclyon_env/"
 
 
 machineName="$(hostname --fqdn)"
-if [[ $machineName =~ .baobab$ ]];
+if [[ $machineName =~ .baobab$ || $machineName =~ .yggdrasil$ ]];
 then
   export ENV_SETUP_DIR="$HOME/repo/cclyon_env/"
   export T2K_SPS_DIR="$HOME"
