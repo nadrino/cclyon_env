@@ -285,7 +285,7 @@ function download_ccl(){
 function setup_programs(){
   echo "├─ Setting up Programs..." >&2
 
-  if [[ $machineName =~ .baobab$ ]];
+  if [[ $machineName =~ .baobab$ || $machineName =~ .yggdrasil$ ]];
   then
     # https://doc.eresearch.unige.ch/hpc/applications_and_libraries
     # module load GCC # ROOT HANDLED
