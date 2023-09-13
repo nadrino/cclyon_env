@@ -311,21 +311,6 @@ function setup_programs(){
     ml load Geant4
 
     export OA_INPUT_FOLDER="${HOME}/work/inputs/gundam"
-  elif [[ $machineName =~ .yggdrasil$ ]];
-  then
-    ml load GCC/12.2.0
-    ml load Automake
-    ml load libtool
-
-    ml load CMake
-    ml load GCCcore
-    ml load yaml-cpp
-    ml load nlohmann_json
-
-    module load git
-    module load CUDA
-
-    export OA_INPUT_FOLDER="${HOME}/work/inputs/gundam"
   elif [[ $machineName =~ .cern.ch$ ]];
   then
     echo "LXPlus config..."
