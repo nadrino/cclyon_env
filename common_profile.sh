@@ -609,6 +609,12 @@ function logPrint(){
   fi
 }
 
+function clearLogs(){
+  echo -e "${ALERT} Cleaning up log files (keeping the 4500 latest files in ${LOGS_DIR})..."
+  # ls -tp ${LOGS_DIR} | grep -v '/$' | tail -n +2001 | xargs -d '\n' -r rm --
+  ls -tp ${LOGS_DIR} | grep -v '/$' | tail -n +4501 | xargs -d '\n' -r echo
+}
+
 alias nextcloud='cadaver https://nextcloud.nms.kcl.ac.uk/remote.php/dav/files/ASGReader'
 
 # Default software setup
