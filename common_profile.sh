@@ -610,9 +610,18 @@ function logPrint(){
 }
 
 function clearLogs(){
-  echo -e "${ALERT} Cleaning up log files (keeping the 4500 latest files in ${LOGS_DIR})..."
+  echo -e "${ALERT} Cleaning up log files in ${LOGS_DIR}..."
   # ls -tp ${LOGS_DIR} | grep -v '/$' | tail -n +2001 | xargs -d '\n' -r rm --
   ls -tp ${LOGS_DIR} | grep -v '/$' | tail -n +4501 | xargs -d '\n' -r echo
+
+  for dir in $LOGS_DIR/*/     # list directories in the form "/tmp/dirname/"
+  do
+      dir=${dir%*/}      # remove the trailing "/"
+      sub_folder=${dir##*/} # print everything after the final "/"
+      echo "   ├─ Cleaning up (keeping 4500 files) : $sub_folder"
+      ls -tp ${LOGS_DIR}/$sub_folder | grep -v '/$' | tail -n +4501 | xargs -d '\n' -r echo
+  done
+
 }
 
 alias nextcloud='cadaver https://nextcloud.nms.kcl.ac.uk/remote.php/dav/files/ASGReader'
