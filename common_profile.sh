@@ -631,8 +631,13 @@ function clearLogs(){
 
       # Collecting the matches in a Bash *array*:
       IFS=$'\n' read -d '' -ra files  < <(ls -tp ${LOGS_DIR}/$sub_folder | grep -v '/$' | tail -n +6)
-      printf '%s ' "${files[@]}" # print array elements
-      echo "nFiles = ${#files[@]}"
+      if (( ${#key[@]} == 0 ));
+      then
+        echo empty
+      else
+        echo "nFiles = ${#files[@]}"
+      fi
+      # printf '%s ' "${files[@]}" # print array elements
   done
 
 }
