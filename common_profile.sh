@@ -631,7 +631,7 @@ function clearLogs(){
 
       # Collecting the matches in a Bash *array*:
       echo "      ├─ Listing files..."
-      IFS=$'\n' read -d '' -ra files  < <(ls -tp ${LOGS_DIR}/${sub_folder} | grep -v '/$' | tail -n +6)
+      IFS=$'\n' read -d '' -ra files  < <(ls -tp ${LOGS_DIR}/${sub_folder} | grep -v '/$' | tail -n +4506)
       if (( ${#files[@]} == 0 ));
       then
         echo "      ├─ Nothing to be deleted."
