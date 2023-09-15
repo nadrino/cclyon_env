@@ -637,7 +637,8 @@ function clearLogs(){
         echo "      ├─ Nothing to be deleted."
       else
         echo "      ├─ Removing ${#files[@]} files..."
-        printf '%s\n' "${files[@]}" | xargs -d '\n' -r echo
+        printf '%s\n' "${files[@]}" | xargs -d '\n' -r rm --
+        # printf '%s\n' "${files[@]}" | xargs -d '\n' -r echo
         echo "      ├─ ${#files[@]} files have removed..."
       fi
       # printf '%s ' "${files[@]}" # print array elements
