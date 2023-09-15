@@ -630,14 +630,15 @@ function clearLogs(){
       # while IFS= read -r f; do echo "$f"; done < <(ls -tp ${LOGS_DIR}/$sub_folder | grep -v '/$' | tail -n +6)
 
       # Collecting the matches in a Bash *array*:
+      echo "      ├─ Listing files..."
       IFS=$'\n' read -d '' -ra files  < <(ls -tp ${LOGS_DIR}/$sub_folder | grep -v '/$' | tail -n +6)
-      if (( ${#key[@]} == 0 ));
+      if (( ${#files[@]} == 0 ));
       then
-        echo "   Nothing to be deleted."
+        echo "      ├─ Nothing to be deleted."
       else
-        echo "   Removing ${#files[@]} files..."
-        printf '%s\n' "${files[@]}" | xargs -d '\n' -r echo  
-        echo "   ${#files[@]} files have removed..."
+        echo "      ├─ Removing ${#files[@]} files..."
+        printf '%s\n' "${files[@]}" | xargs -d '\n' -r echo
+        echo "      ├─ ${#files[@]} files have removed..."
       fi
       # printf '%s ' "${files[@]}" # print array elements
   done
