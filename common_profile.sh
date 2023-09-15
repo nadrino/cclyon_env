@@ -633,9 +633,11 @@ function clearLogs(){
       IFS=$'\n' read -d '' -ra files  < <(ls -tp ${LOGS_DIR}/$sub_folder | grep -v '/$' | tail -n +6)
       if (( ${#key[@]} == 0 ));
       then
-        echo empty
+        echo "   Nothing to be deleted."
       else
-        echo "nFiles = ${#files[@]}"
+        echo "   Removing ${#files[@]} files..."
+        printf '%s\n' "${files[@]}" | xargs -d '\n' -r echo  
+        echo "   ${#files[@]} files have removed..."
       fi
       # printf '%s ' "${files[@]}" # print array elements
   done
