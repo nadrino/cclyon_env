@@ -623,14 +623,14 @@ function clearLogs(){
       # ls -tp ${LOGS_DIR}/$sub_folder | grep -v '/$' | tail -n +4501 | xargs -d '\n' -r rm --
 
       # One by one, in a shell loop (POSIX-compliant):
-      ls -tp ${LOGS_DIR}/$sub_folder | grep -v '/$' | tail -n +6 | while IFS= read -r f; do echo "$f"; done
+      # ls -tp ${LOGS_DIR}/$sub_folder | grep -v '/$' | tail -n +6 | while IFS= read -r f; do echo "$f"; done
 
       # One by one, but using a Bash process substitution (<(...),
       # so that the variables inside the `while` loop remain in scope:
-      while IFS= read -r f; do echo "$f"; done < <(ls -tp | grep -v '/$' | tail -n +6)
+      # while IFS= read -r f; do echo "$f"; done < <(ls -tp ${LOGS_DIR}/$sub_folder | grep -v '/$' | tail -n +6)
 
       # Collecting the matches in a Bash *array*:
-      IFS=$'\n' read -d '' -ra files  < <(ls -tp | grep -v '/$' | tail -n +6)
+      IFS=$'\n' read -d '' -ra files  < <(ls -tp ${LOGS_DIR}/$sub_folder | grep -v '/$' | tail -n +6)
       printf '%s ' "${files[@]}" # print array elements
       echo "nFiles = ${#files[@]}"
   done
