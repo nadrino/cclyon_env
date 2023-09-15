@@ -618,7 +618,7 @@ function clearLogs(){
   do
       dir=${dir%*/}      # remove the trailing "/"
       sub_folder=${dir##*/} # print everything after the final "/"
-      echo "   ├─ Cleaning up files in $sub_folder (keeping 4500 files)..."
+      echo "   ├─ Cleaning up files in ${LOGS_DIR}/$sub_folder (keeping 4500 files)..."
       ls -tp ${LOGS_DIR}/$sub_folder | grep -v '/$' | tail -n +4501 | xargs -d '\n' -r echo
   done
 
