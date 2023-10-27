@@ -661,7 +661,6 @@ alias sizeof='du -h --max-depth=1 | sort -hr'
 alias cpu='mpstat -P ALL'
 alias monitoring='watch -c -n 0.5 jobSlurm.py'
 alias ccat='pygmentize -g'
-alias cleanup_old_logs='find $JOBS_DIR/*/. -type f -mtime +30 -delete'
 
 # fixing locale
 export LC_ALL="en_US.UTF-8"
