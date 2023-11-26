@@ -483,20 +483,21 @@ function installSoft(){
 
 function build_gundam(){
   echo -e "${ALERT} Building GUNDAM..."
-  builtin cd $BUILD_DIR/gundam
+  REPO_NAME="gundam"
+  builtin cd $BUILD_DIR/${REPO_NAME}
 
   if [ "" != "$1" ]
   then
     read -p "Rebuilding with $1 build type? Press enter to validate"
     rm $BUILD_DIR/gundam/CMakeCache.txt
     cmake \
-      -D CMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/gundam \
+      -D CMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/${REPO_NAME} \
       -D CMAKE_BUILD_TYPE=$1 \
       -D YAMLCPP_DIR=$COMMON_INSTALL_DIR/yaml-cpp \
       -D USE_STATIC_LINKS=OFF \
       -D WITH_CACHE_MANAGER=OFF \
       -D WITH_GUNDAM_ROOT_APP=OFF \
-      $REPO_DIR/gundam/.
+      $REPO_DIR/${REPO_NAME}/.
     make clean
   fi
 
@@ -505,6 +506,42 @@ function build_gundam(){
   echo -e "${INFO} GUNDAM has been built."
   return;
 }; export -f build_gundam
+
+
+function build_tofreco(){
+  echo -e "${ALERT} Building tof-reco..."
+  REPO_NAME="tof-reco"
+  builtin cd $BUILD_DIR/${REPO_NAME}
+
+  if [ "" != "$1" ]
+  then
+    read -p "Rebuilding with $1 build type? Press enter to validate"
+    rm $BUILD_DIR/gundam/CMakeCache.txt
+    cmake \
+      -D CMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/${REPO_NAME} \
+      -D CMAKE_BUILD_TYPE=$1 \
+      $REPO_DIR/${REPO_NAME}/.
+    make clean
+  fi
+
+  make -j 4 install
+  builtin cd -
+  echo -e "${INFO} tof-reco has been built."
+  return;
+}; export -f build_tofreco
+
+
+function pull_tofreco(){
+  echo -e "${ALERT} Updating tof-reco..."
+  builtin cd $REPO_DIR/gundam
+  git pull
+  git submodule update --remote
+  builtin cd -
+  echo -e "${INFO} tof-reco code has been updated. Calling build..."
+
+  build_tofreco "$@"
+  return;
+}; export -f pull_tofreco
 
 function pull_gundam(){
   echo -e "${ALERT} Updating GUNDAM..."
