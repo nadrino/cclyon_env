@@ -533,7 +533,7 @@ function build_tofreco(){
 
 function pull_tofreco(){
   echo -e "${ALERT} Updating tof-reco..."
-  builtin cd $REPO_DIR/gundam
+  builtin cd $REPO_DIR/tof-reco
   git pull
   git submodule update --remote
   builtin cd -
