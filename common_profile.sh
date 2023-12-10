@@ -314,7 +314,7 @@ function setup_programs(){
   elif [[ $machineName =~ .cern.ch$ ]];
   then
     echo "LXPlus config..."
-    alias cmake=cmake3
+    # alias cmake=cmake3
 
     # HOMEBREW
     export HOMEBREW_CURL_PATH="$INSTALL_DIR/curl/bin/curl"
