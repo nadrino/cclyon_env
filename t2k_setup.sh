@@ -178,34 +178,40 @@ function link_t2k_soft()
     # source /cvmfs/sft.cern.ch/lcg/releases/clang/15.0.7-27d6b/x86_64-centos7-gcc11-opt/setup.sh
 
     echo -e "${WARNING} Initializing Python 3.9.12"
-    export PATH="/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/bin:$PATH"
-    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
-    # source /cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt/Python-env.sh
+    LIB_PATH="/cvmfs/sft.cern.ch/lcg/releases/Python/3.9.12-9a1bc/x86_64-centos7-gcc11-opt"
+    export PATH="$LIB_PATH/bin:$PATH"
+    export LD_LIBRARY_PATH="$LIB_PATH/lib:$LD_LIBRARY_PATH"
 
     echo -e "${WARNING} Initializing XROOTD 5.5.0"
-    export PATH="/cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/bin:$PATH"
-    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/lib64:$LD_LIBRARY_PATH"
-    # source /cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt/xrootd-env.sh
+    LIB_PATH="/cvmfs/sft.cern.ch/lcg/releases/xrootd/5.5.0-21deb/x86_64-centos7-gcc11-opt"
+    export PATH="$LIB_PATH/bin:$PATH"
+    export LD_LIBRARY_PATH="$LIB_PATH/lib:$LD_LIBRARY_PATH"
 
     echo -e "${WARNING} Initializing LZ4 1.9.2"
-    export PATH="/cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/bin:$PATH"
-    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
-    # source /cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lz4-env.sh
+    LIB_PATH="/cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt"
+    export PATH="$LIB_PATH/bin:$PATH"
+    export LD_LIBRARY_PATH="$LIB_PATH/lib:$LD_LIBRARY_PATH"
 
     echo -e "${WARNING} Initializing Zlib 1.2.11"
-    export PATH="/cvmfs/sft.cern.ch/lcg/releases/zlib/1.2.11-8af4c/x86_64-centos7-gcc11-opt//bin:$PATH"
-    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/lzlib/1.2.11-8af4c/x86_64-centos7-gcc11-opt//lib:$LD_LIBRARY_PATH"
-    # source /cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lz4-env.sh
+    LIB_PATH="/cvmfs/sft.cern.ch/lcg/releases/zlib/1.2.11-8af4c/x86_64-centos7-gcc11-opt"
+    export PATH="$LIB_PATH/bin:$PATH"
+    export LD_LIBRARY_PATH="$LIB_PATH/lib:$LD_LIBRARY_PATH"
 
     echo -e "${WARNING} Initializing FFTW3 3.3.10"
-    export PATH="/cvmfs/sft.cern.ch/lcg/releases/fftw3/3.3.10-33229/x86_64-centos7-gcc11-opt/bin:$PATH"
-    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/fftw3/3.3.10-33229/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
-    # source /cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lz4-env.sh
+    LIB_PATH="/cvmfs/sft.cern.ch/lcg/releases/fftw3/3.3.10-33229/x86_64-centos7-gcc11-opt"
+    export PATH="$LIB_PATH/bin:$PATH"
+    export LD_LIBRARY_PATH="$LIB_PATH/lib:$LD_LIBRARY_PATH"
 
     echo -e "${WARNING} Initializing cfitsio 3.48"
-    export PATH="/cvmfs/sft.cern.ch/lcg/releases/cfitsio/3.48-e4bb8/x86_64-centos7-gcc11-opt/bin:$PATH"
-    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/cfitsio/3.48-e4bb8/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
-    # source /cvmfs/sft.cern.ch/lcg/releases/lz4/1.9.2-9bdfe/x86_64-centos7-gcc11-opt/lz4-env.sh
+    LIB_PATH="/cvmfs/sft.cern.ch/lcg/releases/cfitsio/3.48-e4bb8/x86_64-centos7-gcc11-opt"
+    export PATH="$LIB_PATH/bin:$PATH"
+    export LD_LIBRARY_PATH="$LIB_PATH/lib:$LD_LIBRARY_PATH"
+
+    echo -e "${WARNING} Initializing openssl 1.0.2"
+    LIB_PATH="/cvmfs/sft.cern.ch/lcg/releases/openssl/1.0.2o-96de1/x86_64-centos7-gcc7-opt"
+    export PATH="$LIB_PATH/bin:$PATH"
+    export LD_LIBRARY_PATH="$LIB_PATH/lib:$LD_LIBRARY_PATH"
+
 
     # echo -e "${WARNING} Initializing ROOT 6.28.00"
     # source /cvmfs/sft.cern.ch/lcg/latest/ROOT/6.28.00-fd53a/x86_64-ubuntu2204-gcc11-opt/bin/thisroot.sh
@@ -220,24 +226,29 @@ function link_t2k_soft()
     # source /cvmfs/sft.cern.ch/lcg/contrib/cuda/12.1/x86_64-centos7/setup.sh
 
     echo -e "${WARNING} Initializing CMake"
-    export PATH="/cvmfs/sft.cern.ch/lcg/contrib/CMake/latest/Linux-x86_64/bin:$PATH"
-    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/contrib/CMake/latest/Linux-x86_64/lib:$LD_LIBRARY_PATH"
+    LIB_PATH="/cvmfs/sft.cern.ch/lcg/contrib/CMake/latest/Linux-x86_64"
+    export PATH="$LIB_PATH/bin:$PATH"
+    export LD_LIBRARY_PATH="$LIB_PATH/lib:$LD_LIBRARY_PATH"
 
     echo -e "${WARNING} Initializing Git 2.28.0"
-    export PATH="/cvmfs/sft.cern.ch/lcg/contrib/git/2.28.0/x86_64-centos7/bin:$PATH"
-    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/contrib/git/2.28.0/x86_64-centos7/lib:$LD_LIBRARY_PATH"
+    LIB_PATH="/cvmfs/sft.cern.ch/lcg/contrib/git/2.28.0/x86_64-centos7"
+    export PATH="$LIB_PATH/bin:$PATH"
+    export LD_LIBRARY_PATH="$LIB_PATH/lib:$LD_LIBRARY_PATH"
 
     echo -e "${WARNING} Initializing yamlcpp 0.6.3"
-    export PATH="/cvmfs/sft.cern.ch/lcg/releases/yamlcpp/0.6.3-d05b2/x86_64-centos7-gcc11-opt/bin:$PATH"
-    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/yamlcpp/0.6.3-d05b2/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
+    LIB_PATH="/cvmfs/sft.cern.ch/lcg/releases/yamlcpp/0.6.3-d05b2/x86_64-centos7-gcc11-opt"
+    export PATH="$LIB_PATH/bin:$PATH"
+    export LD_LIBRARY_PATH="$LIB_PATH/lib:$LD_LIBRARY_PATH"
 
     echo -e "${WARNING} Initializing yamlcpp 0.6.3"
-    export PATH="/cvmfs/sft.cern.ch/lcg/releases/yamlcpp/0.6.3-d05b2/x86_64-centos7-gcc11-opt/bin:$PATH"
-    export LD_LIBRARY_PATH="/cvmfs/sft.cern.ch/lcg/releases/yamlcpp/0.6.3-d05b2/x86_64-centos7-gcc11-opt/lib:$LD_LIBRARY_PATH"
+    LIB_PATH="/cvmfs/sft.cern.ch/lcg/releases/yamlcpp/0.6.3-d05b2/x86_64-centos7-gcc11-opt"
+    export PATH="$LIB_PATH/bin:$PATH"
+    export LD_LIBRARY_PATH="$LIB_PATH/lib:$LD_LIBRARY_PATH"
 
     echo -e "${WARNING} Initializing ROOT v6.26.10"
-    export PATH="/afs/cern.ch/user/a/adblanch/public/software/install/root/6.26.10_x86_64_el7_gcc11_cxx17/bin:$PATH"
-    export LD_LIBRARY_PATH="/afs/cern.ch/user/a/adblanch/public/software/install/root/6.26.10_x86_64_el7_gcc11_cxx17/lib:$LD_LIBRARY_PATH"
+    LIB_PATH="/afs/cern.ch/user/a/adblanch/public/software/install/root/6.26.10_x86_64_el7_gcc11_cxx17"
+    export PATH="$LIB_PATH/bin:$PATH"
+    export LD_LIBRARY_PATH="$LIB_PATH/lib:$LD_LIBRARY_PATH"
 
 
   elif [[ $machineName =~ .baobab$ ]]; then
