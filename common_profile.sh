@@ -291,14 +291,16 @@ function setup_programs(){
     # module load GCC # ROOT HANDLED
 
     echo "Loading ROOT module"
-    ml load GCC/11.2.0
+    # ml load GCC/11.2.0
+    ml load GCC/13.2.0
+    ml load GCCcore/13.2.0
     ml load Automake
     ml load libtool
     # ml load OpenMPI/4.1.1
     # module load ROOT
 
     echo "Loading yaml-cpp module"
-    ml load GCCcore/11.3.0
+    # ml load GCCcore/11.3.0
     module load yaml-cpp/0.7.0
 
     echo "Loading other modules..."
@@ -306,7 +308,7 @@ function setup_programs(){
 
     module load Python
     module load CMake
-    module load git
+    module load git/2.41.0-nodocs
     module load CUDA
     ml load Geant4
 
