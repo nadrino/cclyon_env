@@ -290,6 +290,11 @@ function setup_programs(){
     # https://doc.eresearch.unige.ch/hpc/applications_and_libraries
     # module load GCC # ROOT HANDLED
 
+
+    echo "Loading other modules..."
+    # module load nlohmann_json
+    # module load yaml-cpp/0.7.0
+
     echo "Loading ROOT module"
     # ml load GCC/11.2.0
     ml load GCC/13.2.0
@@ -300,17 +305,14 @@ function setup_programs(){
     # module load ROOT
 
     echo "Loading yaml-cpp module"
-    # ml load GCCcore/11.3.0
-    module load yaml-cpp/0.7.0
 
-    echo "Loading other modules..."
-    module load nlohmann_json
+
 
     module load Python
     module load CMake
-    module load git/2.41.0-nodocs
+    module load git
     module load CUDA
-    ml load Geant4
+    # ml load Geant4
 
     export OA_INPUT_FOLDER="${HOME}/work/inputs/gundam"
   elif [[ $machineName =~ .cern.ch$ ]];
