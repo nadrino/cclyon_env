@@ -294,6 +294,7 @@ function setup_programs(){
     echo "Loading other modules..."
     # module load nlohmann_json
     # module load yaml-cpp/0.7.0
+    module load git
 
     echo "Loading ROOT module"
     # ml load GCC/11.2.0
@@ -305,12 +306,8 @@ function setup_programs(){
     # module load ROOT
 
     echo "Loading yaml-cpp module"
-
-
-
     module load Python
     module load CMake
-    module load git
     module load CUDA
     # ml load Geant4
 
