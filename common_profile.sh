@@ -294,13 +294,10 @@ function setup_programs(){
     echo "Loading other modules..."
     # module load nlohmann_json
     # module load yaml-cpp/0.7.0
-    # module load git
 
     echo "Loading ROOT module"
-    ml load GCC/11.2.0
-    ml load GCCcore/11.2.0
-    # ml load GCC/13.2.0
-    # ml load GCCcore/13.2.0
+    ml load GCC/12.3.0
+    ml load GCCcore/12.3.0
     ml load Automake
     ml load libtool
     # ml load OpenMPI/4.1.1
