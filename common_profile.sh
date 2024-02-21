@@ -298,6 +298,7 @@ function setup_programs(){
     echo "Loading ROOT module"
     ml load GCC/12.3.0
     ml load GCCcore/12.3.0
+    module load X11/20230603 # with GCC/12.3.0 module spider X11/20230603 to check
     ml load Automake
     ml load libtool
     # ml load OpenMPI/4.1.1
