@@ -171,8 +171,8 @@ function link_t2k_soft()
     echo -e "${WARNING} Using dev ROOT version..."
     dev_root
   elif [[ $machineName =~ .cern.ch$ ]]; then
-    echo -e "${WARNING} Initializing GCC 11"
-    source /cvmfs/sft.cern.ch/lcg/contrib/gcc/11/x86_64-centos7/setup.sh
+    # echo -e "${WARNING} Initializing GCC 11"
+    # source /cvmfs/sft.cern.ch/lcg/contrib/gcc/11/x86_64-centos7/setup.sh
 
     # echo -e "${WARNING} Initializing clang 15.0.7"
     # source /cvmfs/sft.cern.ch/lcg/releases/clang/15.0.7-27d6b/x86_64-centos7-gcc11-opt/setup.sh

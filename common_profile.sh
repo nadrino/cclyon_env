@@ -317,10 +317,10 @@ function setup_programs(){
     # alias cmake=cmake3
 
     # HOMEBREW
-    export HOMEBREW_CURL_PATH="$INSTALL_DIR/curl/bin/curl"
-    export HOMEBREW_GIT_PATH="$INSTALL_DIR/git/bin/git"
-
-    eval "$(${EOS_PATH}/homebrew/bin/brew shellenv)"
+    # export HOMEBREW_CURL_PATH="$INSTALL_DIR/curl/bin/curl"
+    # export HOMEBREW_GIT_PATH="$INSTALL_DIR/git/bin/git"
+    #
+    # eval "$(${EOS_PATH}/homebrew/bin/brew shellenv)"
 
   else
     module load Compilers/gcc/9.3.1
