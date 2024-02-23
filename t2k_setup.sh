@@ -253,10 +253,10 @@ function link_t2k_soft()
 
   elif [[ $machineName =~ .baobab$ ]]; then
     echo -e "${WARNING} Loading local ROOT lib..."
-    source ${INSTALL_DIR}/root-v6-26-10/bin/thisroot.sh
+    source ${INSTALL_DIR}/root/bin/thisroot.sh
   elif [[ $machineName =~ .yggdrasil$ ]]; then
     echo -e "${WARNING} Loading local ROOT lib..."
-    source ${INSTALL_DIR}/root-v6-26-10/bin/thisroot.sh
+    source ${INSTALL_DIR}/root/bin/thisroot.sh
   fi
 
   builtin cd $current_path

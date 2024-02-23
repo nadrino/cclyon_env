@@ -291,11 +291,11 @@ function setup_programs(){
     # module load GCC # ROOT HANDLED
 
 
-    echo "Loading other modules..."
+    # echo "Loading other modules..."
     # module load nlohmann_json
     # module load yaml-cpp/0.7.0
 
-    echo "Loading ROOT module"
+    echo "Loading GCC modules"
     ml load GCC/12.3.0
     ml load GCCcore/12.3.0
     module load X11/20230603 # with GCC/12.3.0 module spider X11/20230603 to check
@@ -304,9 +304,14 @@ function setup_programs(){
     # ml load OpenMPI/4.1.1
     # module load ROOT
 
-    echo "Loading yaml-cpp module"
+    echo "Loading Python module"
     module load Python
+
+
+    echo "Loading CMake module"
     module load CMake
+
+    echo "Loading CUDA module"
     module load CUDA
     # ml load Geant4
 
