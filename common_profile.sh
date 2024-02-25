@@ -328,8 +328,8 @@ function setup_programs(){
     # eval "$(${EOS_PATH}/homebrew/bin/brew shellenv)"
 
   else
-    module load Compilers/gcc/9.3.1
-    module load Analysis/root
+    module load Compilers/gcc
+    # module load Analysis/root
     module load Programming_Languages/perl
     module load python
     module load fortran
