@@ -507,7 +507,7 @@ function build_gundam(){
       -D YAMLCPP_DIR=$COMMON_INSTALL_DIR/yaml-cpp \
       -D USE_STATIC_LINKS=OFF \
       -D WITH_CACHE_MANAGER=OFF \
-      -D WITH_GUNDAM_ROOT_APP=OFF \
+      -D WITH_GUNDAM_ROOT_APP=ON \
       $REPO_DIR/${REPO_NAME}/.
     make clean
   fi
