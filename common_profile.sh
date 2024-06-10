@@ -351,6 +351,8 @@ function setup_programs(){
 
         export INSTALL_DIR="$T2K_SPS_DIR/install/el9"
         export BUILD_DIR="$T2K_SPS_DIR/build/el9"
+
+        module load Analysis/root/6.30.06
         # Add your Red Hat 9 specific commands here
     else
         echo "Unsupported OS or version."
