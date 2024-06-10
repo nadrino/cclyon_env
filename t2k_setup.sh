@@ -59,6 +59,8 @@ function set_t2k_env(){
         export COMMON_INSTALL_DIR="/sps/t2k/common/software/install/el9"
         export COMMON_BUILD_DIR="/sps/t2k/common/software/build/el9"
         export COMMON_SOURCE_DIR="/sps/t2k/common/software/source"
+
+        echo $COMMON_INSTALL_DIR
         # Add your Red Hat 9 specific commands here
     else
         echo "Unsupported OS or version."
