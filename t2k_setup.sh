@@ -34,6 +34,8 @@ function set_t2k_env(){
     export COMMON_BUILD_DIR=$BUILD_DIR
     export COMMON_SOURCE_DIR=$REPO_DIR
   else
+    echo "Setting up common libraries..."
+
     # Detect the OS and version
     if [ -f /etc/os-release ]; then
         . /etc/os-release

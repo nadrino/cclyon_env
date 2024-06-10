@@ -337,7 +337,6 @@ function setup_programs(){
         OS_VERSION=$VERSION_ID
     else
         echo "Cannot determine the OS version."
-        exit 1
     fi
 
     # Execute routines based on the OS and version
@@ -352,7 +351,6 @@ function setup_programs(){
         # Add your Red Hat 9 specific commands here
     else
         echo "Unsupported OS or version."
-        exit 1
     fi
 
     # module load Analysis/root
