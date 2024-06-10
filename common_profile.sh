@@ -343,6 +343,9 @@ function setup_programs(){
     # Execute routines based on the OS and version
     if [ "$OS_NAME" == "centos" ] && [[ "$OS_VERSION" == 7* ]]; then
         echo "Running routine for CentOS 7..."
+
+        module load Compilers/gcc/9.3.1
+        module load Programming_Languages/perl
         # Add your CentOS 7 specific commands here
     elif [ "$OS_NAME" == "rhel" ] && [[ "$OS_VERSION" == 9* ]]; then
         echo "Running routine for Red Hat 9..."
@@ -352,10 +355,7 @@ function setup_programs(){
         exit 1
     fi
 
-
-    module load Compilers/gcc/9.3.1
     # module load Analysis/root
-    module load Programming_Languages/perl
     module load python
     module load fortran
     module load Collaborative_Tools/git
