@@ -34,9 +34,33 @@ function set_t2k_env(){
     export COMMON_BUILD_DIR=$BUILD_DIR
     export COMMON_SOURCE_DIR=$REPO_DIR
   else
-    export COMMON_INSTALL_DIR="/sps/t2k/common/software/install"
-    export COMMON_BUILD_DIR="/sps/t2k/common/software/build"
-    export COMMON_SOURCE_DIR="/sps/t2k/common/software/source"
+    # Detect the OS and version
+    if [ -f /etc/os-release ]; then
+        . /etc/os-release
+        OS_NAME=$ID
+        OS_VERSION=$VERSION_ID
+    else
+        echo "Cannot determine the OS version."
+    fi
+
+    # Execute routines based on the OS and version
+    if [ "$OS_NAME" == "centos" ] && [[ "$OS_VERSION" == 7* ]]; then
+        echo "Running routine for CentOS 7..."
+
+        export COMMON_INSTALL_DIR="/sps/t2k/common/software/install"
+        export COMMON_BUILD_DIR="/sps/t2k/common/software/build"
+        export COMMON_SOURCE_DIR="/sps/t2k/common/software/source"
+        # Add your CentOS 7 specific commands here
+    elif [ "$OS_NAME" == "rhel" ] && [[ "$OS_VERSION" == 9* ]]; then
+        echo "Running routine for Red Hat 9..."
+
+        export COMMON_INSTALL_DIR="/sps/t2k/common/software/install/el9"
+        export COMMON_BUILD_DIR="/sps/t2k/common/software/build/el9"
+        export COMMON_SOURCE_DIR="/sps/t2k/common/software/source"
+        # Add your Red Hat 9 specific commands here
+    else
+        echo "Unsupported OS or version."
+    fi
   fi
 
 
