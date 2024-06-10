@@ -328,6 +328,31 @@ function setup_programs(){
     # eval "$(${EOS_PATH}/homebrew/bin/brew shellenv)"
 
   else
+    # CCLyon
+
+    # Detect the OS and version
+    if [ -f /etc/os-release ]; then
+        . /etc/os-release
+        OS_NAME=$ID
+        OS_VERSION=$VERSION_ID
+    else
+        echo "Cannot determine the OS version."
+        exit 1
+    fi
+
+    # Execute routines based on the OS and version
+    if [ "$OS_NAME" == "centos" ] && [[ "$OS_VERSION" == 7* ]]; then
+        echo "Running routine for CentOS 7..."
+        # Add your CentOS 7 specific commands here
+    elif [ "$OS_NAME" == "rhel" ] && [[ "$OS_VERSION" == 9* ]]; then
+        echo "Running routine for Red Hat 9..."
+        # Add your Red Hat 9 specific commands here
+    else
+        echo "Unsupported OS or version."
+        exit 1
+    fi
+
+
     module load Compilers/gcc/9.3.1
     # module load Analysis/root
     module load Programming_Languages/perl
