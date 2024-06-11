@@ -37,6 +37,29 @@ function set_t2k_env(){
     echo "Setting up common libraries..."
   fi
 
+  # Detect the OS and version
+  if [ -f /etc/os-release ]; then
+      . /etc/os-release
+      OS_NAME=$ID
+      OS_VERSION=$VERSION_ID
+  else
+      echo "Cannot determine the OS version."
+  fi
+
+  # Execute routines based on the OS and version
+  if [ "$OS_NAME" == "centos" ] && [[ "$OS_VERSION" == 7* ]]; then
+      echo "Running routine for CentOS 7..."
+      # Add your CentOS 7 specific commands here
+  elif [ "$OS_NAME" == "rhel" ] && [[ "$OS_VERSION" == 9* ]]; then
+      echo "Running routine for Red Hat 9..."
+
+      export INSTALL_DIR="$T2K_SPS_DIR/install/el9"
+      export BUILD_DIR="$T2K_SPS_DIR/build/el9"
+      # Add your Red Hat 9 specific commands here
+  else
+      echo "Unsupported OS or version."
+  fi
+
 
 
   export RESULTS_DIR="$WORK_DIR/results"
