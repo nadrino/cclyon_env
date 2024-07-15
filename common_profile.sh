@@ -385,7 +385,7 @@ function setup_programs(){
 
   echo "   ├─ CMake Version : $(cmake --version | head -n 1)"
   echo "   ├─ Git Version : $(git --version)"
-  echo "   ├─ curl Version : $(curl --version)"
+  echo "   ├─ curl Version : $(curl --version | awk 'NR==1{print $2}')"
   echo "   ├─ Python Version : $(python --version)"
   echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
 }; export -f setup_programs
