@@ -319,6 +319,8 @@ function setup_programs(){
   elif [[ $machineName =~ .cern.ch$ ]];
   then
     echo "LXPlus config..."
+
+    alias python=python3
     # alias cmake=cmake3
 
     # HOMEBREW
