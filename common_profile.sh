@@ -315,7 +315,9 @@ function setup_programs(){
     module load CUDA
     # ml load Geant4
 
-    export OA_INPUT_FOLDER="${HOME}/work/inputs/gundam"
+    # export OA_INPUT_FOLDER="${HOME}/work/inputs/gundam"
+    export OA_INPUT_FOLDER="/srv/beegfs/dpnc/groups/neutrino/t2k/oa"
+
   elif [[ $machineName =~ .cern.ch$ ]];
   then
     echo "LXPlus config..."
