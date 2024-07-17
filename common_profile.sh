@@ -315,6 +315,9 @@ function setup_programs(){
     module load CUDA
     # ml load Geant4
 
+
+    module load libGLU # for ROOT build
+
     # export OA_INPUT_FOLDER="${HOME}/work/inputs/gundam"
     export OA_INPUT_FOLDER="/srv/beegfs/dpnc/groups/neutrino/t2k/oa"
 
