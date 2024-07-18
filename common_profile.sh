@@ -356,8 +356,8 @@ function setup_programs(){
     elif [ "$OS_NAME" == "rhel" ] && [[ "$OS_VERSION" == 9* ]]; then
         echo "Running routine for Red Hat 9..."
 
-        export INSTALL_DIR="$T2K_SPS_DIR/install/el9"
-        export BUILD_DIR="$T2K_SPS_DIR/build/el9"
+        export INSTALL_DIR="$T2K_SPS_DIR/install/"
+        export BUILD_DIR="$T2K_SPS_DIR/build"
 
         module load Analysis/root/6.30.06
         # Add your Red Hat 9 specific commands here
