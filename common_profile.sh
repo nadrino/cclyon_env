@@ -334,6 +334,8 @@ function setup_programs(){
     #
     # eval "$(${EOS_PATH}/homebrew/bin/brew shellenv)"
 
+    export OA_INPUT_FOLDER="/eos/home-a/adblanch/software/work/inputs/gundam/oa"
+
   else
     # CCLyon
 

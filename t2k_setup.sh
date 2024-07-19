@@ -17,9 +17,8 @@ function set_t2k_env(){
   if [ -z ${T2K_SPS_DIR+x} ];
   then
     export T2K_SPS_DIR="/sps/t2k/ablanche"
-  else
-    echo "T2K_SPS_DIR = '$T2K_SPS_DIR'";
   fi
+  echo "T2K_SPS_DIR = '$T2K_SPS_DIR'";
 
   export INSTALL_DIR="$T2K_SPS_DIR/install"
   export BUILD_DIR="$T2K_SPS_DIR/build"
