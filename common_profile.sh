@@ -641,12 +641,15 @@ function logPrint(){
   then
     logTempFile="${1%.sh}.log"
     logFile="${logTempFile/Script_/log_}"
+    echo $LOGS_DIR/*/${logFile}
     tail -n +1 -f $LOGS_DIR/*/${logFile}
   elif [[ $1 == *.log ]]
   then
+    echo $LOGS_DIR/*/${1}
     tail -n +1 -f $LOGS_DIR/*/${1}
   else
     logFile="${1/Script_/log_}"
+    echo $LOGS_DIR/*/${logFile}*
     tail -n +1 -f $LOGS_DIR/*/${logFile}*
   fi
 }
