@@ -318,8 +318,8 @@ function setup_programs(){
 
     module load libGLU # for ROOT build
 
-    # export OA_INPUT_FOLDER="${HOME}/work/inputs/gundam"
-    export OA_INPUT_FOLDER="/srv/beegfs/dpnc/groups/neutrino/t2k/oa"
+    export OA_INPUT_FOLDER="${HOME}/work/inputs/gundam"
+    # export OA_INPUT_FOLDER="/srv/beegfs/dpnc/groups/neutrino/t2k/oa"
 
   elif [[ $machineName =~ .cern.ch$ ]];
   then
