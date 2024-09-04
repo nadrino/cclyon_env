@@ -528,6 +528,7 @@ function build_gundam(){
       -D USE_STATIC_LINKS=OFF \
       -D WITH_CACHE_MANAGER=OFF \
       -D WITH_GUNDAM_ROOT_APP=ON \
+      -D USE_MINIMAL_LOG_OUTPUT=ON \
       $REPO_DIR/${REPO_NAME}/.
     make clean
   fi
