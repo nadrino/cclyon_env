@@ -283,7 +283,7 @@ function download_ccl(){
 
 function download_hpc(){
   echo -e "${ALERT} Downloading files from the HPC Geneva..."
-  rsync -aP \
+  rsync -azP \
     -e "ssh -i $HOME/.ssh/hpc_id_rsa" \
     blancadr@login1.baobab.hpc.unige.ch:$1 ./
 }; export -f download_hpc
