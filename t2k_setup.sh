@@ -29,6 +29,9 @@ function set_t2k_env(){
   export SCRATCH_DIR="$T2K_SPS_DIR/scratch"
 
   if [[ $machineName =~ .cern.ch$ ]]; then
+    # HTC condor don't accept inputs from /eos/
+    export INSTALL_DIR="/afs/cern.ch/user/a/adblanch/private/install"
+
     export COMMON_INSTALL_DIR=$INSTALL_DIR
     export COMMON_BUILD_DIR=$BUILD_DIR
     export COMMON_SOURCE_DIR=$REPO_DIR
