@@ -55,8 +55,8 @@ function set_t2k_env(){
   elif [ "$OS_NAME" == "rhel" ] && [[ "$OS_VERSION" == 9* ]]; then
       echo "Running routine for Red Hat 9..."
 
-      export INSTALL_DIR="$T2K_SPS_DIR/install"
-      export BUILD_DIR="$T2K_SPS_DIR/build"
+      # export INSTALL_DIR="$T2K_SPS_DIR/install"
+      # export BUILD_DIR="$T2K_SPS_DIR/build"
       # Add your Red Hat 9 specific commands here
   else
       echo "Unsupported OS or version."
