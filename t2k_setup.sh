@@ -529,10 +529,7 @@ function build_gundam(){
       -D CMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/${REPO_NAME} \
       -D CMAKE_BUILD_TYPE=$1 \
       -D YAMLCPP_DIR=$COMMON_INSTALL_DIR/yaml-cpp \
-      -D USE_STATIC_LINKS=OFF \
-      -D WITH_CACHE_MANAGER=OFF \
-      -D WITH_GUNDAM_ROOT_APP=ON \
-      -D DISABLE_MANUAL_LOG_HEADER=ON \
+      -D USE_STATIC_LINKS=ON \
       $REPO_DIR/${REPO_NAME}/.
     make clean
   fi
