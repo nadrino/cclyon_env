@@ -28,10 +28,14 @@ function set_t2k_env(){
   export DOWNLOAD_DIR="$T2K_SPS_DIR/download"
   export SCRATCH_DIR="$T2K_SPS_DIR/scratch"
 
+  alias job='jobSlurm.py'
+
   if [[ $machineName =~ .cern.ch$ ]]; then
     # HTC condor don't accept inputs from /eos/
     export INSTALL_DIR="/afs/cern.ch/user/a/adblanch/private/install"
     export WORK_DIR="/afs/cern.ch/user/a/adblanch/private/work"
+
+    alias job='condor_q'
 
     export COMMON_INSTALL_DIR=$INSTALL_DIR
     export COMMON_BUILD_DIR=$BUILD_DIR
