@@ -281,6 +281,13 @@ function download_ccl(){
     ablanche@cca.in2p3.fr:$1 ./
 }; export -f download_ccl
 
+function download_hpc(){
+  echo -e "${ALERT} Downloading files from the HPC Geneva..."
+  rsync -aP \
+    -e "ssh -i $HOME/.ssh/hpc_id_rsa" \
+    blancadr@login1.baobab.hpc.unige.ch:$1 ./
+}; export -f download_hpc
+
 # Setting up programs
 function setup_programs(){
   echo "├─ Setting up Programs..." >&2
@@ -335,7 +342,8 @@ function setup_programs(){
     #
     # eval "$(${EOS_PATH}/homebrew/bin/brew shellenv)"
 
-    export OA_INPUT_FOLDER="/eos/home-a/adblanch/software/work/inputs/gundam/oa"
+    export GUNDAM_INPUTS_DIR="/eos/experiment/neutplatform/t2knd280/gundam/inputs"
+    export OA_INPUT_FOLDER="${GUNDAM_INPUTS_DIR}/oa"
 
   else
     # CCLyon
