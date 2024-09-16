@@ -88,7 +88,6 @@ function set_t2k_env(){
   export PYTHONPATH="$REPO_DIR/cclyon_py_tools/submodules/py-generic-toolbox/src:$PYTHONPATH"
   export PATH="$REPO_DIR/cclyon_py_tools/scripts:$PATH"
   export PATH="$REPO_DIR/cclyon_bash_tools/bin:$PATH"
-  alias job="jobSlurm.py"
 
   export CC_ROOT_MACROS="$REPO_DIR/cclyon_root_macros/"
   export CC_BASH_TOOLS="$REPO_DIR/cclyon_bash_tools/"
