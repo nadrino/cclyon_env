@@ -35,7 +35,7 @@ function set_t2k_env(){
   export JOBS_DIR="$WORK_DIR/jobs"
   export LOGS_DIR="$JOBS_DIR/logs"
 
-
+  alias logs="cd $LOGS_DIR"
   alias job='jobSlurm.py'
 
   if [[ $machineName =~ .cern.ch$ ]]; then
@@ -47,6 +47,7 @@ function set_t2k_env(){
     export JOBS_DIR="/afs/cern.ch/user/a/adblanch/private/jobs/scripts"
 
     alias job='condor_q'
+    alias logs='cd /eos/home-a/adblanch/logs'
 
     export COMMON_INSTALL_DIR=$INSTALL_DIR
     export COMMON_BUILD_DIR=$BUILD_DIR
@@ -84,7 +85,6 @@ function set_t2k_env(){
   alias work="cd $WORK_DIR"
   alias repo="cd $REPO_DIR"
   alias res="cd $RESULTS_DIR"
-  alias logs="cd $LOGS_DIR"
   alias fig="cd $FIGURES_DIR"
 
   # Python
