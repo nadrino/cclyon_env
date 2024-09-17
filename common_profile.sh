@@ -371,6 +371,8 @@ function setup_programs(){
         export BUILD_DIR="$T2K_SPS_DIR/build"
 
         module load gcc
+        export CC="$(which gcc)"
+        export CXX="$(which g++)"
         module load Analysis/root/6.30.06
         # Add your Red Hat 9 specific commands here
     else
@@ -393,8 +395,7 @@ function setup_programs(){
     # ccenv gcc 7.3.0
     # ccenv gcc 5.5.0
     # source /opt/rh/devtoolset-7/enable
-    # export CC="$(which gcc)"
-    # export CXX="$(which g++)"
+
     # echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
 
     export OA_INPUT_FOLDER="/sps/t2k/common/inputs"
