@@ -28,12 +28,23 @@ function set_t2k_env(){
   export DOWNLOAD_DIR="$T2K_SPS_DIR/download"
   export SCRATCH_DIR="$T2K_SPS_DIR/scratch"
 
+  export RESULTS_DIR="$WORK_DIR/results"
+  export DATA_DIR="$WORK_DIR/data"
+  export FIGURES_DIR="$WORK_DIR/figures"
+
+  export JOBS_DIR="$WORK_DIR/jobs"
+  export LOGS_DIR="$JOBS_DIR/logs"
+
+
   alias job='jobSlurm.py'
 
   if [[ $machineName =~ .cern.ch$ ]]; then
     # HTC condor don't accept inputs from /eos/
-    export INSTALL_DIR="/afs/cern.ch/user/a/adblanch/private/install"
-    export WORK_DIR="/afs/cern.ch/user/a/adblanch/private/work"
+    # export INSTALL_DIR="/afs/cern.ch/user/a/adblanch/private/install"
+    # export WORK_DIR="/afs/cern.ch/user/a/adblanch/private/work"
+
+    export LOGS_DIR="/afs/cern.ch/user/a/adblanch/private/jobs/logs"
+    export JOBS_DIR="/afs/cern.ch/user/a/adblanch/private/jobs/scripts"
 
     alias job='condor_q'
 
@@ -67,14 +78,6 @@ function set_t2k_env(){
       echo "Unsupported OS or version."
   fi
 
-
-
-  export RESULTS_DIR="$WORK_DIR/results"
-  export DATA_DIR="$WORK_DIR/data"
-  export FIGURES_DIR="$WORK_DIR/figures"
-  export JOBS_DIR="$WORK_DIR/jobs"
-
-  export LOGS_DIR="$JOBS_DIR/logs"
 
   # Aliases
   alias sps="cd $T2K_SPS_DIR"
