@@ -43,8 +43,8 @@ function set_t2k_env(){
     # export INSTALL_DIR="/afs/cern.ch/user/a/adblanch/private/install"
     # export WORK_DIR="/afs/cern.ch/user/a/adblanch/private/work"
 
-    export LOGS_DIR="/afs/cern.ch/user/a/adblanch/private/jobs/logs"
-    export JOBS_DIR="/afs/cern.ch/user/a/adblanch/private/jobs/scripts"
+    export JOBS_DIR="/afs/cern.ch/user/a/adblanch/private/jobs"
+    export LOGS_DIR="${JOBS_DIR}/logs"
 
     alias job='condor_q'
     alias logs='cd /eos/home-a/adblanch/logs'
