@@ -199,7 +199,7 @@ function link_t2k_soft()
     source /sps/t2k/common/software/env.sh
 
     echo -e "${WARNING} Using dev ROOT version..."
-    dev_root
+    source /sps/t2k/common/software/install/root-v6-24-06/bin/thisroot.sh
   elif [[ $machineName =~ .cern.ch$ ]]; then
     echo -e "${WARNING} Init CERN soft"
     # source /cvmfs/sft.cern.ch/lcg/contrib/gcc/11/x86_64-centos7/setup.sh
