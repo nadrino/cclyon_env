@@ -373,9 +373,9 @@ function setup_programs(){
         module load gcc
         export CC="$(which gcc)"
         export CXX="$(which g++)"
-        export LD_LIBRARY_PATH=$(dirname $(which gcc)/../lib64:$LD_LIBRARY_PATH
+        export LD_LIBRARY_PATH=$(dirname $(which gcc))/../lib64:$LD_LIBRARY_PATH
 
-        module load Analysis/root/6.30.06
+        # module load Analysis/root/6.30.06
         # Add your Red Hat 9 specific commands here
     else
         echo "Unsupported OS or version."
