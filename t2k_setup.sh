@@ -200,6 +200,8 @@ function link_t2k_soft()
 
     echo -e "${WARNING} Using dev ROOT version..."
     source /sps/t2k/common/software/install/root-v6-24-06/bin/thisroot.sh
+    echo "   ├─ ROOT Prefix : $(root-config --prefix)"
+    echo "   ├─ ROOT Version : $(root-config --version)"
   elif [[ $machineName =~ .cern.ch$ ]]; then
     echo -e "${WARNING} Init CERN soft"
     # source /cvmfs/sft.cern.ch/lcg/contrib/gcc/11/x86_64-centos7/setup.sh
