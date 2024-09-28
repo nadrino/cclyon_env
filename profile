@@ -107,7 +107,6 @@ echo -e "${INFO} .profile is loaded."
 
 # By default the T2K env is setup
 set_t2k_env
-link_local_libs
 # setup_brew
 res # go to t2k sps directory
 
