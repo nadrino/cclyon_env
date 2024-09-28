@@ -110,7 +110,7 @@ link_local_libs
 # setup_brew
 res # go to t2k sps directory
 
-function cd{
+function cd {
     builtin cd "$@" && ls -rt
 }
 # export -f cd
