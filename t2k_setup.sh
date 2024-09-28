@@ -13,7 +13,6 @@ function set_t2k_env(){
   echo -e "${WARNING} Setting up T2K env..."
 
   # Env variables
-
   if [ -z ${CC_DIR+x} ];
   then
     export CC_DIR=$T2K_SPS_DIR
@@ -112,7 +111,7 @@ function link_local_libs(){
 
   if [ -z ${T2K_ENV_IS_SETUP+x} ];
   then
-    echo "$T2K_ENV_IS_SETUP is not set. Please run set_t2k_env first.";
+    echo "T2K_ENV_IS_SETUP is not set. Please run set_t2k_env first.";
     return;
   fi
 
