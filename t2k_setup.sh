@@ -533,12 +533,24 @@ function build_gundam(){
   then
     read -p "Rebuilding with $1 build type? Press enter to validate"
     rm $BUILD_DIR/gundam/CMakeCache.txt
+
+    CLUSTER_OPTIONS="-D USE_STATIC_LINKS=ON"
+    if[[ $machineName =~ .cern.ch$ ]]; then
+      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_CUDA_LIB=ON"
+      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D CMAKE_CUDA_COMPILER=/cvmfs/sft.cern.ch/lcg/views/LCG_106_cuda/x86_64-el9-gcc11-opt/bin/nvcc"
+      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D CMAKE_CUDA_ARCHITECTURES=all"
+      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_GUNDAM_ROOT_APP=OFF"
+    elif[[ $machineName =~ .in2p3.fr$ ]]; then
+      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D YAMLCPP_DIR=$COMMON_INSTALL_DIR/yaml-cpp"
+      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_CACHE_MANAGER=OFF"
+    else
+      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_CACHE_MANAGER=OFF"
+    fi
+
     cmake \
       -D CMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/${REPO_NAME} \
       -D CMAKE_BUILD_TYPE=$1 \
-      -D YAMLCPP_DIR=$COMMON_INSTALL_DIR/yaml-cpp \
-      -D DISABLE_GOOGLE_TESTS=ON \
-      -D USE_STATIC_LINKS=ON \
+      $CLUSTER_OPTIONS \
       $REPO_DIR/${REPO_NAME}/.
     make clean
   fi
