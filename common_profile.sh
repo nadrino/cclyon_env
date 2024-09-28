@@ -333,7 +333,8 @@ function setup_programs(){
   then
     echo "LXPlus config..."
 
-    alias python=python3
+    source /cvmfs/sft.cern.ch/lcg/views/LCG_106/x86_64-el9-gcc13-opt/setup.sh
+    # alias python=python3
     # alias cmake=cmake3
 
     # HOMEBREW
