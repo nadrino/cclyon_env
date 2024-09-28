@@ -33,14 +33,14 @@ machineName="$(hostname --fqdn)"
 if [[ $machineName =~ .baobab$ || $machineName =~ .yggdrasil$ ]];
 then
   export ENV_SETUP_DIR="$HOME/repo/cclyon_env/"
-  export T2K_SPS_DIR="$HOME"
+  export CC_DIR="$HOME"
 elif [[ $machineName =~ .cern.ch$ ]];
 then
   export EOS_PATH="/eos/home-a/adblanch"
   echo "EOS_PATH=$EOS_PATH"
   export ENV_SETUP_DIR="${EOS_PATH}/software/repo/cclyon_env"
-  # export T2K_SPS_DIR="$HOME/private/software"
-  export T2K_SPS_DIR="${EOS_PATH}/software"
+  # export CC_DIR="$HOME/private/software"
+  export CC_DIR="${EOS_PATH}/software"
 else
   if [ -r /afs/in2p3.fr/common/uss/system_profile ];then
      . /afs/in2p3.fr/common/uss/system_profile
