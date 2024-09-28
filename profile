@@ -109,3 +109,10 @@ echo -e "${INFO} .profile is loaded."
 set_t2k_env
 # setup_brew
 sps # go to t2k sps directory
+
+function cd(){
+    builtin cd "$@" && ls -rt
+}
+# export -f cd
+# DO NOT EXPORT THIS FUNCTION. -> for example, make (cmake) will
+# use this cd and printout each time its called

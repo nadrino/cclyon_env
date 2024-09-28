@@ -238,8 +238,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-function cd
-{
+function cd(){
     builtin cd "$@" && ls -rt
 }
 # export -f cd
@@ -268,11 +267,6 @@ extract () {
 		echo "'$1' is not a valid file"
 	fi
 }; export -f extract
-
-function rackdel(){
-    scancel `seq -f "%.0f" $1 $2`
-    return;
-}; export -f rackdel
 
 function download_ccl(){
   echo -e "${ALERT} Downloading files from the CCLyon..."
