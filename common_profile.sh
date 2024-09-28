@@ -238,13 +238,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-function cd(){
-    builtin cd "$@" && ls -rt
-}
-# export -f cd
-# DO NOT EXPORT THIS FUNCTION. -> for example, make (cmake) will
-# use this cd and printout each time its called
-
 ################################## Extract function ##################################
 
 # Functions
@@ -706,8 +699,6 @@ alias nextcloud='cadaver https://nextcloud.nms.kcl.ac.uk/remote.php/dav/files/AS
 
 # Default software setup
 setup_programs
-# setup_root
-# setup_geant4
 
 # Aliases
 alias root='root -l'
