@@ -187,11 +187,17 @@ function link_t2k_soft()
   echo -e "${WARNING} Linking libs in $INSTALL_DIR"
   for dir in $INSTALL_DIR/*/     # list directories in the form "/tmp/dirname/"
   do
-      dir=${dir%*/}      # remove the trailing "/"
-      sub_folder=${dir##*/} # print everything after the final "/"
+    dir=${dir%*/}      # remove the trailing "/"
+    sub_folder=${dir##*/} # print everything after the final "/"
+    if [[ "$sub_folder" == *_off ]]; then
+      echo "$sub_folder ends with _off. Skipping..."
+    elif [[ "$sub_folder" == '*' ]]; then
+      echo "$sub_folder isn't valid. Skipping..."
+    else
       export PATH="$INSTALL_DIR/$sub_folder/bin:$PATH"
       export LD_LIBRARY_PATH="$INSTALL_DIR/$sub_folder/lib:$LD_LIBRARY_PATH"
       echo "   ├─ Adding : $sub_folder"
+    fi
   done
 
   if [[ $machineName =~ .in2p3.fr$ ]]; then
@@ -535,12 +541,12 @@ function build_gundam(){
     rm $BUILD_DIR/gundam/CMakeCache.txt
 
     CLUSTER_OPTIONS="-D USE_STATIC_LINKS=ON"
-    if[[ $machineName =~ .cern.ch$ ]]; then
+    if [[ $machineName =~ .cern.ch$ ]]; then
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_CUDA_LIB=ON"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D CMAKE_CUDA_COMPILER=/cvmfs/sft.cern.ch/lcg/views/LCG_106_cuda/x86_64-el9-gcc11-opt/bin/nvcc"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D CMAKE_CUDA_ARCHITECTURES=all"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_GUNDAM_ROOT_APP=OFF"
-    elif[[ $machineName =~ .in2p3.fr$ ]]; then
+    elif [[ $machineName =~ .in2p3.fr$ ]]; then
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D YAMLCPP_DIR=$COMMON_INSTALL_DIR/yaml-cpp"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_CACHE_MANAGER=OFF"
     else
