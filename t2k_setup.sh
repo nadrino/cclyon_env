@@ -16,7 +16,7 @@ function set_t2k_env(){
 
   if [ -z ${CC_DIR+x} ];
   then
-    export CC_DIR="/sps/t2k/ablanche"
+    export CC_DIR=$T2K_SPS_DIR
   fi
   echo "CC_DIR = '$CC_DIR'";
 
