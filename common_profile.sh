@@ -183,7 +183,7 @@ unset color_prompt force_color_prompt
 case "$TERM" in
 xterm*|rxvt*)
     # PS1="${LIGHTBLUE}\A ${LIGHTGREEN}\h ${LIGHTGOLD}[\w]\$ ${NORMAL}\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]"
-    PS1="${LIGHTBLUE}\A ${GREEN}\u@\H:\W${NORMAL}\$ ${NORMAL}\[\e]0;${debian_chroot:+($debian_chroot)}\u@\H:\w\a\]"
+    PS1="${LIGHTBLUE}\A ${GREEN}\u@\h:\W${NORMAL}\$ ${NORMAL}\[\e]0;${debian_chroot:+($debian_chroot)}\u@\H:\w\a\]"
     ;;
 *)
     ;;
