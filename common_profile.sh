@@ -196,7 +196,7 @@ xterm*|rxvt*)
 
     # PS1="${LIGHTBLUE}\A ${LIGHTGREEN}\h ${LIGHTGOLD}[\w]\$ ${NORMAL}\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]"
     # PS1="${LIGHTBLUE}\A ${GREEN}\u@\h:\w${NORMAL}\$ ${NORMAL}\[\e]0;${debian_chroot:+($debian_chroot)}\u@\H:\w\a\]"
-    PS1="${LIGHTBLUE}\A ${GREEN}\u@\h:\$PWD${NORMAL}\$ \[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]"
+    PS1="${LIGHTBLUE}\A ${GREEN}\u@\h:\$PWD${NORMAL}\$ \[\e]0;${debian_chroot:+($debian_chroot)}\u@\H: \w\a\]"
     ;;
 *)
     ;;
