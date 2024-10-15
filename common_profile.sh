@@ -182,8 +182,21 @@ unset color_prompt force_color_prompt
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
+
+    # colors should have extra slashes for PS1
+    NORMAL='\[\033[00m\]'
+    LIGHTBLUE='\[\033[1;34m\]'
+    LIGHTRED='\[\033[1;31m\]'
+    LIGHTGREEN='\[\033[1;32m\]'
+    LIGHTGOLD='\[\033[1;33m\]'
+    BGREEN='\[\033[1;32m\]'
+    GREEN='\[\033[0;32m\]'
+    RED='\[\033[0;31m\]'
+    BLUE='\[\033[0;34m\]'
+
     # PS1="${LIGHTBLUE}\A ${LIGHTGREEN}\h ${LIGHTGOLD}[\w]\$ ${NORMAL}\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]"
-    PS1="${LIGHTBLUE}\A ${GREEN}\u@\h:\w${NORMAL}\$ ${NORMAL}\[\e]0;${debian_chroot:+($debian_chroot)}\u@\H:\w\a\]"
+    # PS1="${LIGHTBLUE}\A ${GREEN}\u@\h:\w${NORMAL}\$ ${NORMAL}\[\e]0;${debian_chroot:+($debian_chroot)}\u@\H:\w\a\]"
+    PS1="${LIGHTBLUE}\A ${GREEN}\u@\h:\$PWD${NORMAL}\$ \[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]"
     ;;
 *)
     ;;
