@@ -42,7 +42,7 @@ then
   # export CC_DIR="$HOME/private/software"
   export CC_DIR="${EOS_PATH}/software"
 else
-  export CC_DIR="/sps/t2k/ablanche/software"
+  export CC_DIR="/sps/t2k/ablanche"
   if [ -r /afs/in2p3.fr/common/uss/system_profile ];then
      . /afs/in2p3.fr/common/uss/system_profile
   fi
