@@ -411,6 +411,11 @@ function setup_programs(){
   echo "   ├─ curl Version : $(curl --version | awk 'NR==1{print $2}')"
   echo "   ├─ Python Version : $(python --version)"
   echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
+
+  git config --global user.name "nadrino"
+  git config --global user.email "adrien.blanchet@live.fr"
+  git config --global core.editor "nano"  # Or any editor you prefer
+  
 }; export -f setup_programs
 
 
