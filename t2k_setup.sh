@@ -135,8 +135,8 @@ function link_local_libs(){
     echo -e "${WARNING} Loading common t2k software"
     source /sps/t2k/common/software/env.sh
 
-    echo -e "${WARNING} Using dev ROOT version..."
-    source /sps/t2k/common/software/install/root-v6-32-04/bin/thisroot.sh
+    echo -e "${WARNING} Using our ROOT version..."
+    t2k_setup_root v6-34-02
     echo "   ├─ ROOT Prefix : $(root-config --prefix)"
     echo "   ├─ ROOT Version : $(root-config --version)"
   elif [[ $machineName =~ .cern.ch$ ]]; then
