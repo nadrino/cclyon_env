@@ -296,7 +296,7 @@ function build_gundam(){
     read -p "Rebuilding with $1 build type? Press enter to validate"
     rm $BUILD_DIR/gundam/CMakeCache.txt
 
-    CLUSTER_OPTIONS="-D USE_STATIC_LINKS=ON"
+    CLUSTER_OPTIONS="-D USE_STATIC_LINKS=OFF"
     if [[ $machineName =~ .cern.ch$ ]]; then
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_CUDA_LIB=ON"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D CMAKE_CUDA_COMPILER=/cvmfs/sft.cern.ch/lcg/views/LCG_106_cuda/x86_64-el9-gcc11-opt/bin/nvcc"
