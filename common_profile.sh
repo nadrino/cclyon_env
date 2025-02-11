@@ -415,7 +415,7 @@ function setup_programs(){
   git config --global user.name "nadrino"
   git config --global user.email "adrien.blanchet@live.fr"
   git config --global core.editor "nano"  # Or any editor you prefer
-  
+
 }; export -f setup_programs
 
 
@@ -583,7 +583,7 @@ function qLogin(){
   fi
   echo "nb_cores is set to '$1'";
   set -x
-  srun -p htc_interactive -L sps -c $1 -t 0-08:00 --mem $(( 3*nCores ))G --pty bash -i
+  srun -p htc_interactive -L sps -c $1 -t 0-08:00 --mem $(( 4*nCores ))G --pty bash -i
   set +x
 }; export -f qLogin
 
