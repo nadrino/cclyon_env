@@ -115,22 +115,6 @@ function link_local_libs(){
     return;
   fi
 
-  echo -e "${WARNING} Linking libs in $INSTALL_DIR"
-  for dir in $INSTALL_DIR/*/     # list directories in the form "/tmp/dirname/"
-  do
-    dir=${dir%*/}      # remove the trailing "/"
-    sub_folder=${dir##*/} # print everything after the final "/"
-    if [[ "$sub_folder" == *_off ]]; then
-      echo "   ├─ $sub_folder ends with _off. Skipping..."
-    elif [[ "$sub_folder" == '*' ]]; then
-      echo "   ├─ $sub_folder isn't valid. Skipping..."
-    else
-      export PATH="$INSTALL_DIR/$sub_folder/bin:$PATH"
-      export LD_LIBRARY_PATH="$INSTALL_DIR/$sub_folder/lib:$LD_LIBRARY_PATH"
-      echo "   ├─ Adding : $sub_folder"
-    fi
-  done
-
   if [[ $machineName =~ .in2p3.fr$ ]]; then
     echo -e "${WARNING} Loading common t2k software"
     source /sps/t2k/common/software/env.sh
@@ -225,6 +209,22 @@ function link_local_libs(){
     echo -e "${WARNING} Loading local ROOT lib..."
     source ${INSTALL_DIR}/root/bin/thisroot.sh
   fi
+
+  echo -e "${WARNING} Linking my libs in $INSTALL_DIR"
+  for dir in $INSTALL_DIR/*/     # list directories in the form "/tmp/dirname/"
+  do
+    dir=${dir%*/}      # remove the trailing "/"
+    sub_folder=${dir##*/} # print everything after the final "/"
+    if [[ "$sub_folder" == *_off ]]; then
+      echo "   ├─ $sub_folder ends with _off. Skipping..."
+    elif [[ "$sub_folder" == '*' ]]; then
+      echo "   ├─ $sub_folder isn't valid. Skipping..."
+    else
+      export PATH="$INSTALL_DIR/$sub_folder/bin:$PATH"
+      export LD_LIBRARY_PATH="$INSTALL_DIR/$sub_folder/lib:$LD_LIBRARY_PATH"
+      echo "   ├─ Adding : $sub_folder"
+    fi
+  done
 
   builtin cd $current_path
 
