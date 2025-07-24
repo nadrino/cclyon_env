@@ -228,6 +228,9 @@ function link_local_libs(){
 
   builtin cd $current_path
 
+  # PyGundam
+  export PYTHONPATH="$INSTALL_DIR/gundam/lib:$PYTHONPATH"
+
   echo -e "${INFO} T2K libs have been setup."
 
 }; export -f link_local_libs
@@ -305,7 +308,8 @@ function build_gundam(){
     elif [[ $machineName =~ .in2p3.fr$ ]]; then
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D YAMLCPP_DIR=$COMMON_INSTALL_DIR/yaml-cpp"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_CACHE_MANAGER=OFF"
-      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_PYTHON_INTERFACE=OFF"
+      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_PYTHON_INTERFACE=ON"
+      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D pybind11_DIR=/pbs/home/a/ablanche/.local/lib/python3.12/site-packages/pybind11/share/cmake/pybind11"
     else
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_CACHE_MANAGER=OFF"
     fi
