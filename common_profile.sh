@@ -403,7 +403,7 @@ function setup_programs(){
 
     # echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
 
-    export OA_INPUT_FOLDER="/sps/t2k/common/inputs"
+    export OA_INPUT_FOLDER="$COMMON_DIR/inputs"
   fi
 
   echo "   ├─ CMake Version : $(cmake --version | head -n 1)"

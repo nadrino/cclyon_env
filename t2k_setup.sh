@@ -34,6 +34,9 @@ function set_t2k_env(){
   export JOBS_DIR="$WORK_DIR/jobs"
   export LOGS_DIR="$JOBS_DIR/logs"
 
+  export COMMON_DIR="/sps/t2k/common"
+  alias common="cd $COMMON_DIR"
+
   alias logs="cd $LOGS_DIR"
   alias job='jobSlurm.py'
 
@@ -117,7 +120,7 @@ function link_local_libs(){
 
   if [[ $machineName =~ .in2p3.fr$ ]]; then
     echo -e "${WARNING} Loading common t2k software"
-    source /sps/t2k/common/software/env.sh
+    source $COMMON_DIR/software/env.sh
 
     echo -e "${WARNING} Using our ROOT version..."
     t2k_setup_root v6-34-02
