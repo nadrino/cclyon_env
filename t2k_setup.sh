@@ -123,7 +123,8 @@ function link_local_libs(){
     source $COMMON_DIR/software/env.sh
 
     echo -e "${WARNING} Using our ROOT version..."
-    t2k_setup_root v6-34-02
+    # t2k_setup_root v6-34-02
+    t2k_setup_root v6-38-00
   elif [[ $machineName =~ .cern.ch$ ]]; then
     echo -e "${WARNING} Init CERN soft"
     # source /cvmfs/sft.cern.ch/lcg/contrib/gcc/11/x86_64-centos7/setup.sh
