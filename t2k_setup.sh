@@ -314,6 +314,8 @@ function build_gundam(){
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_CACHE_MANAGER=OFF"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_PYTHON_INTERFACE=ON"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D pybind11_DIR=/pbs/home/a/ablanche/.local/lib/python3.12/site-packages/pybind11/share/cmake/pybind11"
+      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D CMAKE_CUDA_COMPILER=/sps/t2k/ablanche/install/cuda-12.4/bin/nvcc"
+      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D CMAKE_CUDA_ARCHITECTURES=70"
     else
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_CACHE_MANAGER=OFF"
     fi
