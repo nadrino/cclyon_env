@@ -593,12 +593,13 @@ function qLoginGpu(){
   then
     echo "nb_cores is unset -> Single core";
     set -x
+    srun -p gpu_v100_interactive --gpus=1   --cpus-per-task=1 --mem=32G --time=04:00:00 --pty bash -i
     srun -p gpu_interactive -L sps --gres=gpu:v100:1 --pty bash -i
     set +x
   else
     echo "nb_cores is set to '$1'";
     set -x
-    srun -p gpu_interactive -L sps -c $1 --gres=gpu:v100:1 --pty bash -i
+    srun -p gpu_v100_interactive --gpus=1   --cpus-per-task=$1 --mem=32G --time=04:00:00 --pty bash -i
     set +x
   fi
 }; export -f qLoginGpu
