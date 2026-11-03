@@ -26,7 +26,9 @@
 # (BQS) and data access services. DO NOT DISABLE OR MODIFY THIS SECTION.      #
 #=============================================================================#
 
-export ENV_SETUP_DIR="$HOME/work/repo/cclyon_env/"
+export HOME_WORK_DIR="$HOME/work"
+export HOME_REPO_DIR="$HOME_WORK_DIR/repo"
+export ENV_SETUP_DIR="$HOME_REPO_DIR/cclyon_env/"
 
 
 machineName="$(hostname --fqdn)"

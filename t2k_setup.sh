@@ -87,13 +87,13 @@ function set_t2k_env(){
   alias res="cd $RESULTS_DIR"
 
   # Python
-  export PYTHONPATH="$REPO_DIR/cclyon_py_tools/submodules/py-generic-toolbox/src:$PYTHONPATH"
-  export PATH="$REPO_DIR/cclyon_py_tools/scripts:$PATH"
-  export PATH="$REPO_DIR/cclyon_bash_tools/bin:$PATH"
-
   export CC_ROOT_MACROS="$REPO_DIR/cclyon_root_macros/"
-  export CC_BASH_TOOLS="$REPO_DIR/cclyon_bash_tools/"
-  export CC_PY_TOOLS="$REPO_DIR/cclyon_py_tools/"
+  export CC_BASH_TOOLS="$HOME_REPO_DIR/cclyon-common-bash-tools/"
+  export CC_PY_TOOLS="$HOME_REPO_DIR/cclyon_py_tools/"
+
+  export PYTHONPATH="$CC_PY_TOOLS/submodules/py-generic-toolbox/src:$PYTHONPATH"
+  export PATH="$CC_PY_TOOLS/scripts:$PATH"
+  export PATH="$HOME_REPO_DIR/cclyon-common-bash-tools/bin:$PATH"
 
   export T2K_ENV_IS_SETUP="1"
 
