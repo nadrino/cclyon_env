@@ -328,3 +328,46 @@ function pull_gundam(){
   build_gundam "$@"
   return;
 }; export -f pull_gundam
+
+syncNextCloud() {
+    local source="${1%/}"
+    local dest="cchpss0:/hpss/in2p3.fr/group/t2k/webdav/nextcloud/kcl/ASGReader"
+
+    if [[ -d /scratch_ssd/hyperk/temp && -w /scratch_ssd/hyperk/temp ]]; then
+        local scratch="/scratch_ssd/hyperk/temp"
+    elif [[ -d /scratch/hyperk/temp && -w /scratch/hyperk/temp ]]; then
+        local scratch="/scratch/hyperk/temp"
+    else
+        echo "ERROR: No writable scratch directory available" >&2
+        return 1
+    fi
+
+    local tmp
+    tmp=${scratch}
+
+    # Download from Nextcloud
+    if ! rclone copy "nextcloud:${source}" "${tmp}/${source}" --progress; then
+        echo "ERROR: Nextcloud download failed. Files kept in ${tmp}" >&2
+        return 1
+    fi
+
+    # Upload to HPSS, preserving directory structure
+    local file dir
+    while IFS= read -r -d '' file; do
+        dir=$(dirname "$file")
+
+        if ! rfmkdir -p "${dest}/${dir}"; then
+            echo "ERROR: Cannot create HPSS directory ${dir}" >&2
+            return 1
+        fi
+
+        echo "Uploading: ${file}"
+        if ! rfcp "${tmp}/${file}" "${dest}/${file}"; then
+            echo "ERROR: HPSS transfer failed for ${file}" >&2
+            return 1
+        fi
+    done < <(cd "$tmp" && find "$source" -type f -print0)
+
+    rm -rf -- "$tmp"
+    echo "Sync completed: ${source}"
+}; export -f syncNextCloud
