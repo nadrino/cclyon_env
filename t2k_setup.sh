@@ -356,7 +356,8 @@ syncNextCloud() {
     while IFS= read -r -d '' file; do
         dir=$(dirname "$file")
 
-        if ! rfmkdir -p "${dest}/${dir}"; then
+        if ! rfmkdir -p "${dest}/${dir}" 2>/dev/null &&
+           ! rfdir "${dest}/${dir}/." >/dev/null 2>&1; then
             echo "ERROR: Cannot create HPSS directory ${dir}" >&2
             return 1
         fi
