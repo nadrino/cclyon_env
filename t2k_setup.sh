@@ -333,18 +333,22 @@ syncNextCloud() {
     local source="${1%/}"
     local dest="cchpss0:/hpss/in2p3.fr/group/t2k/webdav/nextcloud/kcl/ASGReader"
 
+    case "$source" in
+        ""|/*|..|../*|*/../*|*/..) echo "ERROR: Expected a relative Nextcloud path without '..'" >&2; return 1 ;;
+    esac
+
     if [[ -d /scratch_ssd/hyperk/temp && -w /scratch_ssd/hyperk/temp ]]; then
         local scratch="/scratch_ssd/hyperk/temp"
     else
         local scratch="/scratch/t2k/temp"
-        mkdir -p ${scratch}
+        mkdir -p -- "$scratch" || return 1
     fi
 
     local tmp
-    tmp=${scratch}
+    tmp=$(mktemp -d "${scratch}/syncNextCloud.XXXXXXXX") || return 1
 
     # Download from Nextcloud
-    if ! (set -x; rclone copy "nextcloud:${source}" "${tmp}/${source}" --progress); then
+    if ! (set -x; rclone copyto "nextcloud:${source}" "${tmp}/${source}" --progress); then
         echo "ERROR: Nextcloud download failed. Files kept in ${tmp}" >&2
         return 1
     fi
@@ -353,7 +357,8 @@ syncNextCloud() {
     local file dir component remote_dir
     local -a components
     while IFS= read -r -d '' file; do
-        dir=$(dirname "$file")
+        dir=${file%/*}
+        [[ "$dir" == "$file" ]] && dir=.
 
         remote_dir="$dest"
         IFS='/' read -r -a components <<< "$dir"
@@ -376,7 +381,7 @@ syncNextCloud() {
             echo "ERROR: HPSS transfer failed for ${file}" >&2
             return 1
         fi
-    done < <(cd "$tmp" && find "$source" -type f -print0)
+    done < <(builtin cd -- "$tmp" >/dev/null && command find "$source" -type f -print0)
 
     rm -rf -- "$tmp"
     echo "Sync completed: ${source}"
