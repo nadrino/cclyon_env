@@ -235,7 +235,7 @@ function build_gundam(){
   if [ "" != "$1" ]
   then
     read -p "Rebuilding with $1 build type? Press enter to validate"
-    rm $BUILD_DIR/gundam/CMakeCache.txt
+    rm /pbs/home/a/ablanche/work/build/$REPO_NAME/CMakeCache.txt
 
     CLUSTER_OPTIONS="-D USE_STATIC_LINKS=OFF"
     if [[ $machineName =~ .cern.ch$ ]]; then
