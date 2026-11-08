@@ -120,11 +120,14 @@ function link_local_libs(){
 
   if [[ $machineName =~ .in2p3.fr$ ]]; then
     echo -e "${WARNING} Loading common t2k software"
-    source $COMMON_DIR/software/env.sh
+    # new common software
+    source /pbs/throng/t2k/common/setup.sh
+    common_soft_setup
+#    source $COMMON_DIR/software/env.sh
 
-    echo -e "${WARNING} Using our ROOT version..."
+#    echo -e "${WARNING} Using our ROOT version..."
     # t2k_setup_root v6-34-02
-    t2k_setup_root v6-38-00
+#    t2k_setup_root v6-38-00
   elif [[ $machineName =~ .cern.ch$ ]]; then
     echo -e "${WARNING} Init CERN soft"
     # source /cvmfs/sft.cern.ch/lcg/contrib/gcc/11/x86_64-centos7/setup.sh

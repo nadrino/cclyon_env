@@ -404,10 +404,6 @@ function setup_programs(){
 
     # echo "   ├─ GCC Version : $(gcc --version | head -n 1)"
 
-    # new common software
-    source /pbs/throng/t2k/common/setup.sh
-    common_soft_setup
-
     export OA_INPUT_FOLDER="$COMMON_DIR/inputs"
   fi
 
