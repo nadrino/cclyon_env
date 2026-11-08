@@ -224,7 +224,7 @@ function installSoft(){
 function build_gundam(){
   echo -e "${ALERT} Building GUNDAM..."
   REPO_NAME="gundam"
-  builtin cd $BUILD_DIR/${REPO_NAME}
+  builtin cd /pbs/home/a/ablanche/work/build/$REPO_NAME
 
   if [ "" != "$1" ]
   then
@@ -253,7 +253,7 @@ function build_gundam(){
     fi
 
     CMAKE_COMMAND="cmake"
-    CMAKE_COMMAND="${CMAKE_COMMAND} -D CMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/${REPO_NAME}"
+    CMAKE_COMMAND="${CMAKE_COMMAND} -D CMAKE_INSTALL_PREFIX:PATH=/pbs/home/a/ablanche/work/install/${REPO_NAME}"
     CMAKE_COMMAND="${CMAKE_COMMAND} -D CMAKE_BUILD_TYPE=$1"
     CMAKE_COMMAND="${CMAKE_COMMAND} $CLUSTER_OPTIONS"
     CMAKE_COMMAND="${CMAKE_COMMAND} $REPO_DIR/${REPO_NAME}/."
@@ -313,7 +313,7 @@ function pull_tofreco(){
 
 function pull_gundam(){
   echo -e "${ALERT} Updating GUNDAM..."
-  builtin cd $REPO_DIR/gundam
+  builtin cd /pbs/home/a/ablanche/work/repo/gundam
   git pull
   git submodule update --remote
   builtin cd -
