@@ -371,4 +371,8 @@ syncNextCloud() {
 
     rm -rf -- "$tmp"
     echo "Sync completed: ${source}"
+    (
+        set -x
+        rfdir "${dest}/${source}"
+    )
 }; export -f syncNextCloud
