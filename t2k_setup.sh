@@ -129,6 +129,12 @@ function link_local_libs(){
     # new common software
     source /pbs/throng/t2k/common/setup.sh
     common_soft_setup
+
+    # my folder
+    source $HOME/work/setup.sh
+    common_soft_setup
+    source /pbs/throng/t2k/common/setup.sh
+
     export MY_THRONG_DIR="/pbs/throng"
     alias throng="cd $MY_THRONG_DIR/t2k"
   elif [[ $machineName =~ .cern.ch$ ]]; then
