@@ -129,6 +129,8 @@ function link_local_libs(){
     # new common software
     source /pbs/throng/t2k/common/setup.sh
     common_soft_setup
+    export THRONG_DIR="/pbs/throng"
+    alias throng="cd $THRONG_DIR/t2k"
   elif [[ $machineName =~ .cern.ch$ ]]; then
     echo -e "${WARNING} Init CERN soft"
 
