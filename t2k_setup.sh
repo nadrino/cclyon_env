@@ -347,16 +347,42 @@ syncNextCloud() {
     local tmp
     tmp="$scratch"
 
-    # Download from Nextcloud
-    if ! (set -x; rclone copyto "nextcloud:${source}" "${tmp}/${source}" --progress); then
-        echo "ERROR: Nextcloud download failed. Files kept in ${tmp}" >&2
-        return 1
+    # List Nextcloud metadata before downloading any file.
+    command -v python3 >/dev/null || { echo "ERROR: python3 is required to read Nextcloud metadata" >&2; return 1; }
+    local metadata is_dir listing files
+    metadata=$(set -x; rclone lsjson "nextcloud:${source}" --stat) || return 1
+    is_dir=$(python3 -c 'import json, sys; print("yes" if json.load(sys.stdin)["IsDir"] else "no")' <<< "$metadata") || return 1
+    if [[ "$is_dir" == yes ]]; then
+        listing=$(set -x; rclone lsjson "nextcloud:${source}" --recursive --files-only) || return 1
+        files=$(python3 -c '
+import json, sys
+source = sys.argv[1]
+for entry in json.load(sys.stdin):
+    if entry["IsDir"]:
+        continue
+    path = source + "/" + entry["Path"]
+    if "\n" in path or "\r" in path or any(p in (".", "..", "") for p in path.split("/")):
+        sys.exit("ERROR: Unsupported Nextcloud path: " + repr(path))
+    print(path)
+' "$source" <<< "$listing") || return 1
+    else
+        files="$source"
     fi
 
-    # Upload to HPSS, preserving directory structure
     local file dir component remote_dir
     local -a components
-    while IFS= read -r -d '' file; do
+    while IFS= read -r file; do
+        [[ -z "$file" ]] && continue
+        if (set -x; rfdir "${dest}/${file}" >/dev/null); then
+            echo "Already on HPSS, skipping: ${file}"
+            continue
+        fi
+
+        if ! (set -x; rclone copyto "nextcloud:${file}" "${tmp}/${file}" --progress); then
+            echo "ERROR: Nextcloud download failed. Files kept in ${tmp}" >&2
+            return 1
+        fi
+
         dir=${file%/*}
         [[ "$dir" == "$file" ]] && dir=.
 
@@ -381,9 +407,8 @@ syncNextCloud() {
             echo "ERROR: HPSS transfer failed for ${file}" >&2
             return 1
         fi
-    done < <(builtin cd -- "$tmp" >/dev/null && command find "$source" -type f -print0)
-
-    rm -rf -- "${tmp}/${source}"
+        rm -f -- "${tmp}/${file}"
+    done <<< "$files"
     echo "Sync completed: ${source}"
     (
         set -x
