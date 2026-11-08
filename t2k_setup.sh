@@ -337,9 +337,7 @@ syncNextCloud() {
         local scratch="/scratch_ssd/hyperk/temp"
     else
         local scratch="/scratch/t2k/temp"
-        mkdir ${scratch}
-        echo "ERROR: No writable scratch directory available" >&2
-        return 1
+        mkdir -p ${scratch}
     fi
 
     local tmp
