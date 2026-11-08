@@ -334,7 +334,7 @@ syncNextCloud() {
     local dest="cchpss0:/hpss/in2p3.fr/group/t2k/webdav/nextcloud/kcl/ASGReader"
 
     case "$source" in
-        ""|/*|..|../*|*/../*|*/..) echo "ERROR: Expected a relative Nextcloud path without '..'" >&2; return 1 ;;
+        ""|/*|.|./*|*/./*|*/.|..|../*|*/../*|*/..) echo "ERROR: Expected a relative Nextcloud path without '.' or '..' components" >&2; return 1 ;;
     esac
 
     if [[ -d /scratch_ssd/hyperk/temp && -w /scratch_ssd/hyperk/temp ]]; then
@@ -345,7 +345,7 @@ syncNextCloud() {
     fi
 
     local tmp
-    tmp=$(mktemp -d "${scratch}/syncNextCloud.XXXXXXXX") || return 1
+    tmp="$scratch"
 
     # Download from Nextcloud
     if ! (set -x; rclone copyto "nextcloud:${source}" "${tmp}/${source}" --progress); then
@@ -383,7 +383,7 @@ syncNextCloud() {
         fi
     done < <(builtin cd -- "$tmp" >/dev/null && command find "$source" -type f -print0)
 
-    rm -rf -- "$tmp"
+    rm -rf -- "${tmp}/${source}"
     echo "Sync completed: ${source}"
     (
         set -x
