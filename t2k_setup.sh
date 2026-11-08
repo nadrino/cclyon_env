@@ -344,24 +344,35 @@ syncNextCloud() {
     tmp=${scratch}
 
     # Download from Nextcloud
-    if ! rclone copy "nextcloud:${source}" "${tmp}/${source}" --progress; then
+    if ! (set -x; rclone copy "nextcloud:${source}" "${tmp}/${source}" --progress); then
         echo "ERROR: Nextcloud download failed. Files kept in ${tmp}" >&2
         return 1
     fi
 
     # Upload to HPSS, preserving directory structure
-    local file dir
+    local file dir component remote_dir
+    local -a components
     while IFS= read -r -d '' file; do
         dir=$(dirname "$file")
 
-        if ! rfmkdir -p "${dest}/${dir}" 2>/dev/null &&
-           ! rfdir "${dest}/${dir}/." >/dev/null 2>&1; then
-            echo "ERROR: Cannot create HPSS directory ${dir}" >&2
-            return 1
-        fi
+        remote_dir="$dest"
+        IFS='/' read -r -a components <<< "$dir"
+        for component in "${components[@]}"; do
+            [[ -z "$component" || "$component" == "." ]] && continue
+            remote_dir="${remote_dir}/${component}"
+            if ! (set -x; rfdir "${remote_dir}/." >/dev/null); then
+                if ! (set -x; rfmkdir "$remote_dir"); then
+                    # Another transfer may have created the directory meanwhile.
+                    if ! (set -x; rfdir "${remote_dir}/." >/dev/null); then
+                        echo "ERROR: Cannot create HPSS directory ${remote_dir}" >&2
+                        return 1
+                    fi
+                fi
+            fi
+        done
 
         echo "Uploading: ${file}"
-        if ! rfcp "${tmp}/${file}" "${dest}/${file}"; then
+        if ! (set -x; rfcp "${tmp}/${file}" "${dest}/${file}"); then
             echo "ERROR: HPSS transfer failed for ${file}" >&2
             return 1
         fi
