@@ -385,6 +385,7 @@ function setup_programs(){
     fi
 
     # module load Analysis/root
+    module load goland # build tool like cmake
     module load python
     module load fortran
     module load Collaborative_Tools/git
