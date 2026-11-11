@@ -112,57 +112,60 @@ function link_local_libs(){
 
   local current_path=${PWD}
 
-  if [ -z ${T2K_ENV_IS_SETUP+x} ];
-  then
-    echo "T2K_ENV_IS_SETUP is not set. Please run set_t2k_env first.";
-    return;
-  fi
+#  if [ -z ${T2K_ENV_IS_SETUP+x} ];
+#  then
+#    echo "T2K_ENV_IS_SETUP is not set. Please run set_t2k_env first.";
+#    return;
+#  fi
+#
+#  if [[ $machineName =~ .in2p3.fr$ ]]; then
+#    echo -e "${WARNING} Loading common t2k software"
+#    # new common software
+##    source $COMMON_DIR/software/env.sh
+#
+##    echo -e "${WARNING} Using our ROOT version..."
+#    # t2k_setup_root v6-34-02
+##    t2k_setup_root v6-38-00
+#    # new common software
+#    source /pbs/throng/t2k/common/setup.sh
+#    common_soft_setup
+#
+#    # my folder
+#    source $HOME/work/setup.sh
+#    common_soft_setup
+#    source /pbs/throng/t2k/common/setup.sh
+#
+#    export MY_THRONG_DIR="/pbs/throng"
+#    alias throng="cd $MY_THRONG_DIR/t2k"
+#  elif [[ $machineName =~ .cern.ch$ ]]; then
+#    echo -e "${WARNING} Init CERN soft"
+#
+#  elif [[ $machineName =~ .baobab$ ]]; then
+#    echo -e "${WARNING} Loading local ROOT lib..."
+#    source ${INSTALL_DIR}/root/bin/thisroot.sh
+#  elif [[ $machineName =~ .yggdrasil$ ]]; then
+#    echo -e "${WARNING} Loading local ROOT lib..."
+#    source ${INSTALL_DIR}/root/bin/thisroot.sh
+#  fi
+#
+#  echo -e "${WARNING} Linking my libs in $INSTALL_DIR"
+#  for dir in $INSTALL_DIR/*/     # list directories in the form "/tmp/dirname/"
+#  do
+#    dir=${dir%*/}      # remove the trailing "/"
+#    sub_folder=${dir##*/} # print everything after the final "/"
+#    if [[ "$sub_folder" == *_off ]]; then
+#      echo "   ├─ $sub_folder ends with _off. Skipping..."
+#    elif [[ "$sub_folder" == '*' ]]; then
+#      echo "   ├─ $sub_folder isn't valid. Skipping..."
+#    else
+#      export PATH="$INSTALL_DIR/$sub_folder/bin:$PATH"
+#      export LD_LIBRARY_PATH="$INSTALL_DIR/$sub_folder/lib:$LD_LIBRARY_PATH"
+#      echo "   ├─ Adding : $sub_folder"
+#    fi
+#  done
 
-  if [[ $machineName =~ .in2p3.fr$ ]]; then
-    echo -e "${WARNING} Loading common t2k software"
-    # new common software
-#    source $COMMON_DIR/software/env.sh
-
-#    echo -e "${WARNING} Using our ROOT version..."
-    # t2k_setup_root v6-34-02
-#    t2k_setup_root v6-38-00
-    # new common software
-    source /pbs/throng/t2k/common/setup.sh
-    common_soft_setup
-
-    # my folder
-    source $HOME/work/setup.sh
-    common_soft_setup
-    source /pbs/throng/t2k/common/setup.sh
-
-    export MY_THRONG_DIR="/pbs/throng"
-    alias throng="cd $MY_THRONG_DIR/t2k"
-  elif [[ $machineName =~ .cern.ch$ ]]; then
-    echo -e "${WARNING} Init CERN soft"
-
-  elif [[ $machineName =~ .baobab$ ]]; then
-    echo -e "${WARNING} Loading local ROOT lib..."
-    source ${INSTALL_DIR}/root/bin/thisroot.sh
-  elif [[ $machineName =~ .yggdrasil$ ]]; then
-    echo -e "${WARNING} Loading local ROOT lib..."
-    source ${INSTALL_DIR}/root/bin/thisroot.sh
-  fi
-
-  echo -e "${WARNING} Linking my libs in $INSTALL_DIR"
-  for dir in $INSTALL_DIR/*/     # list directories in the form "/tmp/dirname/"
-  do
-    dir=${dir%*/}      # remove the trailing "/"
-    sub_folder=${dir##*/} # print everything after the final "/"
-    if [[ "$sub_folder" == *_off ]]; then
-      echo "   ├─ $sub_folder ends with _off. Skipping..."
-    elif [[ "$sub_folder" == '*' ]]; then
-      echo "   ├─ $sub_folder isn't valid. Skipping..."
-    else
-      export PATH="$INSTALL_DIR/$sub_folder/bin:$PATH"
-      export LD_LIBRARY_PATH="$INSTALL_DIR/$sub_folder/lib:$LD_LIBRARY_PATH"
-      echo "   ├─ Adding : $sub_folder"
-    fi
-  done
+  source $INSTALL_DIR/../setup.sh
+  common_soft_setup
 
   builtin cd $current_path
 
