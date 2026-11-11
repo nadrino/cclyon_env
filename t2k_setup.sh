@@ -230,12 +230,12 @@ function installSoft(){
 function build_gundam(){
   echo -e "${ALERT} Building GUNDAM..."
   REPO_NAME="gundam"
-  builtin cd /pbs/home/a/ablanche/work/build/$REPO_NAME
+  builtin cd $BUILD_DIR/$REPO_NAME
 
   if [ "" != "$1" ]
   then
     read -p "Rebuilding with $1 build type? Press enter to validate"
-    rm /pbs/home/a/ablanche/work/build/$REPO_NAME/CMakeCache.txt
+    rm $BUILD_DIR/$REPO_NAME/CMakeCache.txt
 
     CLUSTER_OPTIONS="-D USE_STATIC_LINKS=OFF"
     if [[ $machineName =~ .cern.ch$ ]]; then
@@ -259,10 +259,10 @@ function build_gundam(){
     fi
 
     CMAKE_COMMAND="cmake"
-    CMAKE_COMMAND="${CMAKE_COMMAND} -D CMAKE_INSTALL_PREFIX:PATH=/pbs/home/a/ablanche/work/install/${REPO_NAME}"
+    CMAKE_COMMAND="${CMAKE_COMMAND} -D CMAKE_INSTALL_PREFIX:PATH=$INSTALL_DIR/${REPO_NAME}"
     CMAKE_COMMAND="${CMAKE_COMMAND} -D CMAKE_BUILD_TYPE=$1"
     CMAKE_COMMAND="${CMAKE_COMMAND} $CLUSTER_OPTIONS"
-    CMAKE_COMMAND="${CMAKE_COMMAND} /pbs/home/a/ablanche/work/repo/$REPO_NAME/."
+    CMAKE_COMMAND="${CMAKE_COMMAND} $REPO_DIR/$REPO_NAME/."
 
     echo $CMAKE_COMMAND
     $CMAKE_COMMAND
@@ -319,7 +319,7 @@ function pull_tofreco(){
 
 function pull_gundam(){
   echo -e "${ALERT} Updating GUNDAM..."
-  builtin cd /pbs/home/a/ablanche/work/repo/gundam
+  builtin cd $REPO_DIR/gundam
   git pull
   git submodule update --remote
   builtin cd -
