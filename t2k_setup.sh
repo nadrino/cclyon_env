@@ -127,8 +127,8 @@ function link_local_libs(){
 #    # t2k_setup_root v6-34-02
 ##    t2k_setup_root v6-38-00
 #    # new common software
-#    source /pbs/throng/t2k/common/setup.sh
-#    common_soft_setup
+    source /pbs/throng/t2k/common/setup.sh
+    common_soft_setup
 #
 #    # my folder
 #    source $HOME/work/setup.sh
