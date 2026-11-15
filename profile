@@ -26,35 +26,55 @@
 # (BQS) and data access services. DO NOT DISABLE OR MODIFY THIS SECTION.      #
 #=============================================================================#
 
+# identify on which computing cluster we are running
+
+machineName="$(hostname --fqdn)"
+if [[ $machineName =~ .baobab$ || $machineName =~ .yggdrasil$ ]];
+then
+  # university of geneva
+  export CC_HOST_NAME="unige"
+elif [[ $machineName =~ .cern.ch$ ]];
+then
+  export CC_HOST_NAME="cern"
+elif [[ $machineName =~ .in2p3.fr$ ]];
+then
+  export CC_HOST_NAME="in2p3"
+else
+  export CC_HOST_NAME="unknown" # default
+fi
+
+echo "Hostname detected: $CC_HOST_NAME"
+
+# these path should be present on every host
 export HOME_WORK_DIR="$HOME/work"
 export HOME_REPO_DIR="$HOME_WORK_DIR/repo"
 export ENV_SETUP_DIR="$HOME_REPO_DIR/cclyon_env/"
 
 
-machineName="$(hostname --fqdn)"
-if [[ $machineName =~ .baobab$ || $machineName =~ .yggdrasil$ ]];
-then
-  export ENV_SETUP_DIR="$HOME/repo/cclyon_env/"
-  export CC_DIR="$HOME"
-elif [[ $machineName =~ .cern.ch$ ]];
-then
-  export EOS_PATH="/eos/home-a/adblanch"
-  echo "EOS_PATH=$EOS_PATH"
-  export ENV_SETUP_DIR="${EOS_PATH}/software/repo/cclyon_env"
-  # export CC_DIR="$HOME/private/software"
-  export CC_DIR="${EOS_PATH}/software"
-else
-  export CC_DIR="/sps/t2k/ablanche"
-  if [ -r /afs/in2p3.fr/common/uss/system_profile ];then
-     . /afs/in2p3.fr/common/uss/system_profile
-  fi
+case "$CC_HOST_NAME" in
+  unige)
+    export ENV_SETUP_DIR="$HOME/repo/cclyon_env/"
+    export CC_DIR="$HOME"
+    ;;
+  cern)
+    export EOS_PATH="/eos/home-a/adblanch"
+    echo "EOS_PATH=$EOS_PATH"
+    export ENV_SETUP_DIR="${EOS_PATH}/software/repo/cclyon_env"
+    export CC_DIR="${EOS_PATH}/software"
+    ;;
+  in2p3)
+    export CC_DIR="/sps/t2k/ablanche"
+    if [ -r /afs/in2p3.fr/common/uss/system_profile ];then
+       . /afs/in2p3.fr/common/uss/system_profile
+    fi
 
-  if [ -n "$THRONG_DIR" ];then
-     if [ -r $THRONG_DIR/group_profile ];then
-        . $THRONG_DIR/group_profile
-     fi
-  fi
-fi
+    if [ -n "$THRONG_DIR" ];then
+       if [ -r $THRONG_DIR/group_profile ];then
+          . $THRONG_DIR/group_profile
+       fi
+    fi
+    ;;
+esac
 
 
 

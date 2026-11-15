@@ -112,58 +112,11 @@ function link_local_libs(){
 
   local current_path=${PWD}
 
-#  if [ -z ${T2K_ENV_IS_SETUP+x} ];
-#  then
-#    echo "T2K_ENV_IS_SETUP is not set. Please run set_t2k_env first.";
-#    return;
-#  fi
-#
-#  if [[ $machineName =~ .in2p3.fr$ ]]; then
-#    echo -e "${WARNING} Loading common t2k software"
-#    # new common software
-##    source $COMMON_DIR/software/env.sh
-#
-##    echo -e "${WARNING} Using our ROOT version..."
-#    # t2k_setup_root v6-34-02
-##    t2k_setup_root v6-38-00
-#    # new common software
-    source /pbs/throng/t2k/common/setup.sh
-    common_soft_setup
-#
-#    # my folder
-#    source $HOME/work/setup.sh
-#    common_soft_setup
-#    source /pbs/throng/t2k/common/setup.sh
-#
-#    export MY_THRONG_DIR="/pbs/throng"
-#    alias throng="cd $MY_THRONG_DIR/t2k"
-#  elif [[ $machineName =~ .cern.ch$ ]]; then
-#    echo -e "${WARNING} Init CERN soft"
-#
-#  elif [[ $machineName =~ .baobab$ ]]; then
-#    echo -e "${WARNING} Loading local ROOT lib..."
-#    source ${INSTALL_DIR}/root/bin/thisroot.sh
-#  elif [[ $machineName =~ .yggdrasil$ ]]; then
-#    echo -e "${WARNING} Loading local ROOT lib..."
-#    source ${INSTALL_DIR}/root/bin/thisroot.sh
-#  fi
-#
-#  echo -e "${WARNING} Linking my libs in $INSTALL_DIR"
-#  for dir in $INSTALL_DIR/*/     # list directories in the form "/tmp/dirname/"
-#  do
-#    dir=${dir%*/}      # remove the trailing "/"
-#    sub_folder=${dir##*/} # print everything after the final "/"
-#    if [[ "$sub_folder" == *_off ]]; then
-#      echo "   ├─ $sub_folder ends with _off. Skipping..."
-#    elif [[ "$sub_folder" == '*' ]]; then
-#      echo "   ├─ $sub_folder isn't valid. Skipping..."
-#    else
-#      export PATH="$INSTALL_DIR/$sub_folder/bin:$PATH"
-#      export LD_LIBRARY_PATH="$INSTALL_DIR/$sub_folder/lib:$LD_LIBRARY_PATH"
-#      echo "   ├─ Adding : $sub_folder"
-#    fi
-#  done
+  echo -e "${INFO} Setting up common throng libs..."
+  source /pbs/throng/t2k/common/setup.sh
+  common_soft_setup
 
+  echo -e "${INFO} Setting up MY libs..."
   source $INSTALL_DIR/../setup.sh
   common_soft_setup
 
@@ -175,44 +128,6 @@ function link_local_libs(){
   echo -e "${INFO} T2K libs have been setup."
 
 }; export -f link_local_libs
-
-function setup_brew(){
-  cur_dir="$PWD"
-
-  # Cleaning env
-  # export PATH="/usr/bin" # cd, ls...
-  # export PATH="/opt/sge/bin/lx-amd64:$PATH" # for qsub
-  # export LD_LIBRARY_PATH=""
-
-  # Set brew env
-  eval $($HOME/.linuxbrew/bin/brew shellenv)
-  export PATH="$HOME/.linuxbrew/opt/python/libexec/bin:$PATH"
-
-  export HOMEBREW_DEVELOPER=1
-  export HOMEBREW_GIT_PATH="/pbs/software/centos-7-x86_64/git/2.30.1/bin/git"
-  export HOMEBREW_CURL_PATH="/pbs/software/centos-7-x86_64/curl/7.60.0/bin/curl"
-
-  # Debug options
-  # export HOMEBREW_DEBUG=1
-  # export HOMEBREW_DEBUG_INSTALL=1
-  export HOMEBREW_VERBOSE=1
-
-  # Parameters
-  export HOMEBREW_BUILD_FROM_SOURCE=1
-  export HOMEBREW_MAKE_JOBS=4
-
-  # Scratch
-  export HOMEBREW_TEMP=$SCRATCH_DIR
-  export HOMEBREW_CACHE=$SCRATCH_DIR
-  export HOMEBREW_LOGS=$SCRATCH_DIR/logs
-
-  export BREW_ENV_IS_SETUP=1
-
-  # Reset the t2k env
-  builtin cd $cur_dir
-  echo -e "${LYELLOW}NOTICE: Brew env has been setup.${RESTORE}"
-  return;
-}; export -f setup_brew
 
 function installSoft(){
   if [ "" != "$1" ]
@@ -247,11 +162,9 @@ function build_gundam(){
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D CMAKE_CUDA_ARCHITECTURES=all"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_GUNDAM_ROOT_APP=OFF"
     elif [[ $machineName =~ .in2p3.fr$ ]]; then
-#      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D YAMLCPP_DIR=$COMMON_INSTALL_DIR/yaml-cpp"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_CACHE_MANAGER=OFF"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_PYTHON_INTERFACE=ON"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D pybind11_DIR=/pbs/home/a/ablanche/.local/lib/python3.12/site-packages/pybind11/share/cmake/pybind11"
-#      CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D CMAKE_CUDA_COMPILER=/sps/t2k/ablanche/install/cuda-12.4/bin/nvcc"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D CMAKE_CUDA_ARCHITECTURES=70"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_CUDA_LIB=ON"
       CLUSTER_OPTIONS="$CLUSTER_OPTIONS -D WITH_BACKENDS=ON"
@@ -307,19 +220,6 @@ function build_tofreco(){
   return;
 }; export -f build_tofreco
 
-
-function pull_tofreco(){
-  echo -e "${ALERT} Updating tof-reco..."
-  builtin cd $REPO_DIR/tof-reco
-  git pull
-  git submodule update --remote
-  builtin cd -
-  echo -e "${INFO} tof-reco code has been updated. Calling build..."
-
-  build_tofreco "$@"
-  return;
-}; export -f pull_tofreco
-
 function pull_gundam(){
   echo -e "${ALERT} Updating GUNDAM..."
   builtin cd $REPO_DIR/gundam
@@ -332,7 +232,7 @@ function pull_gundam(){
   return;
 }; export -f pull_gundam
 
-syncNextCloud() {
+syncNextCloudToHpss() {
     local source="${1%/}"
     local dest="cchpss0:/hpss/in2p3.fr/group/t2k/webdav/nextcloud/kcl/ASGReader"
 
@@ -417,4 +317,4 @@ for entry in json.load(sys.stdin):
         set -x
         rfdir "${dest}/${source}"
     )
-}; export -f syncNextCloud
+}; export -f syncNextCloudToHpss
