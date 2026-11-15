@@ -120,11 +120,10 @@ function link_local_libs(){
   source $INSTALL_DIR/../setup.sh
   common_soft_setup
 
-  builtin cd $current_path
-
   # PyGundam
   export PYTHONPATH="$INSTALL_DIR/gundam/lib:$PYTHONPATH"
 
+  builtin cd $current_path
   echo -e "${INFO} T2K libs have been setup."
 
 }; export -f link_local_libs

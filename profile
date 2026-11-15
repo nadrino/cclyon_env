@@ -95,8 +95,8 @@ export T2K_PROFILE="$ENV_SETUP_DIR/t2k_setup.sh"
 if [ -f $T2K_PROFILE ];
 then
   # source $T2K_PROFILE
-  . $T2K_PROFILE
-  set_t2k_env
+  source $T2K_PROFILE
+#  set_t2k_env
   echo -e "${INFO} t2k_setup has been loaded."
 else
   echo "Can't find T2K_PROFILE : $T2K_PROFILE";
