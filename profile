@@ -91,17 +91,6 @@ esac
 #=============================================================================#
 
 
-export T2K_PROFILE="$ENV_SETUP_DIR/t2k_setup.sh"
-if [ -f $T2K_PROFILE ];
-then
-  # source $T2K_PROFILE
-  source $T2K_PROFILE
-#  set_t2k_env
-  echo -e "${INFO} t2k_setup has been loaded."
-else
-  echo "Can't find T2K_PROFILE : $T2K_PROFILE";
-fi
-
 export COMMON_PROFILE="$ENV_SETUP_DIR/common_profile.sh"
 if [ -f $COMMON_PROFILE ];
 then
@@ -111,6 +100,18 @@ then
 else
   echo "Can't find common_profile.sh : $COMMON_PROFILE";
 fi
+
+export T2K_PROFILE="$ENV_SETUP_DIR/t2k_setup.sh"
+if [ -f $T2K_PROFILE ];
+then
+  # source $T2K_PROFILE
+  source $T2K_PROFILE
+  set_t2k_env
+  echo -e "${INFO} t2k_setup has been loaded."
+else
+  echo "Can't find T2K_PROFILE : $T2K_PROFILE";
+fi
+
 
 function pull_cc_env(){
   local savedpath=${PWD}
@@ -128,7 +129,7 @@ function pull_cc_env(){
 
 echo -e "${INFO} .profile is loaded."
 
-set_t2k_env
+#set_t2k_env
 # setup_programs
 # setup_brew
 res # go to t2k sps directory
